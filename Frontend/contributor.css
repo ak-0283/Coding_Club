@@ -1,0 +1,102 @@
+/* Coding Club Theme */
+:root {
+    --primary-color: #0d1117;
+    --secondary-color: #161b22;
+    --text-color: #e6edf3;
+    --accent-color: #58a6ff;
+    --card-bg: #21262d;
+}
+
+/* Contributors Page Styling */
+.banner {
+    background: whitesmoke;
+    padding: 30px 15px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.15), -4px -4px 10px rgba(255, 255, 255, 0.6);
+}
+
+.banner h1 {
+    color: #58a6ff;
+    font-size: 2rem;
+}
+
+.banner p {
+    font-size: 16px;
+    color: #8b949e;
+}
+
+/* Search Bar */
+#search {
+    margin-top: 15px;
+    padding: 12px;
+    width: 80%;
+    max-width: 400px;
+    border: 3px solid #58a6ff;
+    border-radius: 10px;
+    background: #e6edf3;
+    color:#0d1117;
+    text-align: center;
+}
+
+/* Team Container */
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 90%;
+    margin: 30px auto;
+    padding: 10px;
+}
+
+/* Contributor Card */
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #58a6ff;
+    object-fit: cover;
+}
+
+.card h3 {
+    color: #58a6ff;
+    margin: 10px 0 5px;
+}
+
+.card p {
+    color: #8b949e;
+    font-size: 14px;
+}
+
+/* Social Icons */
+.contributors {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.contributors a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #58a6ff;
+    transition: color 0.3s ease;
+}
+
+.contributors i {
+    font-size: 18px;
+}
+
+.contributors a:hover {
+    color: #1f6feb;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Club - Our Team</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contributor.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <a href="index.html"><img id="logo" src="codingclub.png" alt="Logo"></a>
+        </div>
+        
+            <h1>Welcome to Our Coding Club</h1>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="contributor.html">Contributors</a></li>
+                    <button id="toggleTheme" class="toggle-btn">🌙</button>
+                </ul>
+            </nav>
+    
+             <nav>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <span id="closeMenu"><i class="fas fa-times"></i></span>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="contributor.html">Contributors</a></li>
+                <button id="toggleTheme-mobile" class="menu-toggle-btn">🌙</button>
+            </ul>        
+        </nav>
+    </header>
+    
+
+    <div class="banner">
+        <h1>Meet Our Contributors</h1>
+        <p>Dedicated minds behind Coding Club 🚀</p>
+        <input type="text" id="search" placeholder="Search by name or role..." onkeyup="filterTeam()">
+    </div>
+
+    <section class="team-container" id="teamContainer">
+        <!-- Contributors will be loaded dynamically here -->
+    </section>
+
+    <script src="contributor.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

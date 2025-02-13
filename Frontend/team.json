@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Linus Torvalds",
+        "role": "Frontend Developer",
+        "image": "https://avatars.githubusercontent.com/u/1024025?v=4",
+        "github": "https://github.com/torvalds",
+        "linkedin": "https://www.linkedin.com/in/linustorvalds/"
+    },
+    {
+        "name": "Steven Tey",
+        "role": "Backend Developer",
+        "image": "https://avatars.githubusercontent.com/u/28986134?v=4",
+        "github": "https://github.com/steven-tey",
+        "linkedin": "https://www.linkedin.com/in/steventey/"
+    },
+    {
+        "name": "Brad Traversy",
+        "role": "UI/UX Designer",
+        "image": "https://avatars.githubusercontent.com/u/176013?v=4",
+        "github": "https://github.com/wesbos",
+        "linkedin": "https://www.linkedin.com/in/wesbos/?originalSubdomain=ca"
+    }
+]
