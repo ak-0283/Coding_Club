@@ -21,11 +21,11 @@ The Coding Club Website is designed to serve as an online hub for students inter
      </thead>
     <tbody>
          <tr>
-            <td><img alt="Stars" src="https://img.shields.io/github/stars/ak-0283/Samnwadh?style=flat&logo=github"/></td>
-             <td><img alt="Forks" src="https://img.shields.io/github/forks/ak-0283/Samnwadh?style=flat&logo=github"/></td>
-            <td><img alt="Issues" src="https://img.shields.io/github/issues/ak-0283/Samnwadh?style=flat&logo=github"/></td>
-            <td><img alt="Open Pull Requests" src="https://img.shields.io/github/issues-pr/ak-0283/Samnwadh?style=flat&logo=github"/></td>
-           <td><img alt="Closed Pull Requests" src="https://img.shields.io/github/issues-pr-closed/ak-0283/Samnwadh?style=flat&color=critical&logo=github"/></td>
+            <td><img alt="Stars" src="https://img.shields.io/github/stars/ak-0283/Coding_Club?style=flat&logo=github"/></td>
+             <td><img alt="Forks" src="https://img.shields.io/github/forks/ak-0283/Coding_Club?style=flat&logo=github"/></td>
+            <td><img alt="Issues" src="https://img.shields.io/github/issues/ak-0283/Coding_Club?style=flat&logo=github"/></td>
+            <td><img alt="Open Pull Requests" src="https://img.shields.io/github/issues-pr/ak-0283/Coding_Club?style=flat&logo=github"/></td>
+           <td><img alt="Closed Pull Requests" src="https://img.shields.io/github/issues-pr-closed/ak-0283/Coding_Club?style=flat&color=critical&logo=github"/></td>
         </tr>
     </tbody>
 </table>
