@@ -8,33 +8,20 @@
 
   <link rel="stylesheet" href="../css_files/style.css" />
   <link rel="stylesheet" href="../css_files/toggle.css" />
+  <link rel="stylesheet" href="../css_files/card.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="card.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
-  <button id="toggleTheme" class="toggle-btn">🌙</button>
 
-  <div class="overlay" id="overlay">
-    <div class="card">
-      <button class="close-btn" onclick="closeCard()">X</button>
-      <h1 id="greeting"></h1>
-    </div>
-  </div>
-
-  <!-- scroll button -->
-  <button id="scrollToTop" class="scroll-btn">
-    <i class="fas fa-arrow-up fa-xl"></i>
-  </button>
-
+  <!-- Navbar -->
   <header>
-    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
     <nav class="navbar" id="navbar">
       <ul class="nav-links">
-        <h1 style="font-size: 40px; font-weight: bolder; color: white;">Welcome to Our Coding Club</h1>
+        <h1 style="font-size: 40px; font-weight: bolder; color: white;">Welcome to Coding Club</h1>
         <nav>
           <ul>
             <li><a href="#home">Home</a></li>
@@ -45,7 +32,6 @@
             <li><a href="login.html">Login</a></li>
           </ul>
         </nav>
-        <h1>Welcome to Our Coding Club</h1>
   </header>
 
   <section id="home">
@@ -89,7 +75,6 @@
   </section>
 
   <section id="contact">
-
     <h2>Contact Us</h2>
     <form>
       <input type="text" placeholder="Your Name" required>
@@ -115,11 +100,11 @@
       <div class="quick-contact">
         <h3>Quick Links</h3>
         <ul>
-          <li class="sec-nav"><a href="/">Home</a></li>
-          <li class="sec-nav"><a href="/about">About</a></li>
-          <li class="sec-nav"><a href="/blog">Blog</a></li>
-          <li class="sec-nav"><a href="/contact">Contact</a></li>
-          <li class="sec-nav"><a href="/feedback">Feedback</a></li>
+          <li class="sec-nav"><a href="#home">Home</a></li>
+          <li class="sec-nav"><a href="#about">About</a></li>
+          <li class="sec-nav"><a href="#events">Events</a></li>
+          <li class="sec-nav"><a href="#projects">Projects</a></li>
+          <li class="sec-nav"><a href="#contact">Contact</a></li>
         </ul>
       </div>
       <div class="quick-contact">
@@ -139,18 +124,11 @@
     </div>
 
     <div class="privacy">
-      <a href="/privacy-policy">Privacy Policy</a> |
-      <a href="/terms">Terms & Conditions</a>
+      <a href="privacy-policy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms & Conditions</a>
     </div>
 
     <div class="copyright">© 2025 YourWebsite. All rights reserved.</div>
   </footer>
-
-  <script src="script.js"></script>
-  <script src="toggle.js"></script>
-
-</body>
-<script src="card.js"></script>
-</body>
 
 </html>
