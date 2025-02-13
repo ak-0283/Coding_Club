@@ -38,11 +38,12 @@
     box-shadow: 0px 0px 12px rgba(0, 123, 255, 0.5);
 }
 
+
 /* Dark mode for buttons */
-.dark-mode button {
+.dark-mode button:not(#toggleTheme) {
     background: linear-gradient(135deg, #444, #666);
 }
-.dark-mode button:hover {
+.dark-mode button:hover:not(#toggleTheme) {
     background: linear-gradient(135deg, #555, #777);
 }
 
@@ -104,7 +105,6 @@
 .dark-mode #home h2{
     color: #ffcc00;
 }
-
 /* General Styles */
 body {
     font-family: 'Poppins', Arial, sans-serif;
@@ -122,45 +122,104 @@ body {
 /* Toggle Button */
 .toggle-btn {
     position: fixed;
-    top: 20px;
+    top: 70px;
     right: 20px;
-    background: #4285cd;
     color: white;
     border: none;
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    font-size: 20px;
+    font-size: 30px;
     cursor: pointer;
     transition: 0.3s;
     z-index: 1000;
-
-    /* Centering the icon */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+}
+/* Toggle theme style */
+#toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.toggle-btn:hover {
-    background: #0056b3;
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
 }
 
-#charCount {
-    font-size: 15px;
-    color: #717070;
-    margin-top: 5px;
+/* Dark mode effect */
+.dark-mode #toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+/* darkmode for contributors page */
+
+.dark-mode .banner {
+    background: #161b22;
+    padding: 30px 15px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: none;
+}
+
+.dark-mode #search {
+    margin-top: 15px;
+    padding: 12px;
+    width: 80%;
+    max-width: 400px;
+    border: 3px solid #58a6ff;
+    border-radius: 10px;
+    background: #0d1117;
+    color: #e6edf3;
+    text-align: center;
 }
 
 /* Header */
+
 header {
     background: linear-gradient(135deg, #03a9f7, #77c6f1);
     color: #fff;
-    padding: 20px;
+    padding: 10px 0 30px 0;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 24px;
+    font-size: 1.2rem;
     font-weight: bold;
+    width: 100%;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem; 
+    width: 15%;
+    position: absolute;
+    z-index: 0; 
+}
+
+.logo-container img {
+    width: 250px; 
+    height: auto;
+}
+
+header h1{
+    font-size: 2.2rem;
+    padding: 0 0 40px 0 ;
+    text-align: center;
+    white-space: normal;
+    margin: 0 0 0 30px;
 }
 
 /* Navigation Bar */
@@ -266,74 +325,14 @@ button:hover {
 }
 
 /* Footer */
-/* styles.css */
-
-
-.footer {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #77c6f1;
+footer {
+    background: linear-gradient(135deg, #333, #555);
     color: white;
-    padding: 5px 20px;
+    padding: 20px;
     text-align: center;
-}
-.wrapper{
-    display: flex;
-    justify-content: space-between;
-}
-.newsletter {
-    margin: 20px;
-}
-
-.newsletter input {
-    padding: 10px;
-    margin-right: 5px;
-}
-.sec-nav{
-    padding: 3px;
-    color: white;
-}
-.sec-nav a{
-    color:white;
-    text-decoration: none;
-}
-.sec-nav a:hover{
-    text-decoration: underline;
-}
-.quick-contact {
-    text-align: left;
-    margin: 20px;
-    color: white;
-}
-
-.social-sharing a {
-    margin: 0 10px;
-    color: white;
-    text-decoration: none;
-    display: flex;
-}
-
-.social-sharing a:hover {
-    text-decoration: underline;
-}
-.social-icon{
-    padding: 5px 5px;
-    color: white;
-}
-.privacy {
-    margin: 10px 0;
-    color: white;
-}
-.privacy a{
-    text-decoration:none;
-    color:white;
-}
-.privacy a:hover{
-    text-decoration: underline;
-}
-.copyright {
-    margin-top: 10px;
+    font-size: 14px;
+    margin-top: 30px;
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Cards for additional content */
@@ -516,5 +515,92 @@ footer {
     .social-icons .icon {
         font-size: 1.2rem;
         margin: 0 8px;
+    }
+}
+
+
+/* Hide hamburger on large screens */
+@media screen and (min-width: 769px) {
+    .hamburger {
+        display: none;
+    }
+}
+
+/* Navigation Links - Hidden by default */
+.nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%; 
+    height: 100vh;
+    background: linear-gradient(135deg, #03a9f7, #77c6f1);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%); 
+    transition: transform 0.3s ease-in-out;
+}
+
+.dark-mode .nav-links{
+    background: #333;
+}
+
+/* Close button inside menu */
+#closeMenu {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Hamburger button */
+.hamburger {
+    position: absolute;
+    top: 15%; /* Adjust based on header position */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    #navbar{
+        display: none;
+    }
+
+    #toggleTheme{
+        display: none;
+    }
+
+    #toggleTheme-mobile{
+        right: 30%;
+    }
+
+    header h1{
+        text-align: center;
+        font-size: 1rem; 
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal; 
+        max-width: 100%; 
+        margin: 5px 15px 15px 40px; 
+        
+    }
+
+    .logo-container img {
+        width: 150px; 
+        height: auto;
+    }
+
+    .hamburger {
+        position: absolute;
+        top: 10%; 
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
