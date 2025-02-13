@@ -1,4 +1,4 @@
-/* General Reset */
+/* Reset default styles */
 * {
   font-family: "Arial", sans-serif;
   margin: 0;
@@ -16,7 +16,7 @@ body {
   height: 100vh; /* Full height of viewport */
 }
 
-/* Navbar */
+/* Navbar Styles */
 .navbar {
   width: 100%;
   position: absolute;
@@ -28,7 +28,7 @@ body {
   justify-content: flex-start;
 }
 
-/* Back Button */
+/* Back Button Styles */
 .back-button {
   background: #2867f0;
   color: white;
@@ -45,7 +45,7 @@ body {
   transform: scale(1.05);
 }
 
-/* Centering the Login Form */
+/* Login Form Wrapper */
 .login-wrapper {
   width: 100%;
   max-width: 400px;
@@ -60,6 +60,7 @@ body {
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
   transform: scale(1.02);
 }
+
 /* Login Title */
 .login-title {
   font-size: 24px;
