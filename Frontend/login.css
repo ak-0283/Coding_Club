@@ -1,0 +1,137 @@
+/* General Reset */
+* {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Full-Screen Centering */
+body {
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full height of viewport */
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Back Button */
+.back-button {
+    background: #2867f0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #0190f6;
+    transform: scale(1.05);
+}
+
+/* Centering the Login Form */
+.login-wrapper {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.login-wrapper:hover{
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+/* Login Title */
+.login-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+.login-input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.login-input:hover, 
+.login-input:focus {
+    border-color: #017afc;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Login Button */
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.01);
+}
+
+/* Sign Up Link */
+.login-text {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.login-link {
+    color: #54a2f7;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.login-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Login Message */
+.login-message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: red;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-wrapper {
+        width: 90%;
+        padding: 20px;
+    }
+}
