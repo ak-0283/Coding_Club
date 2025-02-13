@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coding Club</title>
+
+  <link rel="stylesheet" href="../css_files/style.css" />
+  <link rel="stylesheet" href="../css_files/toggle.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="card.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+  <button id="toggleTheme" class="toggle-btn">🌙</button>
+
+  <div class="overlay" id="overlay">
+    <div class="card">
+      <button class="close-btn" onclick="closeCard()">X</button>
+      <h1 id="greeting"></h1>
+    </div>
+  </div>
+
+  <!-- scroll button -->
+  <button id="scrollToTop" class="scroll-btn">
+    <i class="fas fa-arrow-up fa-xl"></i>
+  </button>
+
+  <header>
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    <nav class="navbar" id="navbar">
+      <ul class="nav-links">
+        <h1 style="font-size: 40px; font-weight: bolder; color: white;">Welcome to Our Coding Club</h1>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </nav>
+        <h1>Welcome to Our Coding Club</h1>
+  </header>
+
+  <section id="home">
+    <h2>Home</h2>
+    <p>Join us to explore the world of programming and innovation.</p>
+    <div class="features">
+      <div class="feature-box">
+        <i class="fas fa-code"></i>
+        <h3>Coding</h3>
+        <p>Learn the latest programming languages and techniques.</p>
+      </div>
+      <div class="feature-box">
+        <i class="fas fa-lightbulb"></i>
+        <h3>Innovation</h3>
+        <p>Explore innovative ideas and bring them to life.</p>
+      </div>
+      <div class="feature-box">
+        <i class="fas fa-users"></i>
+        <h3>Community</h3>
+        <p>Connect with like-minded developers and grow together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      We are a group of coding enthusiasts passionate about technology and
+      innovation.
+    </p>
+  </section>
+
+  <section id="events">
+    <h2>Events</h2>
+    <p>Stay tuned for our upcoming hackathons and workshops!</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <p>Check out the amazing projects built by our club members.</p>
+  </section>
+
+  <section id="contact">
+
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" maxlength="200" required></textarea>
+      <p id="charCount">0 / 200</p>
+      <button type="submit">Send</button>
+    </form>
+
+  </section>
+
+  <footer class="footer">
+    <div class="wrapper">
+      <div class="newsletter">
+        <h3>Subscribe to our Newsletter</h3>
+        <form id="subscribeForm">
+          <input type="email" id="emailInput" placeholder="Enter your email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+
+      <div class="quick-contact">
+        <h3>Quick Links</h3>
+        <ul>
+          <li class="sec-nav"><a href="/">Home</a></li>
+          <li class="sec-nav"><a href="/about">About</a></li>
+          <li class="sec-nav"><a href="/blog">Blog</a></li>
+          <li class="sec-nav"><a href="/contact">Contact</a></li>
+          <li class="sec-nav"><a href="/feedback">Feedback</a></li>
+        </ul>
+      </div>
+      <div class="quick-contact">
+        <h3>Contact Us</h3>
+        <p>📍 123 Street, City, Country</p>
+        <p><i class="fa-solid fa-earth-americas"></i>&nbsp;&nbsp;&nbsp;yourwebsite.com</p>
+        <p>📞 +123 456 7890</p>
+      </div>
+
+      <div class="social-sharing">
+        <h3>Share Our Blog</h3>
+        <a href="#" id="facebookShare" class="social-icon">Facebook</a>
+        <a href="#" id="twitterShare" class="social-icon">Twitter</a>
+        <a href="#" id="linkedinShare" class="social-icon">LinkedIn</a>
+        <a href="#" id="whatsappShare" class="social-icon">Instagram</a>
+      </div>
+    </div>
+
+    <div class="privacy">
+      <a href="/privacy-policy">Privacy Policy</a> |
+      <a href="/terms">Terms & Conditions</a>
+    </div>
+
+    <div class="copyright">© 2025 YourWebsite. All rights reserved.</div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="toggle.js"></script>
+
+</body>
+<script src="card.js"></script>
+</body>
+
+</html>

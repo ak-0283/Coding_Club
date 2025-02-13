@@ -9,7 +9,6 @@ body {
 /* Navbar Styling */
 .navbar {
   background: linear-gradient(135deg, #03a9f7, #77c6f1);
-
 }
 
 .nav-links {
@@ -49,29 +48,29 @@ body {
 /* Mobile Styles */
 @media (max-width: 768px) {
   .menu-toggle {
-      display: block;
+    display: block;
   }
 
   .navbar {
-      display: none;
-      position: absolute;
-      top: 50px;
-      right: 0;
-      width: 100%;
-      background: linear-gradient(135deg, #03a9f7, #77c6f1);
-      border-radius: 5px;
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #03a9f7, #77c6f1);
+    border-radius: 5px;
   }
 
   .nav-links {
-      flex-direction: column;
-      text-align: right;
+    flex-direction: column;
+    text-align: right;
   }
 
   .nav-links li {
-      padding: 10px;
+    padding: 10px;
   }
 
   .navbar.active {
-      display: block;
+    display: block;
   }
 }

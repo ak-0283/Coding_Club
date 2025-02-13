@@ -45,36 +45,44 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
 // scroll button
-        const scrollBtn = document.getElementById("scrollToTop");
-        
-        window.onscroll = function() {
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                scrollBtn.style.display = "flex";
-            } else {
-                scrollBtn.style.display = "none";
-            }
-        };
-        
-        scrollBtn.addEventListener("click", function() {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
+const scrollBtn = document.getElementById("scrollToTop");
+
+window.onscroll = function () {
+  if (
+    document.body.scrollTop > 200 ||
+    document.documentElement.scrollTop > 200
+  ) {
+    scrollBtn.style.display = "flex";
+  } else {
+    scrollBtn.style.display = "none";
+  }
+};
+
+scrollBtn.addEventListener("click", function () {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
 
 // footer
-
-
 
 // Share functionality
 const currentURL = encodeURIComponent(window.location.href);
 
-document.getElementById('facebookShare').href = `https://www.facebook.com/sharer/sharer.php?u=${currentURL}`;
-document.getElementById('twitterShare').href = `https://twitter.com/intent/tweet?url=${currentURL}&text=Check%20this%20out!`;
-document.getElementById('linkedinShare').href = `https://www.linkedin.com/sharing/share-offsite/?url=${currentURL}`;
-document.getElementById('whatsappShare').href = `https://api.whatsapp.com/send?text=Check%20this%20out:%20${currentURL}`;
+document.getElementById(
+  "facebookShare"
+).href = `https://www.facebook.com/sharer/sharer.php?u=${currentURL}`;
+document.getElementById(
+  "twitterShare"
+).href = `https://twitter.com/intent/tweet?url=${currentURL}&text=Check%20this%20out!`;
+document.getElementById(
+  "linkedinShare"
+).href = `https://www.linkedin.com/sharing/share-offsite/?url=${currentURL}`;
+document.getElementById(
+  "whatsappShare"
+).href = `https://api.whatsapp.com/send?text=Check%20this%20out:%20${currentURL}`;
 
 document.addEventListener("DOMContentLoaded", function () {
   const messageInput = document.getElementById("message");
@@ -82,15 +90,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const maxLength = messageInput.getAttribute("maxlength");
 
   messageInput.addEventListener("input", function () {
-      let currentLength = messageInput.value.length;
-      charCount.textContent = `${currentLength} / ${maxLength}`;
+    let currentLength = messageInput.value.length;
+    charCount.textContent = `${currentLength} / ${maxLength}`;
 
-      // *Change color if limit is close*
-      if (currentLength > maxLength * 0.9) {
-          charCount.style.color = "red";  // Alert user when near limit
-      } else {
-          charCount.style.color = "#555"; // Normal state
-      }
+    // *Change color if limit is close*
+    if (currentLength > maxLength * 0.9) {
+      charCount.style.color = "red"; // Alert user when near limit
+    } else {
+      charCount.style.color = "#555"; // Normal state
+    }
   });
 });
 
@@ -98,20 +106,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const greetingContainer = document.getElementById("greeting");
 
   function getGreeting() {
-      let hours = new Date().getHours();
-      let greetingText = "";
+    let hours = new Date().getHours();
+    let greetingText = "";
 
-      if (hours >= 5 && hours < 12) {
-          greetingText = "Good Morning!";
-      } else if (hours >= 12 && hours < 17) {
-          greetingText = "Good Afternoon!";
-      } else if (hours >= 17 && hours < 21) {
-          greetingText = "Good Evening!";
-      } else {
-          greetingText = "Good Night!";
-      }
+    if (hours >= 5 && hours < 12) {
+      greetingText = "Good Morning!";
+    } else if (hours >= 12 && hours < 17) {
+      greetingText = "Good Afternoon!";
+    } else if (hours >= 17 && hours < 21) {
+      greetingText = "Good Evening!";
+    } else {
+      greetingText = "Good Night!";
+    }
 
-      alert(greetingText);
+    alert(greetingText);
   }
 
   getGreeting();
@@ -128,30 +136,30 @@ function signup() {
   let message = document.getElementById("signup-message");
 
   if (!name || !email || !password) {
-      message.style.color = "red";
-      message.innerText = "Please fill in all required fields.";
-      return;
+    message.style.color = "red";
+    message.innerText = "Please fill in all required fields.";
+    return;
   }
 
   if (localStorage.getItem(email)) {
-      message.style.color = "red";
-      message.innerText = "User already exists!";
+    message.style.color = "red";
+    message.innerText = "User already exists!";
   } else {
-      let userData = {
-          name,
-          email,
-          password,
-          degree,
-          skills,
-          phone,
-          address,
-          profilePhoto: profilePhoto ? profilePhoto.name : ""
-      };
+    let userData = {
+      name,
+      email,
+      password,
+      degree,
+      skills,
+      phone,
+      address,
+      profilePhoto: profilePhoto ? profilePhoto.name : "",
+    };
 
-      localStorage.setItem(email, JSON.stringify(userData));
-      message.style.color = "green";
-      message.innerText = "Signup successful! Redirecting to Home...";
-      setTimeout(() => window.location.href = "index.html", 2000);
+    localStorage.setItem(email, JSON.stringify(userData));
+    message.style.color = "green";
+    message.innerText = "Signup successful! Redirecting to Home...";
+    setTimeout(() => (window.location.href = "index.html"), 2000);
   }
 }
 
@@ -162,28 +170,28 @@ function login() {
 
   // Validation: Check if fields are empty
   if (!username || !password) {
-      message.style.color = "red";
-      message.innerText = "Please enter both email and password.";
-      return;
+    message.style.color = "red";
+    message.innerText = "Please enter both email and password.";
+    return;
   }
 
   // Get stored user data
   let storedUserData = localStorage.getItem(username);
 
   if (storedUserData) {
-      let userData = JSON.parse(storedUserData); // Parse JSON data
+    let userData = JSON.parse(storedUserData); // Parse JSON data
 
-      if (userData.password === password) {
-          localStorage.setItem("loggedInUser", username);
-          message.style.color = "green";
-          message.innerText = "Login successful! Redirecting...";
-          setTimeout(() => window.location.href = "index.html", 2000);
-      } else {
-          message.style.color = "red";
-          message.innerText = "Invalid credentials!";
-      }
-  } else {
+    if (userData.password === password) {
+      localStorage.setItem("loggedInUser", username);
+      message.style.color = "green";
+      message.innerText = "Login successful! Redirecting...";
+      setTimeout(() => (window.location.href = "index.html"), 2000);
+    } else {
       message.style.color = "red";
-      message.innerText = "User not found!";
+      message.innerText = "Invalid credentials!";
+    }
+  } else {
+    message.style.color = "red";
+    message.innerText = "User not found!";
   }
 }
