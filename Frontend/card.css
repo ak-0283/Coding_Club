@@ -53,7 +53,13 @@ h1 {
     cursor: pointer;
     font-size: 16px;
     border-radius: 50%;
+    width: 30px; /* Set fixed width */
+    height: 30px; /* Set fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 .close-btn:hover {
     background: darkred;

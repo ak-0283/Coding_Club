@@ -241,6 +241,24 @@ function login() {
   if (storedUserData) {
       let userData = JSON.parse(storedUserData); // Parse JSON data
 
+document.addEventListener("DOMContentLoaded", function () {
+  const text = "Coding Club";
+  let index = 0;
+
+  function typeEffect() {
+      document.getElementById("typingText").textContent = text.slice(0, index);
+      index++;
+
+      if (index <= text.length) {
+          setTimeout(typeEffect, 100); 
+      }
+       else{
+         document.getElementById("typingText").style.borderRight = "none"; 
+       }
+  }
+  typeEffect();
+});
+
       if (userData.password === password) {
           localStorage.setItem("loggedInUser", username);
           message.style.color = "green";
@@ -255,3 +273,4 @@ function login() {
       message.innerText = "User not found!";
   }
 }
+

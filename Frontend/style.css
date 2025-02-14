@@ -203,6 +203,22 @@ header {
     font-weight: bold;
 }
 
+#typingText {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-right: 3px solid #fff;
+    padding-right: 5px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: blink 0.8s infinite;
+}
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
 /* Navigation Bar */
 nav ul {
     list-style: none;

@@ -17,12 +17,23 @@
 
     <div class="signup-wrapper">
         <h2 class="signup-title">Sign Up</h2>
-        
+
+        <!-- Profile Photo Section -->
+        <div class="profile-photo-container">
+            <label for="signup-profile-photo">
+                <div class="profile-photo-wrapper">
+                    <span class="profile-text" id="profile-text">Profile Photo</span>
+                    <img id="profile-preview">
+                    <i class="fa fa-camera upload-icon"></i>
+                </div>
+            </label>
+            <input type="file" id="signup-profile-photo" accept="image/*" onchange="previewProfilePhoto(event)">
+        </div>
+
         <input type="text" class="signup-input" id="signup-name" placeholder="Full Name">
         <input type="email" class="signup-input" id="signup-email" placeholder="Enter Email">
         <input type="password" class="signup-input" id="signup-password" placeholder="Enter Password">
         <input type="text" class="signup-input" id="signup-degree" placeholder="Degree">
-        <input type="file" class="signup-input" id="signup-profile-photo" accept="image/*">
         <input type="text" class="signup-input" id="signup-skills" placeholder="Skills (comma separated)">
         <input type="tel" class="signup-input" id="signup-phone" placeholder="Phone Number">
         <input type="text" class="signup-input" id="signup-address" placeholder="Address">
@@ -33,6 +44,6 @@
         <p id="signup-message" class="signup-message"></p>
     </div>
     
-    <script src="script.js"></script>
+    <script src="signup.js"></script>
 </body>
 </html>
