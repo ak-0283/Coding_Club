@@ -73,14 +73,20 @@
   height: 350px;
   text-align: center;
   padding: 30px 15px;
-  background-color: #e0f7fa; /* Different shade of color */
+  background-color: #e0f7fa; 
+}
+
+a {
+  text-decoration: none; /* Removes underline */
+  color: #007bff;
+  font-weight: bold;
 }
 
 #home h2 {
   font-size: 36px;
   margin-bottom: 20px;
   margin-top: 0px;
-  color: #00796b; /* Different shade of color */
+  
 }
 
 #home p {
@@ -111,7 +117,8 @@
 
 .features {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  align-items: center;
   flex-wrap: wrap;
 }
 
