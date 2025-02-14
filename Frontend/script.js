@@ -144,26 +144,96 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const greetingContainer = document.getElementById("greeting");
+// document.addEventListener("DOMContentLoaded", function () {
+//   const greetingContainer = document.getElementById("greeting");
 
-  function getGreeting() {
-      let hours = new Date().getHours();
-      let greetingText = "";
+//   function getGreeting() {
+//       let hours = new Date().getHours();
+//       let greetingText = "";
 
-      if (hours >= 5 && hours < 12) {
-          greetingText = "Good Morning!";
-      } else if (hours >= 12 && hours < 17) {
-          greetingText = "Good Afternoon!";
-      } else if (hours >= 17 && hours < 21) {
-          greetingText = "Good Evening!";
-      } else {
-          greetingText = "Good Night!";
-      }
+//       if (hours >= 5 && hours < 12) {
+//           greetingText = "Good Morning!";
+//       } else if (hours >= 12 && hours < 17) {
+//           greetingText = "Good Afternoon!";
+//       } else if (hours >= 17 && hours < 21) {
+//           greetingText = "Good Evening!";
+//       } else {
+//           greetingText = "Good Night!";
+//       }
 
-      alert(greetingText);
+//       alert(greetingText);
+//   }
+
+//   getGreeting();
+// });
+function signup() {
+  let name = document.getElementById("signup-name").value;
+  let email = document.getElementById("signup-email").value;
+  let password = document.getElementById("signup-password").value;
+  let degree = document.getElementById("signup-degree").value;
+  let profilePhoto = document.getElementById("signup-profile-photo").files[0];
+  let skills = document.getElementById("signup-skills").value;
+  let phone = document.getElementById("signup-phone").value;
+  let address = document.getElementById("signup-address").value;
+  let message = document.getElementById("signup-message");
+
+  if (!name || !email || !password) {
+      message.style.color = "red";
+      message.innerText = "Please fill in all required fields.";
+      return;
   }
 
-  getGreeting();
-});
+  if (localStorage.getItem(email)) {
+      message.style.color = "red";
+      message.innerText = "User already exists!";
+  } else {
+      let userData = {
+          name,
+          email,
+          password,
+          degree,
+          skills,
+          phone,
+          address,
+          profilePhoto: profilePhoto ? profilePhoto.name : ""
+      };
 
+      localStorage.setItem(email, JSON.stringify(userData));
+      message.style.color = "green";
+      message.innerText = "Signup successful! Redirecting to Home...";
+      setTimeout(() => window.location.href = "index.html", 2000);
+  }
+}
+
+function login() {
+  let username = document.getElementById("login-username").value.trim();
+  let password = document.getElementById("login-password").value.trim();
+  let message = document.getElementById("login-message");
+
+  // Validation: Check if fields are empty
+  if (!username || !password) {
+      message.style.color = "red";
+      message.innerText = "Please enter both email and password.";
+      return;
+  }
+
+  // Get stored user data
+  let storedUserData = localStorage.getItem(username);
+
+  if (storedUserData) {
+      let userData = JSON.parse(storedUserData); // Parse JSON data
+
+      if (userData.password === password) {
+          localStorage.setItem("loggedInUser", username);
+          message.style.color = "green";
+          message.innerText = "Login successful! Redirecting...";
+          setTimeout(() => window.location.href = "index.html", 2000);
+      } else {
+          message.style.color = "red";
+          message.innerText = "Invalid credentials!";
+      }
+  } else {
+      message.style.color = "red";
+      message.innerText = "User not found!";
+  }
+}

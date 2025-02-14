@@ -1,3 +1,12 @@
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f4f4f4;
+    transition: all 0.3s ease-in-out;
+}
+
 /* Dark Mode Styles */
 .dark-mode {
     background-color: #121212;
@@ -107,14 +116,6 @@
 }
 
 /* General Styles */
-body {
-    font-family: 'Poppins', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    background-color: #f4f4f4;
-    transition: all 0.3s ease-in-out;
-}
 .dark-mode {
     background-color: #121212;
     color: #fff;
@@ -123,7 +124,7 @@ body {
 /* Toggle Button */
 .toggle-btn {
     position: fixed;
-    top: 70px;
+    top: 100px;
     right: 20px;
     color: white;
     border: none;
