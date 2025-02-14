@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for stars -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        /* Dark mode for header */
+        .dark-mode header {
+            background: linear-gradient(135deg, #1e1e1e, #333);
+        }
+
+        /* Dark mode for navigation */
+        .dark-mode nav ul li a {
+            color: #ffffff;
+        }
+
+        .dark-mode nav ul li a:hover {
+            color: #ffcc00;
+            background: #444;
+        }
+
+        /* Dark mode for footer */
+        .dark-mode footer {
+            background: #222;
+        }
+
+        /* Dark mode for social icons */
+        .dark-mode .social-icons .icon {
+            color: #ffffff;
+        }
+
+        .dark-mode .social-icons .icon:hover {
+            color: black;
+            background: #007bff;
+            text-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: #fff;
+        }
+
+        /* Sticky Header */
+        header {
+            background: linear-gradient(135deg, #03a9f7, #77c6f1);
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 24px;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            width: 100%;
+            justify-content: space-between;
+        }
+        header h1{
+            text-align: center;
+        }
+
+        /* Navigation Bar */
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00;
+            background: black;
+            transform: scale(1.1);
+        }
+
+        footer {
+            background: linear-gradient(135deg, #333, #555);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 30px;
+            box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Feedback Form Container */
+        .feedback-form {
+            background-color: white;
+            padding: 2rem;
+
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin-top: 80px; /* To ensure feedback form is not hidden under the navbar */
+            margin-bottom: 200px; /* To prevent footer from overlapping the form */
+        }
+
+        /* Star Rating - default style */
+        .fas.fa-star {
+            transition: color 0.3s ease;
+        }
+
+        /* Button Style */
+        button {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2d3b72;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .feedback-form {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+
+        /* Footer Styling */
+        footer {
+            background: #629ef7;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        /* Footer Container */
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Social Icons Container */
+        .social-icons {
+            margin-top: 10px;
+        }
+
+        /* Social Icon Links */
+        .social-icons .icon {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hover Effects */
+        .social-icons .icon:hover {
+            color: black;
+            background: #007bff;
+            transform: translateY(-3px);
+            text-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+        }
+
+        /* Responsive for Small Screens */
+        @media (max-width: 600px) {
+            .social-icons .icon {
+                font-size: 1.2rem;
+                margin: 0 8px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-blue-200 flex items-center justify-center min-h-screen flex-col">
+    <header>
+        <h1>Welcome to Our Coding Club</h1>
+        <nav>
+            <ul>
+                <li><a href="./index.html#home">Home</a></li>
+                <li><a href="./index.html#about">About</a></li>
+                <li><a href="./index.html#events">Events</a></li>
+                <li><a href="./feedback.html#projects">Projects</a></li>
+                <li><a href="./index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="feedback-form">
+        <h1 class="text-2xl font-bold text-center mb-4">We value your opinion.</h1>
+        <p class="text-center mb-4">How would you rate your overall experience?</p>
+
+        <!-- Star Rating Section -->
+        <div class="flex justify-center mb-4" id="stars">
+            <i class="fas fa-star text-gray-400 text-2xl mx-1 cursor-pointer" data-value="1"></i>
+            <i class="fas fa-star text-gray-400 text-2xl mx-1 cursor-pointer" data-value="2"></i>
+            <i class="fas fa-star text-gray-400 text-2xl mx-1 cursor-pointer" data-value="3"></i>
+            <i class="fas fa-star text-gray-400 text-2xl mx-1 cursor-pointer" data-value="4"></i>
+            <i class="fas fa-star text-gray-400 text-2xl mx-1 cursor-pointer" data-value="5"></i>
+        </div>
+
+        <p class="text-center mb-4">Kindly take a moment to tell us what you think.</p>
+
+        <!-- Feedback Textarea -->
+        <textarea class="w-full p-2 border rounded mb-4" rows="4" placeholder="Your feedback..."></textarea>
+
+        <!-- Share Feedback Button -->
+        <button class="bg-blue-600 text-white py-2 px-4 rounded w-full">Share my feedback</button>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Your Coding Club. All Rights Reserved.</p>
+            <div class="social-icons">
+                <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="icon"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript for Star Rating Interaction -->
+    <script>
+        // Get all star icons
+        const stars = document.querySelectorAll('#stars .fa-star');
+        const textarea = document.querySelector('textarea');
+
+        // Set initial state for the rating
+        let rating = 0;
+
+        // Function to handle star hover and click events
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                // Get the value of the clicked star
+                rating = parseInt(star.getAttribute('data-value'));
+
+                // Update star colors based on the selected rating
+                updateStars(rating);
+            });
+
+            star.addEventListener('mouseover', () => {
+                // Highlight stars on hover
+                const value = parseInt(star.getAttribute('data-value'));
+                updateStars(value);
+            });
+
+            star.addEventListener('mouseout', () => {
+                // Reset stars to current rating when hover ends
+                updateStars(rating);
+            });
+        });
+
+        // Function to update the stars based on rating
+        function updateStars(value) {
+            stars.forEach(star => {
+                if (parseInt(star.getAttribute('data-value')) <= value) {
+                    star.classList.add('text-yellow-500');
+                    star.classList.remove('text-gray-400');
+                } else {
+                    star.classList.remove('text-yellow-500');
+                    star.classList.add('text-gray-400');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

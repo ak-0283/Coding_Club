@@ -9,7 +9,20 @@ body {
 /* Navbar Styling */
 .navbar {
   background: linear-gradient(135deg, #03a9f7, #77c6f1);
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
 
+/* Ensure h1 is displayed */
+.navbar h1 {
+  font-size: 30px;
+  font-weight: bolder;
+  color: white;
+  text-align: center;
+  flex-grow: 1;
+  margin: 0;
+  display: block;
 }
 
 .nav-links {
@@ -60,6 +73,11 @@ body {
       width: 100%;
       background: linear-gradient(135deg, #03a9f7, #77c6f1);
       border-radius: 5px;
+  }
+
+  .navbar h1 {
+    font-size: 20px; /* Reduce size for mobile */
+    margin-bottom: 10px;
   }
 
   .nav-links {
