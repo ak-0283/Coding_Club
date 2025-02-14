@@ -32,21 +32,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Theme Toggle (outside menu)
   if (toggleTheme) {
-      toggleTheme.addEventListener("click", function () {
-          document.body.classList.toggle("dark-mode");
+    toggleTheme.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
 
-          // Save theme preference
-          const isDarkMode = document.body.classList.contains("dark-mode");
-          toggleTheme.textContent = isDarkMode ? "☀️" : "🌙";
-          localStorage.setItem("theme", isDarkMode ? "dark" : "light");
-      });
+        // Check if dark mode is enabled
+        const isDarkMode = document.body.classList.contains("dark-mode");
 
-      // Load theme preference on page load
-      if (localStorage.getItem("theme") === "dark") {
-          document.body.classList.add("dark-mode");
-          toggleTheme.textContent = "☀️";
-      }
-  }
+        // Change toggle button icon
+        toggleTheme.textContent = isDarkMode ? "☀️" : "🌙";
+
+        // Save theme preference
+        localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+
+        // Change logo instantly
+        updateLogo(isDarkMode);
+    });
+
+    // Function to update the logo (INSTANT CHANGE, NO FADE)
+    function updateLogo(isDarkMode) {
+        let logo = document.getElementById("logo");
+        if (logo) {
+            logo.src = isDarkMode ? "codingclub2.png" : "codingclub.png";
+        }
+    }
+
+    // Load theme preference on page load
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        toggleTheme.textContent = "☀️";
+        updateLogo(true); // Set logo to dark mode on load
+    } else {
+        updateLogo(false); // Set logo to light mode on load
+    }
+}
+
+
 
   // Ensure menu is hidden on load using CSS (not JS)
   navLinks.style.transform = "translateX(100%)";
@@ -94,7 +115,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
   }
 });
-
 
 // scroll button
         const scrollBtn = document.getElementById("scrollToTop");
