@@ -17,8 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
 <body>
-    <button id="toggleTheme" class="toggle-btn">🌙</button>
-
+  
     <div class="overlay" id="overlay">
       <div class="card">
           <button class="close-btn" onclick="closeCard()">X</button>
@@ -31,25 +30,38 @@
       <i class="fas fa-arrow-up fa-xl"></i>
     </button>
 
-    <header>
-
-      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-      <nav class="navbar" id="navbar">
-        <ul class="nav-links">
-          <h1 class="head1">Welcome to Our Coding Club</h1>
-        </ul>
-      <nav>
-        <ul>
-         <li><a href="./index.html">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="contributor.html">Contributors</a></li>
-                <li><a href="./feedback.html">Feedback</a></li>
-        </ul>
+    <header>     
+      <h1>Welcome to Our Coding Club</h1>
+      <nav id="navbar">
+          <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#events">Events</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="contributor.html">Contributors</a></li>
+              <li><a href="./feedback.html">Feedback</a></li>
+              <button id="toggleTheme" class="toggle-btn">🌙</button>
+          </ul>
       </nav>
-    </header>
+
+       <nav>
+      <div class="hamburger" id="hamburger">
+          <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links" id="navLinks">
+          <span id="closeMenu"><i class="fas fa-times"></i></span>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="contributor.html">Contributors</a></li>
+          <li><a href="./feedback.html">Feedback</a></li>
+          <button id="toggleTheme-mobile" class="menu-toggle-btn">🌙</button>
+      </ul>        
+  </nav>
+</header>
 
     <section id="home">
       <h2>Home</h2>

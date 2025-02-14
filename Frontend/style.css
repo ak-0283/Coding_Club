@@ -146,27 +146,43 @@ body {
 /* Toggle Button */
 .toggle-btn {
     position: fixed;
-    top: 100px;
+    top: 70px;
     right: 20px;
-    background: #4285cd;
     color: white;
     border: none;
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    font-size: 20px;
+    font-size: 30px;
     cursor: pointer;
     transition: 0.3s;
     z-index: 1000;
-
-    /* Centering the icon */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+}
+/* Toggle theme style */
+#toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.toggle-btn:hover {
-    background: #0056b3;
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+/* Dark mode effect */
+.dark-mode #toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
 }
 
 #charCount {
@@ -541,4 +557,109 @@ footer {
         font-size: 1.2rem;
         margin: 0 8px;
     }
+}
+
+/* Hide hamburger on large screens */
+@media screen and (min-width: 769px) {
+    .hamburger {
+        display: none;
+    }
+}
+
+/* Navigation Links - Hidden by default */
+
+.nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%; 
+    height: 100vh;
+    background: linear-gradient(135deg, #03a9f7, #77c6f1);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%); 
+    transition: transform 0.3s ease-in-out;
+}
+
+.dark-mode .nav-links{
+    background: #333;
+}
+
+/* Close button inside menu */
+#closeMenu {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Hamburger button */
+.hamburger {
+    position: absolute;
+    top: 15%; /* Adjust based on header position */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    #navbar{
+        display: none;
+    }
+
+    #toggleTheme{
+        display: none;
+    }
+
+    #toggleTheme-mobile{
+        right: 30%;
+        top: 20%;
+    }
+
+    header{
+        position: relative;
+    }
+
+    header h1{
+        text-align: center;
+        font-size: 1rem; 
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal; 
+        max-width: 100%; 
+        margin: 5px 15px 15px 40px; 
+        
+    }
+
+    .hamburger {
+        position: absolute;
+        top: 70%; 
+        left: 50%;
+        font-size: 15px;
+        transform: translateX(-50%);
+    }
+}
+
+@media screen and (min-width: 820px) {
+    #toggleTheme {
+        position: absolute;
+        top: 5%; /* Move it higher */
+        right: -2%;
+    }
+
+}
+
+@media screen and (min-width: 1024px) {
+    #toggleTheme {
+        top: 3%; /* Further fine-tuning for even larger screens */
+        right: 5%;
+    }
+
 }
