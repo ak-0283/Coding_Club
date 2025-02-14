@@ -1,4 +1,3 @@
-/* Reset default styles */
 * {
   font-family: "Arial", sans-serif;
   margin: 0;
@@ -6,29 +5,14 @@
   box-sizing: border-box;
 }
 
-/* Full-Screen Centering */
 body {
-  background: linear-gradient(to right, #4facfe, #00f2fe);
   font-family: Arial, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Full height of viewport */
+  height: 100vh;
 }
 
-/* Navbar Styles */
-.navbar {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 15px;
-  display: flex;
-  justify-content: flex-start;
-}
-
-/* Back Button Styles */
 .back-button {
   background: #2867f0;
   color: white;
@@ -45,7 +29,6 @@ body {
   transform: scale(1.05);
 }
 
-/* Login Form Wrapper */
 .login-wrapper {
   width: 100%;
   max-width: 400px;
@@ -61,14 +44,12 @@ body {
   transform: scale(1.02);
 }
 
-/* Login Title */
 .login-title {
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;
 }
 
-/* Input Fields */
 .login-input {
   width: 100%;
   padding: 10px;
@@ -86,11 +67,10 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-/* Login Button */
 .login-button {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #28a745;
   color: white;
   border: none;
   border-radius: 5px;
@@ -99,11 +79,10 @@ body {
 }
 
 .login-button:hover {
-  background-color: #0056b3;
+  background-color: #28a745;
   transform: scale(1.01);
 }
 
-/* Sign Up Link */
 .login-text {
   margin-top: 15px;
   font-size: 14px;
@@ -111,25 +90,23 @@ body {
 }
 
 .login-link {
-  color: #54a2f7;
+  color: #218838;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease-in-out;
 }
 
 .login-link:hover {
-  color: #0056b3;
+  color: #28a745;
   text-decoration: underline;
 }
 
-/* Login Message */
 .login-message {
   margin-top: 10px;
   font-size: 14px;
   color: red;
 }
 
-/* Responsive Design */
 @media (max-width: 480px) {
   .login-wrapper {
     width: 90%;
