@@ -1,0 +1,176 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    padding: 15px 30px;
+    color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* Search Bar */
+.search-container {
+    text-align: center;
+    margin: 20px;
+}
+
+#search-bar {
+    padding: 10px;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Hackathon Section */
+.demo-hackathons {
+    text-align: center;
+    margin: 30px auto;
+    padding: 20px;
+    width: 80%;
+}
+
+.hackathon-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hackathon-card {
+    background: white;
+    padding: 15px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.hackathon-card h3 {
+    margin: 10px 0;
+    color: #007bff;
+}
+
+.event-date {
+    font-weight: bold;
+    color: #555;
+}
+
+.event-desc {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.register-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Add Event Button */
+.add-event-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.add-event-btn:hover {
+    background-color: #218838;
+}
+
+/* Event Form */
+.event-form {
+    display: none;
+    text-align: center;
+    margin: 20px auto;
+    padding: 15px;
+    width: 300px;
+    background: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.event-form input, .event-form textarea {
+    width: 90%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.event-form button {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.event-form button:first-of-type {
+    background-color: #007bff;
+    color: white;
+}
+
+.event-form button:last-of-type {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Scroll Button */
+#scrollBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    display: none;
+    transition: all 0.3s ease-in-out;
+}
+
+#scrollBtn:hover {
+    background-color: #0056b3;
+}
+
+#scrollBtn i {
+    font-size: 20px;
+}

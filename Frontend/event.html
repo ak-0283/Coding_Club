@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Club - Events</title>
+    <link rel="stylesheet" href="event.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1 class="logo">Coding Club</h1>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="event.html" class="active">Events</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Search events..." onkeyup="searchEvents()">
+    </div>
+
+    <!-- Add Event Button -->
+    <button class="add-event-btn" onclick="showEventForm()">+ Add Event</button>
+
+
+    <!-- Event Form (Initially Hidden) -->
+    <div id="event-form" class="event-form">
+        <h3>Add New Event</h3>
+        <input type="text" id="event-title" placeholder="Event Title">
+        <input type="date" id="event-date">
+        <textarea id="event-desc" placeholder="Event Description"></textarea>
+        <button onclick="addEvent()">Add</button>
+        <button onclick="hideEventForm()">Cancel</button>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollBtn">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+
+    <!-- Demo Hackathons Section -->
+    <section class="demo-hackathons">
+        <h2>🔥 Upcoming Demo Hackathons</h2>
+        <div class="hackathon-container">
+            <div class="hackathon-card">
+                <h3>Beginner's Hackathon 2025</h3>
+                <p class="event-date">📅 March 5, 2025</p>
+                <p class="event-desc">A beginner-friendly hackathon to kickstart your coding journey.</p>
+                <button class="register-btn">Register</button>
+            </div>
+
+            <div class="hackathon-card">
+                <h3>AI Challenge Hackathon</h3>
+                <p class="event-date">📅 March 15, 2025</p>
+                <p class="event-desc">Build AI-powered applications in this fun and interactive challenge.</p>
+                <button class="register-btn">Register</button>
+            </div>
+
+            <div class="hackathon-card">
+                <h3>Full Stack Coding Challenge</h3>
+                <p class="event-date">📅 March 25, 2025</p>
+                <p class="event-desc">Showcase your full-stack development skills in this exciting challenge.</p>
+                <button class="register-btn">Register</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <div class="events-container" id="events-container">
+        <!-- Events will be dynamically added here using JavaScript -->
+    </div>
+
+    <script src="event.js"></script>
+</body>
+</html>
