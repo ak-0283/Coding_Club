@@ -91,17 +91,20 @@ function searchEvents() {
 
 
 
-// Show scroll button when user scrolls down
-window.onscroll = function () {
-    let scrollBtn = document.getElementById("scrollBtn");
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        scrollBtn.style.display = "block";
+// scroll button
+const scrollBtn = document.getElementById("scrollToTop");
+        
+window.onscroll = function() {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        scrollBtn.style.display = "flex";
     } else {
         scrollBtn.style.display = "none";
     }
 };
 
-// Scroll to top when button is clicked
-document.getElementById("scrollBtn").addEventListener("click", function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+scrollBtn.addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 });
