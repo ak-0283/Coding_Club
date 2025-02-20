@@ -1,0 +1,53 @@
+#why-choose-us {
+    text-align: center;
+    padding: 60px 20px;
+    background: #f9f9f9;
+}
+
+#why-choose-us h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+#why-choose-us p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.why-us-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.why-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.why-box:hover {
+    transform: translateY(-5px);
+}
+
+.why-box i {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.why-box h3 {
+    font-size: 1.5rem;
+    color: #222;
+}
+
+.why-box p {
+    font-size: 1rem;
+    color: #555;
+}
