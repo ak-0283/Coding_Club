@@ -312,7 +312,7 @@ nav ul {
 }
 
 nav ul li {
-  display: inline;
+  display: contents;
 }
 
 nav ul li a {
@@ -323,12 +323,24 @@ nav ul li a {
   padding: 10px 15px;
   border-radius: 5px;
   transition: all 0.3s ease;
+  align-content: center;
 }
 
 nav ul li a:hover {
   color: #ffcc00;
   background: black;
   transform: scale(1.1);
+}
+
+.nav-links a div:hover{
+  color: #28a745;
+}
+nav ul li a div:hover{
+  color: #ffcc00;
+  transform: scale(1.1);
+}
+.dark-mode nav ul li a div:hover {
+  color: #ffcc00;
 }
 
 /* Sections */

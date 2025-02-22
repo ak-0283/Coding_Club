@@ -132,15 +132,16 @@
     }
 
     .profile {
-      position: absolute;
-      right: 2rem;
-      top: 6.8rem;
-      color: white;
-      /* padding: 10px 20px; */
-      font-size: 16px;
+      padding: 0;
       display: flex;
       align-items: center;
-      gap: 0px;
+      gap: 10px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
     }
 
     .profile-pic {
@@ -207,16 +208,13 @@
           <li><a href="contributor.html">Contributors</a></li>
           <li><a href="review.html">Reviews</a></li>
           <li><a href="#feedback">Feedback</a></li>
+          <li><a href="#"><div class="profile">
+            <img id="profile-pic" class="profile-pic" alt="Profile Picture">Account
+          </div></a></li>
           <button id="toggleTheme" class="toggle-btn">🌙</button>
         </ul>
       </nav>
-      <div class="profile">
-        <img src="https://randomuser.me/api/portraits/men/20.jpg" id="profile-pic" class="profile-pic" alt="Profile Picture">
-        Welcome, <span id="username">User</span>
-    </div>
-      <nav>
-
-    </div>
+      
          <nav class="hamburgerNav">
 
         <div class="hamburger" id="hamburger">
@@ -232,6 +230,8 @@
           <li><a href="contributor.html">Contributors</a></li>
           <li><a href="review.html">Reviews</a></li>
           <li><a href="#feedback">Feedback</a></li>
+          <li><a href="#"><div class="profile"><img id="profile-pic" class="profile-pic" alt="Profile Picture">Account
+          </div></a></li>
           <button id="toggleTheme-mobile" class="menu-toggle-btn">🌙</button>
         </ul>
       </nav>
