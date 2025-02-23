@@ -896,3 +896,7 @@ button:hover {
     right: 5%;
   }
 }
+#profile-pic{
+  height: 30px;
+  width: 30px;
+}
