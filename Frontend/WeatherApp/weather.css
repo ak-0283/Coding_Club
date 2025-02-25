@@ -1,24 +1,31 @@
 /* General body styling */
 .weather-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 /* Container for the weather app */
 .weather-container {
-  max-width: 400px;
-  margin: 50px auto;
-  background: #fff;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.9);
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Header */
 .weather-header {
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
   margin-bottom: 20px;
 }
 
@@ -31,31 +38,36 @@
 
 .search-input {
   width: 70%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px 0 0 8px;
   font-size: 16px;
+  outline: none;
+  background: #f5f5f5;
 }
 
 .search-button {
-  padding: 10px;
+  padding: 12px;
   border: none;
-  background-color: #0366d6;
+  background: #0078ff;
   color: white;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 8px 8px 0;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 .search-button:hover {
-  background-color: #024eaf;
+  background: #005ecb;
 }
 
 /* Weather card */
 .weather-card {
-  background-color: #f9f9f9;
+  background: #ffffff;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
 }
 
 .hidden {
@@ -66,7 +78,8 @@
 .city-name {
   margin-top: 0;
   font-size: 24px;
-  color: #333;
+  font-weight: bold;
+  color: #222;
 }
 
 .temp,
@@ -75,24 +88,23 @@
 .time {
   font-size: 18px;
   margin: 10px 0;
-  color: #555;
+  color: #444;
 }
 
-/* back button */
+/* Back button */
 .material-symbols-outlined {
-  font-size: 3.5rem;
-  margin-left: 20px;
-  margin-top: 20px;
-  line-height: normal;
+  font-size: 3rem;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
   border-radius: 50%;
-  border: 2px solid;
-  border-color: transparent;
+  transition: 0.3s;
 }
-.material-symbols-outlined:hover{
-  color: white;
-  background-color: #03a9f7;
-  border:2px solid #05699782;
+
+.material-symbols-outlined:hover {
+  background: rgba(0, 0, 0, 0.6);
   cursor: pointer;
-  box-shadow: 0 0 6px rgba(52, 51, 51, 0.5);
-  transition: all 0.3s ease-out;
 }
