@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      body {
+        background: linear-gradient(to right, #4facfe, #00f2fe);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 350px;
+        text-align: center;
+      }
+      .profile-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        border: 3px solid #007bff;
+      }
+      .info {
+        margin-bottom: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        display: none;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s ease;
+      }
+      .edit-btn {
+        background: #007bff;
+        color: white;
+      }
+      .edit-btn:hover {
+        background: #0056b3;
+      }
+      .save-btn {
+        background: #28a745;
+        color: white;
+        display: none;
+      }
+      .save-btn:hover {
+        background: #218838;
+      }
+      .cancel-btn {
+        background: #dc3545;
+        color: white;
+        display: none;
+      }
+      .cancel-btn:hover {
+        background: #c82333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img
+        src="https://via.placeholder.com/80"
+        class="profile-img"
+        alt="User"
+      />
+      <h2>User Profile</h2>
+
+      <div class="info">Name: <span id="displayName">John Doe</span></div>
+      <div class="info">
+        Email: <span id="displayEmail">john@example.com</span>
+      </div>
+      <div class="info">Gender: <span id="displayGender">Male</span></div>
+
+      <input type="text" id="name" placeholder="Full Name" />
+      <input type="email" id="email" placeholder="Email" />
+      <select id="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+
+      <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+      <button class="save-btn" onclick="saveProfile()">Save</button>
+      <button class="cancel-btn" onclick="cancelEdit()">Cancel</button>
+    </div>
+
+    <script>
+      function editProfile() {
+        document.getElementById("name").style.display = "block";
+        document.getElementById("email").style.display = "block";
+        document.getElementById("gender").style.display = "block";
+
+        document.getElementById("name").value =
+          document.getElementById("displayName").innerText;
+        document.getElementById("email").value =
+          document.getElementById("displayEmail").innerText;
+        document.getElementById("gender").value = document
+          .getElementById("displayGender")
+          .innerText.toLowerCase();
+
+        document.querySelector(".edit-btn").style.display = "none";
+        document.querySelector(".save-btn").style.display = "block";
+        document.querySelector(".cancel-btn").style.display = "block";
+      }
+
+      function saveProfile() {
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let gender = document.getElementById("gender").value;
+
+        document.getElementById("displayName").innerText = name;
+        document.getElementById("displayEmail").innerText = email;
+        document.getElementById("displayGender").innerText =
+          gender.charAt(0).toUpperCase() + gender.slice(1);
+
+        cancelEdit();
+      }
+
+      function cancelEdit() {
+        document.getElementById("name").style.display = "none";
+        document.getElementById("email").style.display = "none";
+        document.getElementById("gender").style.display = "none";
+
+        document.querySelector(".edit-btn").style.display = "block";
+        document.querySelector(".save-btn").style.display = "none";
+        document.querySelector(".cancel-btn").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

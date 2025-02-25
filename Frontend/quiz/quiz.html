@@ -1,164 +1,178 @@
 <html>
-<head>
+  <head>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .quiz-container {
-            background: #ece988;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 600px;
-            padding: 20px;
-            text-align: center;
-        }
-        .question {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .option {
-            padding: 10px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .option:hover {
-            background-color: #007bff;
-            color: #fff;
-        }
-        .timer {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            color: #ff5722;
-        }
-        .result {
-            font-size: 1.5em;
-            color: #4caf50;
-        }
-        .restart-btn {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .restart-btn:hover {
-            background-color: #0056b3;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .quiz-container {
+        background: #ece988;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 600px;
+        padding: 20px;
+        text-align: center;
+      }
+      .question {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+      }
+      .options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .option {
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .option:hover {
+        background-color: #007bff;
+        color: #fff;
+      }
+      .timer {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+        color: #ff5722;
+      }
+      .result {
+        font-size: 1.5em;
+        color: #4caf50;
+      }
+      .restart-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1em;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      .restart-btn:hover {
+        background-color: #0056b3;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="quiz-container">
-     <h1> QUIZ APP</h1>
-        <div class="timer">Time Left: <span id="time">30</span>s</div>
-        <div class="question">Question will appear here</div>
-        <div class="options"></div>
-        <div class="result" style="display: none;">Your score: <span id="score">0</span></div>
-        <button class="restart-btn" style="display: none;">Restart Quiz</button>
+      <h1>QUIZ APP</h1>
+      <div class="timer">Time Left: <span id="time">30</span>s</div>
+      <div class="question">Question will appear here</div>
+      <div class="options"></div>
+      <div class="result" style="display: none">
+        Your score: <span id="score">0</span>
+      </div>
+      <button class="restart-btn" style="display: none">Restart Quiz</button>
     </div>
     <script>
-        const quizData = [
-            {
-                question: "What is the capital of France?",
-                options: ["Berlin", "Madrid", "Paris", "Lisbon"],
-                answer: "Paris"
-            },
-            {
-                question: "Which language is used for web development?",
-                options: ["Python", "HTML", "Java", "C++"],
-                answer: "HTML"
-            },
-            {
-                question: "Who wrote 'Hamlet'?",
-                options: ["Charles Dickens", "William Shakespeare", "Mark Twain", "Jane Austen"],
-                answer: "William Shakespeare"
+      fetch("quiz.json")
+        .then((res) => res.json())
+        .then((quizData) => {
+          // Shuffle the quiz data array using Fisher-Yates algorithm
+          function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [array[i], array[j]] = [array[j], array[i]];
             }
-        ];
-        let currentQuestion = 0;
-        let score = 0;
-        let timeLeft = 30;
-        let timerInterval;
-        const timerEl = document.getElementById('time');
-        const questionEl = document.querySelector('.question');
-        const optionsEl = document.querySelector('.options');
-        const resultEl = document.querySelector('.result');
-        const scoreEl = document.getElementById('score');
-        const restartBtn = document.querySelector('.restart-btn');
-        function loadQuestion() {
-            if (currentQuestion >= quizData.length) {
-                endQuiz();
-                return;
+            return array;
+          }
+
+          quizData = shuffle(quizData);
+
+          let currentQuestion = 0;
+          let score = 0;
+          let timeLeft = 30;
+          let timerInterval;
+
+          const timerEl = document.getElementById("time");
+          const questionEl = document.querySelector(".question");
+          const optionsEl = document.querySelector(".options");
+          const resultEl = document.querySelector(".result");
+          const scoreEl = document.getElementById("score");
+          const restartBtn = document.querySelector(".restart-btn");
+
+          function loadQuestion() {
+            if (currentQuestion >= 5) {
+              endQuiz();
+              return;
             }
+
             clearInterval(timerInterval);
-            timeLeft = 30; 
+            timeLeft = 30;
             timerEl.textContent = timeLeft;
-            startTimer(); 
+            startTimer();
+
             const currentQuiz = quizData[currentQuestion];
             questionEl.textContent = currentQuiz.question;
-            optionsEl.innerHTML = '';
-            currentQuiz.options.forEach(option => {
-                const button = document.createElement('button');
-                button.classList.add('option');
-                button.textContent = option;
-                button.onclick = () => checkAnswer(option);
-                optionsEl.appendChild(button);
+            optionsEl.innerHTML = "";
+
+            currentQuiz.options.forEach((option) => {
+              const button = document.createElement("button");
+              button.classList.add("option");
+              button.textContent = option;
+              button.onclick = () => checkAnswer(option);
+              optionsEl.appendChild(button);
             });
-        }
-        function checkAnswer(selectedOption) {
+          }
+
+          function checkAnswer(selectedOption) {
             if (selectedOption === quizData[currentQuestion].answer) {
-                score++;
+              score++;
             }
             currentQuestion++;
             loadQuestion();
-        }
-        function startTimer() {
+          }
+
+          function startTimer() {
             timerInterval = setInterval(() => {
-                timeLeft--;
-                timerEl.textContent = timeLeft;
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    endQuiz();
-                }
+              timeLeft--;
+              timerEl.textContent = timeLeft;
+              if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                endQuiz();
+              }
             }, 1000);
-        }
-        function endQuiz() {
+          }
+
+          function endQuiz() {
             clearInterval(timerInterval);
-            questionEl.style.display = 'none';
-            optionsEl.style.display = 'none';
-            resultEl.style.display = 'block';
+            questionEl.style.display = "none";
+            optionsEl.style.display = "none";
+            resultEl.style.display = "block";
             scoreEl.textContent = score;
-            restartBtn.style.display = 'block';
-        }
-        restartBtn.addEventListener('click', () => {
+            restartBtn.style.display = "block";
+          }
+
+          restartBtn.addEventListener("click", () => {
+            quizData = shuffle(quizData);
             currentQuestion = 0;
             score = 0;
             timeLeft = 30;
             timerEl.textContent = timeLeft;
-            questionEl.style.display = 'block';
-            optionsEl.style.display = 'block';
-            resultEl.style.display = 'none';
-            restartBtn.style.display = 'none';
+            questionEl.style.display = "block";
+            optionsEl.style.display = "block";
+            resultEl.style.display = "none";
+            restartBtn.style.display = "none";
             loadQuestion();
+          });
+
+          loadQuestion();
+        })
+        .catch((error) => {
+          console.error("Error fetching quiz data:", error);
         });
-        loadQuestion();
     </script>
-</body>
+  </body>
 </html>

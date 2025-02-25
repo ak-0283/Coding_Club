@@ -1,0 +1,157 @@
+[
+  {
+    "question": "What is the capital of France?",
+    "options": ["Berlin", "Madrid", "Paris", "Lisbon"],
+    "answer": "Paris"
+  },
+  {
+    "question": "Which language is used for web development?",
+    "options": ["Python", "HTML", "Java", "C++"],
+    "answer": "HTML"
+  },
+  {
+    "question": "Who wrote 'Hamlet'?",
+    "options": [
+      "Charles Dickens",
+      "William Shakespeare",
+      "Mark Twain",
+      "Jane Austen"
+    ],
+    "answer": "William Shakespeare"
+  },
+  {
+    "question": "What is the largest planet in our solar system?",
+    "options": ["Earth", "Saturn", "Jupiter", "Mars"],
+    "answer": "Jupiter"
+  },
+  {
+    "question": "What is the boiling point of water at sea level (in Celsius)?",
+    "options": ["90°C", "100°C", "110°C", "120°C"],
+    "answer": "100°C"
+  },
+  {
+    "question": "Which element has the chemical symbol 'O'?",
+    "options": ["Gold", "Oxygen", "Osmium", "Zinc"],
+    "answer": "Oxygen"
+  },
+  {
+    "question": "Who painted the Mona Lisa?",
+    "options": [
+      "Pablo Picasso",
+      "Leonardo da Vinci",
+      "Vincent van Gogh",
+      "Claude Monet"
+    ],
+    "answer": "Leonardo da Vinci"
+  },
+  {
+    "question": "What is the smallest prime number?",
+    "options": ["0", "1", "2", "3"],
+    "answer": "2"
+  },
+  {
+    "question": "In computing, what does 'CPU' stand for?",
+    "options": [
+      "Central Process Unit",
+      "Central Processing Unit",
+      "Computer Personal Unit",
+      "Central Peripheral Unit"
+    ],
+    "answer": "Central Processing Unit"
+  },
+  {
+    "question": "What is the hardest natural substance on Earth?",
+    "options": ["Gold", "Iron", "Diamond", "Graphite"],
+    "answer": "Diamond"
+  },
+  {
+    "question": "What is the capital city of Japan?",
+    "options": ["Tokyo", "Osaka", "Kyoto", "Hiroshima"],
+    "answer": "Tokyo"
+  },
+  {
+    "question": "Which planet is known as the Red Planet?",
+    "options": ["Earth", "Mars", "Jupiter", "Venus"],
+    "answer": "Mars"
+  },
+  {
+    "question": "What is H2O commonly known as?",
+    "options": ["Oxygen", "Hydrogen", "Salt", "Water"],
+    "answer": "Water"
+  },
+  {
+    "question": "Who is the author of the 'Harry Potter' series?",
+    "options": [
+      "J.R.R. Tolkien",
+      "J.K. Rowling",
+      "Stephen King",
+      "George R.R. Martin"
+    ],
+    "answer": "J.K. Rowling"
+  },
+  {
+    "question": "Which country is famous for inventing pizza?",
+    "options": ["France", "Italy", "USA", "Greece"],
+    "answer": "Italy"
+  },
+  {
+    "question": "What is the largest ocean on Earth?",
+    "options": ["Atlantic", "Indian", "Pacific", "Arctic"],
+    "answer": "Pacific"
+  },
+  {
+    "question": "Which language is primarily spoken in Brazil?",
+    "options": ["Spanish", "Portuguese", "English", "French"],
+    "answer": "Portuguese"
+  },
+  {
+    "question": "What is the chemical symbol for gold?",
+    "options": ["Au", "Ag", "Gd", "Go"],
+    "answer": "Au"
+  },
+  {
+    "question": "Which continent is the Sahara Desert located on?",
+    "options": ["Asia", "Africa", "Australia", "South America"],
+    "answer": "Africa"
+  },
+  {
+    "question": "What is the square root of 64?",
+    "options": ["6", "7", "8", "9"],
+    "answer": "8"
+  },
+  {
+    "question": "Which instrument has keys, pedals, and strings?",
+    "options": ["Guitar", "Piano", "Drum", "Violin"],
+    "answer": "Piano"
+  },
+  {
+    "question": "Who discovered penicillin?",
+    "options": [
+      "Alexander Fleming",
+      "Marie Curie",
+      "Isaac Newton",
+      "Albert Einstein"
+    ],
+    "answer": "Alexander Fleming"
+  },
+  {
+    "question": "In which sport is the term 'love' used?",
+    "options": ["Basketball", "Tennis", "Soccer", "Cricket"],
+    "answer": "Tennis"
+  },
+  {
+    "question": "What is the process by which plants make their food called?",
+    "options": ["Respiration", "Transpiration", "Photosynthesis", "Digestion"],
+    "answer": "Photosynthesis"
+  },
+  {
+    "question": "Who was the first man to walk on the moon?",
+    "options": [
+      "Buzz Aldrin",
+      "Yuri Gagarin",
+      "Neil Armstrong",
+      "Michael Collins"
+    ],
+    "answer": "Neil Armstrong"
+  }
+]
