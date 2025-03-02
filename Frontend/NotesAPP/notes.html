@@ -3,14 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Notes App</title>
+    <title>Note Making App</title>
     <link rel="stylesheet" href="notes.css" />
   </head>
   <body>
     <div class="container">
-      <h2>Notes App</h2>
-      <button id="addNote">Add Note</button>
-      <div id="notesContainer"></div>
+      <h2>Note Making App</h2>
+      <textarea id="noteInput" placeholder="Write a note..."></textarea>
+      <button onclick="addNote()">Add Note</button>
+      <div class="notes-container" id="notesContainer"></div>
     </div>
 
     <script src="notes.js"></script>

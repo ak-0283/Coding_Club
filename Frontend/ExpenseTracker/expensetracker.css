@@ -1,33 +1,84 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 20px;
-  padding: 20px;
-  max-width: 400px;
-  background: #f4f4f4;
-}
-h2 {
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 .container {
   background: white;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+h2 {
+  margin-bottom: 15px;
+  color: #333;
 }
 input,
+select {
+  width: calc(100% - 20px);
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
 button {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
+  /* width: 100%; */
+  padding: 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+button:hover {
+  background: #0056b3;
+  transform: scale(1.05);
 }
 .expense-list {
-  margin-top: 10px;
+  margin-top: 15px;
+  text-align: left;
 }
 .expense-item {
   display: flex;
   justify-content: space-between;
-  background: #eee;
-  padding: 5px;
+  align-items: center;
+  background: #f1f1f1;
+  padding: 10px;
   margin-top: 5px;
-  border-radius: 3px;
+  border-radius: 5px;
+  font-weight: bold;
+  border-left: 4px solid #007bff;
+}
+.expense-item button {
+  background: red;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.expense-item button:hover {
+  background: darkred;
+}
+.total {
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #007bff;
 }
