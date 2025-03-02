@@ -7,15 +7,20 @@
     <link rel="stylesheet" href="expensetracker.css" />
   </head>
   <body>
-    <h2>Expense Tracker</h2>
     <div class="container">
+      <h2>Expense Tracker</h2>
       <input type="text" id="desc" placeholder="Expense Description" />
       <input type="number" id="amount" placeholder="Amount" />
+      <select id="category">
+        <option value="Food">Food</option>
+        <option value="Transport">Transport</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Other">Other</option>
+      </select>
       <button onclick="addExpense()">Add Expense</button>
-      <h3>Total: ₹<span id="total">0</span></h3>
+      <div class="total">Total: Rs.<span id="total">0</span></div>
       <div class="expense-list" id="expenses"></div>
     </div>
-
-    <script src="expenseTracker.js"></script>
+    <script src="expensetracker.js"></script>
   </body>
 </html>
