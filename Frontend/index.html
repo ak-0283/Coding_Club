@@ -774,6 +774,13 @@
             document.getElementById('content').style.display = 'block';
         }, 3000);
   </script>
+  <script>
+    document.getElementById("subscribeForm").addEventListener("submit", function(event) {
+        event.preventDefault(); 
+        alert("Thank you for subscribing to our newsletter!");
+        this.reset();
+    });
+    </script>
 </body>
 
 </html>
