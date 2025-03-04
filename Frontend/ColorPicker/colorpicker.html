@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Color Picker</title>
+    <title>Color Grid Picker</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body
@@ -24,12 +24,25 @@
           const color = getRandomColor();
           colorBox.style.backgroundColor = color;
           colorBox.className =
-            "w-full h-full flex items-center justify-center text-xs font-bold cursor-pointer";
-          colorBox.innerText = color;
-          colorBox.addEventListener("click", () => {
+            "relative w-full h-full flex items-center justify-center text-xs font-bold cursor-pointer";
+
+          const overlay = document.createElement("div");
+          overlay.className =
+            "absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 transition-opacity opacity-0 hover:opacity-100";
+
+          const copyButton = document.createElement("button");
+          copyButton.innerText = "Copy";
+          copyButton.className =
+            "px-3 py-1 bg-white text-black rounded opacity-80 hover:opacity-100";
+
+          copyButton.addEventListener("click", (event) => {
+            event.stopPropagation();
             navigator.clipboard.writeText(color);
             alert(`Copied: ${color}`);
           });
+
+          overlay.appendChild(copyButton);
+          colorBox.appendChild(overlay);
           container.appendChild(colorBox);
         }
       }
