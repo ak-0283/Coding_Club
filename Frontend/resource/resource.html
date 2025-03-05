@@ -5,13 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Development Resources</title>
     <link rel="stylesheet" href="resource.css">
+    <link rel="stylesheet" href="../toggle/toggle.css">
+    <link rel="stylesheet" href="../mainPage/style.css">
+    <link rel="stylesheet" href="../lib/wow/customcursor.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  
     
 </head>
 <body>
-    <header>
-        <h1>Web Development Resources</h1>
-        <p>Explore the best resources to learn frontend and backend development.</p>
-    </header>
+   <!-- scroll button -->
+   <button id="scrollToTop" class="scroll-btn">
+  </button>
+  <header>
+    <div class="logo-container">
+      <img src="images/codingclub.png" alt="logo">
+    </div>
+    <h1 id="typingText"></h1>
+    <nav>
+      <nav id="navbar">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="projectPage/projectpage.html">Projects</a></li>
+          <li><a href="AllLoginPage/loginPage/login.html" id="auth-link">Login</a></li>
+
+          <li><a href="contributorPage/contributor.html">Contributors</a></li>
+          <li><a href="reviewPage/review.html">Reviews</a></li>
+          <li><a href="#feedback">Feedback</a></li>
+          <li><a href="./User/user.html">
+              <div class="profile">
+                <img src="profile.png" style="height: 20px;" id="profile-pic" class="profile-pic" alt="Profile Picture" >Account
+              </div>
+            </a></li>
+          <button id="toggleTheme" class="toggle-btn">🌙</button>
+        </ul>
+      </nav>
+
+      <nav class="hamburgerNav">
+
+        <div class="hamburger" id="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <span id="closeMenu"><i class="fas fa-times"></i></span>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="AllLoginPage/loginPage/login.html">Login</a></li>
+          <li><a href="contributorPage/contributor.html">Contributors</a></li>
+          <li><a href="reviewPage/review.html">Reviews</a></li>
+          <li><a href="#feedback">Feedback</a></li>
+          <li><a href="./User/user.html">
+              <div class="profile"><img id="profile-pic" class="profile-pic" alt="Profile Picture">Account
+              </div>
+            </a></li>
+          <button id="toggleTheme-mobile" class="menu-toggle-btn">🌙</button>
+        </ul>
+      </nav>
+  </header>
     
     <section class="resources">
         <h2>Frontend Development</h2>
@@ -32,9 +90,65 @@
             <li><a href="https://www.youtube.com/c/HusseinNasser" target="_blank">Hussein Nasser</a> (YouTube) - Backend architecture and system design.</li>
         </ul>
     </section>
-    
-    <footer>
-        <p>Happy coding! 🚀</p>
+    <footer class="footer">
+      <div class="wrapper">
+        <div class="newsletter">
+          <h3>Subscribe to our Newsletter</h3>
+          <form id="subscribeForm">
+            <input type="email" id="emailInput" placeholder="Enter your email" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+  
+  
+        <div class="quick-contact">
+          <h3>Quick Links</h3>
+          <ul>
+            <li class="sec-nav"><a href="#home">Home</a></li>
+            <li class="sec-nav"><a href="#about">About</a></li>
+            <li class="sec-nav"><a href="#events">Events</a></li>
+            <li class="sec-nav"><a href="#projects">Projects</a></li>
+            <li class="sec-nav"><a href="blogPage/blog.html">Blogs</a></li>
+            <li class="sec-nav"><a href="#contact">Contact</a></li>
+            <li class="sec-nav"><a href="resource/resource.html">Resources</a></li>
+            <li class="sec-nav"><a href="#faq">FAQ</a></li>
+            <li class="sec-nav"><a href="#feedback">Feedback</a></li>
+          </ul>
+        </div>
+        <div class="quick-contact">
+          <h3>Contact Us</h3>
+          <p>📍 123 Street, City, Country</p>
+          <p><i class="fa-solid fa-earth-americas"></i>&nbsp;&nbsp;&nbsp;yourwebsite.com</p>
+          <p>📞 +123 456 7890</p>
+        </div>
+  
+        <div class="social-sharing">
+          <h3>Share Our Blog</h3>
+          <a href="#" id="facebookShare" class="social-icon">Facebook</a>
+          <a href="#" id="twitterShare" class="social-icon">Twitter</a>
+          <a href="#" id="linkedinShare" class="social-icon">LinkedIn</a>
+          <a href="#" id="whatsappShare" class="social-icon">Instagram</a>
+  
+        </div>
+      </div>
+  
+      <div class="privacy">
+        <a href="privacyPage/privacy.html">Privacy Policy</a> |
+        <a href="termsPage/terms.html">Terms & Conditions</a>
+      </div>
+  
+      <div class="copyright">© 2025 Coding Club. All rights reserved.</div>
     </footer>
+    <script src="../mainPage/script.js"></script>
+    <script src="../toggle/toggle.js"></script>
+    
+  <script src="../lib/wow/customcursor.js"></script>
+
+  <script src="../card/card.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 600, once: false });
+  </script>
+  <script src="../feedbackPage/feedback.js"></script>
 </body>
 </html>
