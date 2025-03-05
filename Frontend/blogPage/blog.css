@@ -1117,6 +1117,14 @@ h2 {
 .blog-card:hover {
   transform: scale(1.02);
 }
+.dark-mode .blog-card{
+  background: rgb(71, 70, 70);
+  border: 1px solid black;
+  box-shadow: (4px 8px 15px rgba(255,255,255,0.1));
+}
+.dark-mode .blog-card .blog-content p{
+  color: #fff;
+}
 
 .blog-card img {
   width: 200px;

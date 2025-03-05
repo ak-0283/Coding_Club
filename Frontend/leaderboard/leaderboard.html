@@ -15,17 +15,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<style>
-  body {
+  <style>
+    body {
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #2ebfd5, #fad0c4);
       text-align: center;
       color: white;
       margin: 0;
       padding: 0;
-  }
+    }
 
-  .leaderboard {
+    body.dark-mode {
+      background: linear-gradient(135deg, #515050, #6f6e6e);
+    }
+
+    .leaderboard {
       width: 50%;
       margin: 50px auto;
       background: rgba(255, 255, 255, 0.9);
@@ -33,23 +37,25 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       padding: 20px;
       color: black;
-  }
-.dark-mode .leaderboard{
-  background: #444;
-  color: #ddd;
-}
-  h2 {
+    }
+
+    .dark-mode .leaderboard {
+      background: #444;
+      color: #ddd;
+    }
+
+    h2 {
       margin-bottom: 20px;
       color: #ff5f6d;
       font-size: 24px;
-  }
+    }
 
-  .leaderboard ul {
+    .leaderboard ul {
       list-style: none;
       padding: 0;
-  }
+    }
 
-  .leaderboard li {
+    .leaderboard li {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -59,38 +65,40 @@
       border-radius: 5px;
       margin: 5px 0;
       flex-wrap: wrap;
-  }
-.dark-mode .leaderboard li{
-  background-color: #444;
-}
-  .leaderboard li img {
+    }
+
+    .dark-mode .leaderboard li {
+      background-color: #444;
+    }
+
+    .leaderboard li img {
       width: 50px;
       height: 50px;
       border-radius: 50%;
       margin-right: 15px;
       border: 2px solid #ff5f6d;
-  }
+    }
 
-  .leaderboard .rank {
+    .leaderboard .rank {
       font-weight: bold;
       color: #ff5f6d;
       font-size: 18px;
-  }
+    }
 
-  .details {
+    .details {
       flex: 1;
       text-align: left;
-  }
+    }
 
-  .details span {
+    .details span {
       display: block;
-  }
+    }
 
-  .email {
+    .email {
       font-size: 12px;
       color: gray;
-  }
-</style>
+    }
+  </style>
 </head>
 
 <body>
@@ -141,30 +149,30 @@
     <h2>Top 10 participants of Quantum Code Quest</h2>
     <input type="text" id="search-bar" placeholder="Search participants...">
     <ul id="leaderboard-list"></ul>
-</div>
+  </div>
 
-<script>
+  <script>
     const participants = [
-        { name: "Alice Johnson", title: "Software Engineer", email: "alice@example.com", logo: "https://randomuser.me/api/portraits/women/1.jpg" },
-        { name: "Bob Smith", title: "Project Manager", email: "bob@example.com", logo: "https://randomuser.me/api/portraits/men/1.jpg" },
-        { name: "Charlie Brown", title: "Data Scientist", email: "charlie@example.com", logo: "https://randomuser.me/api/portraits/men/2.jpg" },
-        { name: "David Wilson", title: "UI/UX Designer", email: "david@example.com", logo: "https://randomuser.me/api/portraits/men/3.jpg" },
-        { name: "Emma Davis", title: "Marketing Lead", email: "emma@example.com", logo: "https://randomuser.me/api/portraits/women/2.jpg" },
-        { name: "Frank Martin", title: "Backend Developer", email: "frank@example.com", logo: "https://randomuser.me/api/portraits/men/4.jpg" },
-        { name: "Grace Lee", title: "Product Manager", email: "grace@example.com", logo: "https://randomuser.me/api/portraits/women/3.jpg" },
-        { name: "Hannah White", title: "QA Engineer", email: "hannah@example.com", logo: "https://randomuser.me/api/portraits/women/4.jpg" },
-        { name: "Isaac King", title: "DevOps Engineer", email: "isaac@example.com", logo: "https://randomuser.me/api/portraits/men/5.jpg" },
-        { name: "Jack Black", title: "Full Stack Developer", email: "jack@example.com", logo: "https://randomuser.me/api/portraits/men/6.jpg" }
+      { name: "Alice Johnson", title: "Software Engineer", email: "alice@example.com", logo: "https://randomuser.me/api/portraits/women/1.jpg" },
+      { name: "Bob Smith", title: "Project Manager", email: "bob@example.com", logo: "https://randomuser.me/api/portraits/men/1.jpg" },
+      { name: "Charlie Brown", title: "Data Scientist", email: "charlie@example.com", logo: "https://randomuser.me/api/portraits/men/2.jpg" },
+      { name: "David Wilson", title: "UI/UX Designer", email: "david@example.com", logo: "https://randomuser.me/api/portraits/men/3.jpg" },
+      { name: "Emma Davis", title: "Marketing Lead", email: "emma@example.com", logo: "https://randomuser.me/api/portraits/women/2.jpg" },
+      { name: "Frank Martin", title: "Backend Developer", email: "frank@example.com", logo: "https://randomuser.me/api/portraits/men/4.jpg" },
+      { name: "Grace Lee", title: "Product Manager", email: "grace@example.com", logo: "https://randomuser.me/api/portraits/women/3.jpg" },
+      { name: "Hannah White", title: "QA Engineer", email: "hannah@example.com", logo: "https://randomuser.me/api/portraits/women/4.jpg" },
+      { name: "Isaac King", title: "DevOps Engineer", email: "isaac@example.com", logo: "https://randomuser.me/api/portraits/men/5.jpg" },
+      { name: "Jack Black", title: "Full Stack Developer", email: "jack@example.com", logo: "https://randomuser.me/api/portraits/men/6.jpg" }
     ];
 
     const leaderboardList = document.getElementById("leaderboard-list");
     const searchBar = document.getElementById("search-bar");
 
     function displayParticipants(filteredParticipants) {
-        leaderboardList.innerHTML = "";
-        filteredParticipants.forEach((participant, index) => {
-            const li = document.createElement("li");
-            li.innerHTML = `
+      leaderboardList.innerHTML = "";
+      filteredParticipants.forEach((participant, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
                 <span class="rank">#${index + 1}</span>
                 <img src="${participant.logo}" alt="${participant.name}">
                 <div class="details">
@@ -173,18 +181,18 @@
                     <span class="email">${participant.email}</span>
                 </div>
             `;
-            leaderboardList.appendChild(li);
-        });
+        leaderboardList.appendChild(li);
+      });
     }
 
     searchBar.addEventListener("input", () => {
-        const searchTerm = searchBar.value.toLowerCase();
-        const filteredParticipants = participants.filter(p => p.name.toLowerCase().includes(searchTerm));
-        displayParticipants(filteredParticipants);
+      const searchTerm = searchBar.value.toLowerCase();
+      const filteredParticipants = participants.filter(p => p.name.toLowerCase().includes(searchTerm));
+      displayParticipants(filteredParticipants);
     });
 
     displayParticipants(participants);
-</script>
+  </script>
 
   <footer class="footer">
     <div class="wrapper">
