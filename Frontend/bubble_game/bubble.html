@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Game</title>
+    <link rel="stylesheet" href="bubble.css">
+</head>
+<body>
+    <h2 align="center">Bubble Game by - Soumik</h2>
+    <p align="center">Tap the Number showing in <b>hit</b> box and push your score in 60 sec!</p>
+    <div class="winner hide"> 
+        <div>
+            <p id="msg">Your Score is</p>
+        </div>
+        <div>
+        <button id="btn">New Game</button>
+    </div>
+    </div>
+    <div id="main">
+        <div id="panel">
+            <div id="start"><button>start</button></div>
+            <div id="ptop">
+                <div class="elem">
+                    <h2>Hit</h2>
+                    <div id="hitval" class="box">4</div>
+                </div>
+                <div class="elem">
+                    <h2>Timer</h2>
+                    <div id="timerval" class="box"></div>
+                </div>
+                <div class="elem">
+                    <h2>score</h2>
+                    <div id="score" class="box">0</div>
+                </div>
+            </div>
+            <div id="pdown">
+            </div>
+        </div>
+    </div>
+    
+    <script src="bubble.js"></script>
+</body>
+</html>
