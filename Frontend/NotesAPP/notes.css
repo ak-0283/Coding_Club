@@ -1,50 +1,100 @@
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 10px;
+  background-color: #099fea68;
+}
+
+::-webkit-scrollbar:hover {
+  background-color: #57bff3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #BEAE9F, #2C2C2C);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #2C2C2C, #BEAE9F);
+}
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #121212;
+  background-color: #BEAE9F;
   color: white;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
 }
+
 .container {
   max-width: 500px;
   width: 100%;
-  margin-top: 20px;
-  padding: 20px;
-  background: #1e1e1e;
-  border-radius: 10px;
+  margin: 10rem auto;
+  padding: 2rem;
+  outline: 1rem solid #F9F9F9;
+  background: #CED3D2;
+  border-radius: 1.5rem;
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
+  border-right: 3px solid #333;
+  border-bottom: 3px solid #333;
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  text-align: center;
 }
+
+.container h2 {
+  color: #071727;
+  text-align: center;
+}
+
+#searchInput {
+  width: 90%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 3rem;
+  margin: 0.5rem 0;
+}
+
 textarea {
-  width: 100%;
+  width: 90%;
   height: 100px;
   padding: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 1rem;
   resize: none;
 }
+
 button {
-  padding: 10px;
-  margin-top: 10px;
-  background: #6200ea;
-  color: white;
+  padding: 0.8rem 1.5rem;
+  background: #BEAE9F;
+  color: #000;
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  margin: 0.8rem;
   transition: transform 0.2s;
+  font-weight: 700;
 }
+
 button:hover {
   transform: scale(1.05);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .notes-container {
   margin-top: 20px;
   width: 100%;
 }
+
 .note {
-  background: #333;
-  padding: 10px;
+  background: #BEAE9F;
+  color: #000;
+  text-align: left;
+  padding: 0.5rem 1rem;
   border-radius: 5px;
   margin-top: 10px;
   position: relative;
@@ -52,22 +102,131 @@ button:hover {
   justify-content: space-between;
   align-items: center;
 }
+
 .note-content {
   flex-grow: 1;
 }
+
 .note-buttons {
   display: flex;
   gap: 10px;
 }
+
 .delete,
 .edit {
   background: red;
   border: none;
   color: white;
-  padding: 5px;
+  padding: 0.1rem 0.5rem;
   cursor: pointer;
   border-radius: 3px;
 }
+
 .edit {
+  padding: 0.5rem 0.8rem;
   background: orange;
+}
+
+input::placeholder {
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  width: 98.2%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Back Button */
+.back-button {
+  background: #2867f0;
+  color: white;
+  border: none;
+  padding: 0.8rem 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: #0190f6;
+  transform: scale(1.05);
+}
+
+.toggle-btn {
+  position: fixed;
+  top: 0;
+  right: 20px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1000;
+
+  /* Centering the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Toggle theme style */
+#toggleTheme {
+  background: transparent;
+  box-shadow: none;
+  position: absolute;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+/* Dark mode effect */
+.dark-mode #toggleTheme {
+  background: transparent;
+  box-shadow: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+.toggle-btn:hover {
+  background: #0056b3;
+}
+
+body.dark-mode {
+  background: #121212;
+  color: #fff;
+}
+
+/* Dark mode for header */
+.dark-mode nav {
+  background: linear-gradient(135deg, #1e1e1e, #333);
+}
+
+.dark-mode .container {
+  background: #313131;
+  border: 1px solid #fff;
+  outline: 1rem solid #313131;
+}
+
+.dark-mode .container h2 {
+  color: #fff;
 }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="./currency.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+</head>
+<body>
+
+
+    <!-- Main page -->
+
+    <nav class="navbar"> 
+        <button
+        class="back-button"
+        onclick="history.go(-1)"
+      >
+        <i class="fa-solid fa-arrow-left fa-xl"></i>
+      </button>
+      <button id="toggleTheme" class="toggle-btn">🌙</button>
+    </nav>
+
+    <div class="container">
+        <h2>Currency Converter</h2>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" placeholder="Enter amount" required>
+
+        <div>
+            <label for="fromCurrency">From:</label>
+            <select id="fromCurrency"></select>
+
+            <label for="toCurrency">To:</label>
+            <select id="toCurrency"></select>
+        </div>
+
+        <button onclick="convertCurrency()">Convert</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const apiKey = 'API_KEY';
+        const fromCurrency = document.getElementById('fromCurrency');
+        const toCurrency = document.getElementById('toCurrency');
+
+        async function fetchCurrencies() {
+            try {
+                const response = await fetch(`https://open.er-api.com/v6/latest`);
+                const data = await response.json();
+                const currencies = Object.keys(data.rates);
+                populateCurrencyDropdowns(currencies);
+            } catch (error) {
+                alert('Error fetching currencies');
+                console.error(error);
+            }
+        }
+
+        function populateCurrencyDropdowns(currencies) {
+            currencies.forEach(currency => {
+                const option1 = document.createElement('option');
+                option1.value = currency;
+                option1.textContent = currency;
+                fromCurrency.appendChild(option1);
+
+                const option2 = option1.cloneNode(true);
+                toCurrency.appendChild(option2);
+            });
+
+            fromCurrency.value = 'USD';
+            toCurrency.value = 'INR';
+        }
+
+        async function convertCurrency() {
+            const amount = document.getElementById('amount').value;
+            if (amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+
+            const from = fromCurrency.value;
+            const to = toCurrency.value;
+
+            try {
+                const response = await fetch(`https://open.er-api.com/v6/latest/${from}`);
+                const data = await response.json();
+
+                if (data.result === 'success') {
+                    const rate = data.rates[to];
+                    const result = (amount * rate).toFixed(2);
+                    document.getElementById('result').textContent = `${amount} ${from} = ${result} ${to}`;
+                } else {
+                    alert('Conversion error. Please try again.');
+                }
+            } catch (error) {
+                alert('Error during conversion');
+                console.error(error);
+            }
+        }
+
+        window.onload = fetchCurrencies;
+    </script>
+    <script src="currency.js"></script>
+</body>
+</html>

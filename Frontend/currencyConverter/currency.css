@@ -8,7 +8,7 @@ body {
   background: #f3f4f6;
 }
 
-.navbar {
+/* .navbar {
   width: 100%;
   background: #4a90e2;
   padding: 1rem 2rem;
@@ -18,7 +18,7 @@ body {
   left: 0;
   display: flex;
   align-items: center;
-}
+} */
 .navbar a {
   display: flex;
   align-items: center;
@@ -76,4 +76,98 @@ button:hover {
 #result {
   margin-top: 1rem;
   font-weight: bold;
+}
+.navbar {
+  width: 98%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #4a90e2;
+  padding: 15px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Back Button */
+.back-button {
+  background: #2867f0;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 40px;
+}
+
+.back-button:hover {
+  background: #0190f6;
+  transform: scale(1.05);
+}
+.toggle-btn {
+  position: fixed;
+  top: 0;
+  right: 20px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1000;
+
+  /* Centering the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Toggle theme style */
+#toggleTheme {
+  background: transparent;
+  box-shadow: none;
+  position: absolute;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+/* Dark mode effect */
+.dark-mode #toggleTheme {
+  background: transparent;
+  box-shadow: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+.toggle-btn:hover {
+  background: #0056b3;
+}
+body.dark-mode {
+  background: #121212;
+}
+.dark-mode .navbar {
+  background: #3e3e3e;
+}
+.dark-mode .container {
+  background: #3e3e3e;
+  color: #fff;
+  box-shadow: 3px 3px 5px rgba(255, 255, 255, 0.3);
+}
+
+.container:hover{
+  transform: scale(1.02);
+  box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.4);
 }

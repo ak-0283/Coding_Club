@@ -1,324 +1,373 @@
 <html>
-  <head>
-    <title>Quiz App</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <link rel="stylesheet" href="../lib/wow/customcursor.css" />
-    <link rel="stylesheet" href="../toggle/toggle.css" />
-    <style>
-      body {
-        background: linear-gradient(to right, #744f63, #993cd7);
-        font-family: Arial, sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh; /* Full height of viewport */
-      }
-      /* Navbar */
-      .navbar {
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: rgba(255, 255, 255, 0.2);
-        padding: 15px;
-        display: flex;
-        justify-content: flex-start;
-      }
 
-      /* Back Button */
-      .back-button {
-        background: #2867f0;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
+<head>
+  <title>Quiz App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../lib/wow/customcursor.css" />
+  <style>
+    body {
+      background: linear-gradient(to right, #744f63, #993cd7);
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow-x: hidden;
+    }
 
-      .back-button:hover {
-        background: #0190f6;
-        transform: scale(1.05);
-      }
-      .quiz-container {
-        background: #ece988;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: 90%;
-        max-width: 600px;
-        padding: 20px;
-        text-align: center;
-      }
-      .question {
-        font-size: 1.2em;
-        margin-bottom: 20px;
-      }
-      .options {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .option {
-        padding: 10px;
-        border: 2px solid #ccc;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s, color 0.3s;
-      }
-      .option:hover {
-        background-color: #007bff;
-        color: #fff;
-      }
-      .timer {
-        font-size: 1.2em;
-        margin-bottom: 20px;
-        color: #ff5722;
-      }
-      .result {
-        font-size: 1.5em;
-        color: #4caf50;
-      }
-      .restart-btn {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 1em;
-        border-radius: 8px;
-        cursor: pointer;
-        margin-top: 20px;
-      }
-      .restart-btn:hover {
-        background-color: #0056b3;
-      }
-      .toggle-btn {
-        position: fixed;
-        top: 0;
-        right: 20px;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        font-size: 30px;
-        cursor: pointer;
-        transition: 0.3s;
-        z-index: 1000;
+    /* Navbar */
+    .navbar {
+      width: 98.2%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 15px;
+      display: flex;
+      justify-content: flex-start;
+    }
 
-        /* Centering the icon */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+    /* Back Button */
+    .back-button {
+      background: #2867f0;
+      color: white;
+      border: none;
+      padding: 1.2rem 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-      /* Toggle theme style */
-      #toggleTheme {
-        background: transparent;
-        box-shadow: none;
-        position: absolute;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-      }
+    .back-button:hover {
+      background: #0190f6;
+      transform: scale(1.05);
+    }
 
-      /* Click animation (subtle scaling effect) */
-      #toggleTheme:active {
-        transform: scale(0.9);
-        opacity: 0.7;
-      }
+    .quiz-container {
+      background: #ece988;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 600px;
+      padding: 20px;
+      text-align: center;
+    }
 
-      /* Dark mode effect */
-      .dark-mode #toggleTheme {
-        background: transparent;
-        box-shadow: none;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-      }
+    .question {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
 
-      /* Click animation in dark mode */
-      .dark-mode #toggleTheme:active {
-        transform: scale(0.9);
-        opacity: 0.7;
-      }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-      .toggle-btn:hover {
-        background: #0056b3;
-      }
-      body.dark-mode {
-        background: #121212;
-        color: #fff;
-      }
-      /* Dark mode for header */
-      .dark-mode nav {
-        background: linear-gradient(135deg, #1e1e1e, #333);
-      }
-      .dark-mode .quiz-container {
-        background: #333;
-        color: #fff;
-      }
-      .dark-mode .option {
-        background: #444;
-        color: #fff;
-      }
-      .dark-mode .option:hover {
-        background: #007bff;
-        color: #fff;
-      }
-      .dark-mode .result {
-        color: #4caf50;
-      }
-      .dark-mode h1,
-      .dark-mode h3,
-      .dark-mode h2,
-      .dark-mode .question {
-        color: goldenrod;
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="navbar">
-      <button
-        class="back-button"
-        onclick="window.location.href = '../../index.html'"
-      >
-        <i class="fa-solid fa-arrow-left fa-xl"></i>
-      </button>
-      <button id="toggleTheme" class="toggle-btn">🌙</button>
-    </nav>
-    <div class="quiz-container">
-      <h1>QUIZ APP</h1>
-      <div class="timer">Time Left: <span id="time">30</span>s</div>
-      <div class="question">Question will appear here</div>
-      <div class="options"></div>
-      <div class="result" style="display: none">
-        Your score: <span id="score">0</span>
-      </div>
-      <button class="restart-btn" style="display: none">Restart Quiz</button>
-      <div id="scoreboard">Past Score</div>
+    .option {
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .option:hover {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .timer {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      color: #ff5722;
+    }
+
+    .result {
+      font-size: 1.5em;
+      color: #4caf50;
+    }
+
+    .restart-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .restart-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 0;
+      right: 20px;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 1000;
+
+      /* Centering the icon */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Toggle theme style */
+    #toggleTheme {
+      background: transparent;
+      box-shadow: none;
+      position: absolute;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Click animation (subtle scaling effect) */
+    #toggleTheme:active {
+      transform: scale(0.9);
+      opacity: 0.7;
+    }
+
+    /* Dark mode effect */
+    .dark-mode #toggleTheme {
+      background: transparent;
+      box-shadow: none;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .dark-mode .quiz-container {
+      background: #333;
+      color: #fff;
+    }
+
+    /* Click animation in dark mode */
+    .dark-mode #toggleTheme:active {
+      transform: scale(0.9);
+      opacity: 0.7;
+    }
+
+    .toggle-btn:hover {
+      background: #0056b3;
+    }
+
+    body.dark-mode {
+      background: #121212;
+      color: #fff;
+    }
+
+    /* Dark mode for header */
+    .dark-mode nav {
+      background: linear-gradient(135deg, #1e1e1e, #333);
+    }
+
+    .dark-mode .quiz-container {
+      background: #333;
+      color: #fff;
+    }
+
+    .dark-mode .option {
+      background: #444;
+      color: #fff;
+    }
+
+    .dark-mode .option:hover {
+      background: #007bff;
+      color: #fff;
+    }
+
+    .dark-mode .result {
+      color: #4caf50;
+    }
+
+    .dark-mode h1,
+    .dark-mode h3,
+    .dark-mode h2,
+    .dark-mode .question {
+      color: goldenrod;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <button class="back-button" onclick="window.location.href = '../index.html'">
+      <i class="fa-solid fa-arrow-left fa-xl"></i>
+    </button>
+    <button id="toggleTheme" class="toggle-btn">🌙</button>
+  </nav>
+  <div class="quiz-container">
+    <h1>QUIZ APP</h1>
+    <div class="timer">Time Left: <span id="time">30</span>s</div>
+    <div class="question">Question will appear here</div>
+    <div class="options"></div>
+    <div class="result" style="display: none">
+      Your score: <span id="score">0</span>
     </div>
-    <script>
-      fetch("quiz.json")
-        .then((res) => res.json())
-        .then((quizData) => {
-          // Shuffle the quiz data array using Fisher-Yates algorithm
-          function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-              const j = Math.floor(Math.random() * (i + 1));
-              [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
+    <button class="restart-btn" style="display: none">Restart Quiz</button>
+    <div id="scoreboard">Past Score</div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleTheme = document.getElementById("toggleTheme");
+
+      if (!toggleTheme) {
+        console.error("Toggle button not found!");
+        return;
+      }
+
+      toggleTheme.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        // Save theme preference
+        const isDarkMode = document.body.classList.contains("dark-mode");
+        toggleTheme.textContent = isDarkMode ? "☀️" : "🌙";
+        localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+      });
+
+      // Load theme preference on page load
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        toggleTheme.textContent = "☀️";
+      }
+    });
+
+
+  </script>
+  <script>
+    fetch("quiz.json")
+      .then((res) => res.json())
+      .then((quizData) => {
+        // Shuffle the quiz data array using Fisher-Yates algorithm
+        function shuffle(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+          }
+          return array;
+        }
+
+        quizData = shuffle(quizData);
+
+        let currentQuestion = 0;
+        let score = 0;
+        let timeLeft = 30;
+        let timerInterval;
+
+        const timerEl = document.getElementById("time");
+        const questionEl = document.querySelector(".question");
+        const optionsEl = document.querySelector(".options");
+        const resultEl = document.querySelector(".result");
+        const scoreEl = document.getElementById("score");
+        const restartBtn = document.querySelector(".restart-btn");
+        const scoreboardEl = document.getElementById("scoreboard");
+
+        function loadQuestion() {
+          if (currentQuestion >= 5) {
+            endQuiz();
+            return;
           }
 
-          quizData = shuffle(quizData);
+          clearInterval(timerInterval);
+          timeLeft = 30;
+          timerEl.textContent = timeLeft;
+          startTimer();
 
-          let currentQuestion = 0;
-          let score = 0;
-          let timeLeft = 30;
-          let timerInterval;
+          const currentQuiz = quizData[currentQuestion];
+          questionEl.textContent = currentQuiz.question;
+          optionsEl.innerHTML = "";
 
-          const timerEl = document.getElementById("time");
-          const questionEl = document.querySelector(".question");
-          const optionsEl = document.querySelector(".options");
-          const resultEl = document.querySelector(".result");
-          const scoreEl = document.getElementById("score");
-          const restartBtn = document.querySelector(".restart-btn");
-          const scoreboardEl = document.getElementById("scoreboard");
-
-          function loadQuestion() {
-            if (currentQuestion >= 5) {
-              endQuiz();
-              return;
-            }
-
-            clearInterval(timerInterval);
-            timeLeft = 30;
-            timerEl.textContent = timeLeft;
-            startTimer();
-
-            const currentQuiz = quizData[currentQuestion];
-            questionEl.textContent = currentQuiz.question;
-            optionsEl.innerHTML = "";
-
-            currentQuiz.options.forEach((option) => {
-              const button = document.createElement("button");
-              button.classList.add("option");
-              button.textContent = option;
-              button.onclick = () => checkAnswer(option);
-              optionsEl.appendChild(button);
-            });
-          }
-
-          function checkAnswer(selectedOption) {
-            if (selectedOption === quizData[currentQuestion].answer) {
-              score++;
-            }
-            currentQuestion++;
-            loadQuestion();
-          }
-
-          function startTimer() {
-            timerInterval = setInterval(() => {
-              timeLeft--;
-              timerEl.textContent = timeLeft;
-              if (timeLeft <= 0) {
-                alert("Time's up! Ending the quiz.");
-
-                clearInterval(timerInterval);
-                endQuiz();
-              }
-            }, 1000);
-          }
-
-          function endQuiz() {
-            clearInterval(timerInterval);
-            questionEl.style.display = "none";
-            optionsEl.style.display = "none";
-            resultEl.style.display = "block";
-            scoreEl.textContent = score;
-            restartBtn.style.display = "block";
-
-            saveScore(score);
-            displayScores();
-          }
-
-          function saveScore(newScore) {
-            let scores = JSON.parse(localStorage.getItem("quizScores")) || [];
-            scores.unshift(newScore);
-            if (scores.length > 3) scores.pop(); // Keep only last 3 scores
-            localStorage.setItem("quizScores", JSON.stringify(scores));
-          }
-
-          function displayScores() {
-            const scores = JSON.parse(localStorage.getItem("quizScores")) || [];
-            scoreboardEl.innerHTML =
-              `<h3>Past Scores:</h3>` +
-              scores
-                .map((s, i) => `<div>Game ${i + 1}: ${s} points</div>`)
-                .join("");
-          }
-
-          restartBtn.addEventListener("click", () => {
-            quizData = shuffle(quizData);
-            currentQuestion = 0;
-            score = 0;
-            timeLeft = 30;
-            timerEl.textContent = timeLeft;
-            questionEl.style.display = "block";
-            optionsEl.style.display = "block";
-            resultEl.style.display = "none";
-            restartBtn.style.display = "none";
-            loadQuestion();
+          currentQuiz.options.forEach((option) => {
+            const button = document.createElement("button");
+            button.classList.add("option");
+            button.textContent = option;
+            button.onclick = () => checkAnswer(option);
+            optionsEl.appendChild(button);
           });
+        }
 
+        function checkAnswer(selectedOption) {
+          if (selectedOption === quizData[currentQuestion].answer) {
+            score++;
+          }
+          currentQuestion++;
           loadQuestion();
-          displayScores(); // Show past scores on load
-        })
-        .catch((error) => {
-          console.error("Error fetching quiz data:", error);
+        }
+
+        function startTimer() {
+          timerInterval = setInterval(() => {
+            timeLeft--;
+            timerEl.textContent = timeLeft;
+            if (timeLeft <= 0) {
+              alert("Time's up! Ending the quiz.");
+
+              clearInterval(timerInterval);
+              endQuiz();
+            }
+          }, 1000);
+        }
+
+        function endQuiz() {
+          clearInterval(timerInterval);
+          questionEl.style.display = "none";
+          optionsEl.style.display = "none";
+          resultEl.style.display = "block";
+          scoreEl.textContent = score;
+          restartBtn.style.display = "block";
+
+          saveScore(score);
+          displayScores();
+        }
+
+        function saveScore(newScore) {
+          let scores = JSON.parse(localStorage.getItem("quizScores")) || [];
+          scores.unshift(newScore);
+          if (scores.length > 3) scores.pop(); // Keep only last 3 scores
+          localStorage.setItem("quizScores", JSON.stringify(scores));
+        }
+
+        function displayScores() {
+          const scores = JSON.parse(localStorage.getItem("quizScores")) || [];
+          scoreboardEl.innerHTML =
+            `<h3>Past Scores:</h3>` +
+            scores
+              .map((s, i) => `<div>Game ${i + 1}: ${s} points</div>`)
+              .join("");
+        }
+
+        restartBtn.addEventListener("click", () => {
+          quizData = shuffle(quizData);
+          currentQuestion = 0;
+          score = 0;
+          timeLeft = 30;
+          timerEl.textContent = timeLeft;
+          questionEl.style.display = "block";
+          optionsEl.style.display = "block";
+          resultEl.style.display = "none";
+          restartBtn.style.display = "none";
+          loadQuestion();
         });
-    </script>
-    <script src="../mainPage/script.js"></script>
-    <script src="../toggle/toggle.js"></script>
-  </body>
+
+        loadQuestion();
+        displayScores(); // Show past scores on load
+      })
+      .catch((error) => {
+        console.error("Error fetching quiz data:", error);
+      });
+
+
+  </script>
+
+
+</body>
+
 </html>
