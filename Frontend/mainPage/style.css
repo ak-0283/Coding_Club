@@ -1223,9 +1223,9 @@ button:hover {
   }
 }
 
-#faq{
+#faq {
   padding: 50px;
-  background: #f8f9fa;
+  /* background: #f8f9fa; */
   border-radius: 10px;
   margin: 20px auto;
   width: 100%;
@@ -1233,13 +1233,12 @@ button:hover {
   box-sizing: border-box;
 }
 
-.faq-container{
+.faq-container {
   width: 80%;
   padding: 20px;
-  background: #F8F9FA;
+  /* background: #F8F9FA; */
   border-radius: 10px;
   margin: 20px auto;
   box-sizing: border-box;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
 }
-

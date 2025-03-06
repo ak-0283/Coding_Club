@@ -6,13 +6,16 @@
     <title>Weather App</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back" />
     <link rel="stylesheet" href="weather.css" />
+    <link rel="stylesheet" href="toggle/toggle.css" />
   </head>
   <body class="weather-body">
-    <div>
+    <div class="header">
       <button class="material-symbols-outlined" onclick="history.go(-1)">
         arrow_back
       </button>
+      <button id="toggleTheme" class="toggle-btn">🌙</button>
     </div>
+    
     <div class="weather-container">
       <h1 class="weather-header">Weather App</h1>
       <div class="search-box">
@@ -34,5 +37,6 @@
     </div>
 
     <script src="./weather.js"></script>
+    <script src="toggle/toggle.js"></script>
   </body>
 </html>

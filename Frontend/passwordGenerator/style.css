@@ -1,0 +1,234 @@
+:root {
+    --primary: #4A00E0;
+    /* Deep indigo for main actions */
+    --secondary: #021bff;
+    /* Vibrant teal for copy button */
+    --text: #1A202C;
+    /* Dark gray for better readability */
+    --bg: #EDF2F7;
+    /* Light blue-gray background */
+    --white: #FFFFFF;
+    /* Pure white for container */
+    --accent: #E53E3E;
+    /* Red accent for emphasis (unused here but available) */
+    --shadow: rgba(74, 0, 224, 0.1);
+    /* Matches primary color */
+    --track: #CBD5E0;
+    /* Slider track color */
+    --track-hover: #A0AEC0;
+    /* Slider track hover */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg) 0%, #88898a 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+/* Back Button styling */
+.navbar {
+    width: 100%;
+    background: #4a90e2;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+}
+
+.navbar a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    gap: 8px;
+}
+
+.navbar img {
+    width: 34px;
+    height: 24px;
+}
+
+.navbar button{
+    padding: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Main content Styling */
+.container {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px var(--shadow);
+    width: 100%;
+    max-width: 400px;
+    transition: transform 0.2s ease;
+}
+
+.container:hover {
+    transform: translateY(-2px);
+}
+
+h1 {
+    color: var(--text);
+    font-size: 1.75rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+    gap: 0.75rem;
+}
+
+.slider-container {
+    margin: 1rem 0;
+}
+
+.slider-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+#lengthValue {
+    font-weight: 500;
+    color: var(--primary);
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: var(--track);
+    border-radius: 3px;
+    outline: none;
+    transition: background 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="range"]:hover {
+    background: var(--track-hover);
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--track);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:checked {
+    background: var(--primary);
+    border-color: var(--primary);
+    position: relative;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: var(--white);
+    font-size: 0.9rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+label {
+    color: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.result {
+    display: flex;
+    margin: 1.5rem 0;
+    background: #F7FAFC;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#password {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    color: var(--text);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#copyBtn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: var(--secondary);
+    color: var(--white);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#copyBtn:hover {
+    background: #00B99D;
+}
+
+#generateBtn {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#generateBtn:hover {
+    background: #3C00B3;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}

@@ -52,6 +52,27 @@
         display: block;
         margin: 10px 0;
       }
+      /* Toast Notification */
+      .toast {
+        visibility: hidden;
+        min-width: 200px;
+        background: #50fa7b;
+        color: #000;
+        text-align: center;
+        padding: 12px;
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 5px;
+        font-size: 16px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: opacity 0.5s ease-in-out;
+      }
+      .show {
+        visibility: visible;
+        opacity: 1;
+      }
     </style>
   </head>
   <body>
@@ -71,6 +92,8 @@
       <button onclick="generatePassword()">Generate Password</button>
       <button onclick="copyPassword()">Copy to Clipboard</button>
     </div>
+
+    <div id="toast" class="toast">Password copied to clipboard!</div>
 
     <script>
       function generatePassword() {
@@ -97,7 +120,13 @@
         const passwordField = document.getElementById("password");
         passwordField.select();
         document.execCommand("copy");
-        alert("Password copied to clipboard!");
+
+        // Show toast notification
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2000); // Hide after 2 seconds
       }
     </script>
   </body>

@@ -1,19 +1,38 @@
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 10px;
+  background-color: #685D9E;
+}
+
+::-webkit-scrollbar:hover {
+  background-color: #57bff3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #221c42, #423586);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #423586, #221c42);
+}
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #000;
+  background-color: #423586;
   font-family: Arial, sans-serif;
   flex-direction: column;
 }
 .calculator {
   width: 340px;
-  background: #1c1c1c;
+  background: #5e5186;
   padding: 20px;
   border-radius: 30px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
   text-align: center;
+  margin-top: 5rem;
   margin-bottom: 20px;
 }
 #display {
@@ -23,7 +42,7 @@ body {
   font-size: 2.5em;
   margin-bottom: 15px;
   border: none;
-  background: #333;
+  background: #423586;
   color: white;
   padding: 10px;
   border-radius: 10px;
@@ -38,7 +57,7 @@ button {
   font-size: 1.8em;
   cursor: pointer;
   border: none;
-  background: #505050;
+  background: #423586;
   color: white;
   border-radius: 50%;
   width: 70px;
@@ -49,25 +68,25 @@ button:hover {
   background: #707070;
 }
 .operator {
-  background: #ff9500;
+  background: #7f6595;
   color: white;
 }
 .operator:hover {
-  background: #e08900;
+  background: #4d3164;
 }
 .clear {
   background: #a5a5a5;
-  color: black;
+  color: #fff;
 }
 .clear:hover {
-  background: #8f8f8f;
+  background: #584b62;
 }
 .equal {
-  background: #ff9500;
+  background: #7f6595;
   color: white;
 }
 .equal:hover {
-  background: #e08900;
+  background: #4d3164;
 }
 .zero {
   grid-column: span 2;
@@ -76,7 +95,7 @@ button:hover {
 }
 .history {
   width: 340px;
-  background: #2c2c2c;
+  background: #423586;
   padding: 10px;
   border-radius: 10px;
   color: white;
@@ -94,7 +113,7 @@ button:hover {
 
 .history {
   width: 340px;
-  background: #2c2c2c;
+  background: #5E5186;
   padding: 10px;
   border-radius: 10px;
   color: white;
@@ -108,4 +127,97 @@ button:hover {
 .history p {
   margin: 5px 0;
   font-size: 1.2em;
+}
+
+.navbar {
+  width: 98%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Back Button */
+.back-button {
+  background: #2867f0;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 40px;
+}
+
+.back-button:hover {
+  background: #0190f6;
+  transform: scale(1.05);
+}
+
+.toggle-btn {
+  position: fixed;
+  top: 0;
+  right: 20px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1000;
+
+  /* Centering the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Toggle theme style */
+#toggleTheme {
+  background: transparent;
+  box-shadow: none;
+  position: absolute;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+/* Dark mode effect */
+.dark-mode #toggleTheme {
+  background: transparent;
+  box-shadow: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+.toggle-btn:hover {
+  background: #0056b3;
+}
+body.dark-mode {
+  background: #121212;
+  color: #fff;
+}
+
+body.dark-mode .calculator,
+body.dark-mode .history {
+  background: #1e1e1e;
+}
+body.dark-mode #display,
+body.dark-mode .buttons button {
+  background: #414141;
 }

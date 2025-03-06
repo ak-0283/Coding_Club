@@ -3,37 +3,108 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Color Picker</title>
+    <title>Color Grid Picker</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body
-    class="flex items-center justify-center min-h-screen bg-gray-900 text-white"
+    class="flex flex-col items-center justify-center min-h-screen bg-gray-700 text-white"
   >
+    <button
+      id="regenerateBtn"
+      class="mb-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded"
+    >
+      Regenerate Colors
+    </button>
     <div class="grid grid-cols-5 gap-1 w-full h-screen"></div>
+
+    <div class="mt-4 p-4 w-full max-w-lg text-center">
+      <h1>Please Click on two Color from the above to generate Gradient</h1>
+      <h2 class="text-lg font-bold mb-2">Gradient Preview</h2>
+      <div
+        id="gradientPreview"
+        class="w-full h-32 rounded border border-gray-500"
+      ></div>
+      <button
+        id="copyGradientBtn"
+        class="mt-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded hidden"
+      >
+        Copy CSS
+      </button>
+    </div>
 
     <script>
       const container = document.querySelector(".grid");
+      const regenerateBtn = document.getElementById("regenerateBtn");
+      const gradientPreview = document.getElementById("gradientPreview");
+      const copyGradientBtn = document.getElementById("copyGradientBtn");
+      let selectedColors = [];
 
       function getRandomColor() {
         return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
       }
 
       function createColorGrid() {
+        container.innerHTML = "";
+        selectedColors = [];
+        updateGradientPreview();
         for (let i = 0; i < 25; i++) {
           const colorBox = document.createElement("div");
           const color = getRandomColor();
           colorBox.style.backgroundColor = color;
           colorBox.className =
-            "w-full h-full flex items-center justify-center text-xs font-bold cursor-pointer";
-          colorBox.innerText = color;
-          colorBox.addEventListener("click", () => {
+            "relative w-full h-full flex items-center justify-center text-xs font-bold cursor-pointer border border-gray-600";
+          colorBox.dataset.color = color;
+
+          const overlay = document.createElement("div");
+          overlay.className =
+            "absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 transition-opacity opacity-0 hover:opacity-100";
+
+          const copyButton = document.createElement("button");
+          copyButton.innerText = "Copy";
+          copyButton.className =
+            "px-3 py-1 bg-white text-black rounded opacity-80 hover:opacity-100";
+
+          copyButton.addEventListener("click", (event) => {
+            event.stopPropagation();
             navigator.clipboard.writeText(color);
             alert(`Copied: ${color}`);
           });
+
+          colorBox.addEventListener("click", () =>
+            selectColorForGradient(color)
+          );
+
+          overlay.appendChild(copyButton);
+          colorBox.appendChild(overlay);
           container.appendChild(colorBox);
         }
       }
 
+      function selectColorForGradient(color) {
+        if (selectedColors.length < 2) {
+          selectedColors.push(color);
+        } else {
+          selectedColors = [selectedColors[1], color];
+        }
+        updateGradientPreview();
+      }
+
+      function updateGradientPreview() {
+        if (selectedColors.length === 2) {
+          const gradientCSS = `linear-gradient(to right, ${selectedColors[0]}, ${selectedColors[1]})`;
+          gradientPreview.style.background = gradientCSS;
+          copyGradientBtn.classList.remove("hidden");
+          copyGradientBtn.onclick = () => {
+            navigator.clipboard.writeText(`background: ${gradientCSS};`);
+            alert("Gradient CSS copied!");
+          };
+        } else {
+          gradientPreview.style.background = "";
+          copyGradientBtn.classList.add("hidden");
+        }
+      }
+
+      regenerateBtn.addEventListener("click", createColorGrid);
       createColorGrid();
     </script>
   </body>

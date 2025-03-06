@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+    background-color: #E8CCF6;
+}
+
+::-webkit-scrollbar:hover {
+    background-color: #E8CCF6;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, rgb(231, 203, 246), #842195);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #842195, rgb(231, 203, 246));
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right, #f6dbfa, rgb(231, 203, 246));
+    font-family: "Poppins", sans-serif;
+}
+
+.qr-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 480px;
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    margin: 8rem auto;
+    background: #842195;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+}
+
+.qr-container:hover {
+    transform: scale(1.05);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.qr-container h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+input {
+    padding: 10px;
+    width: 300px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input::placeholder {
+    color: #842195;
+}
+
+input:focus {
+    outline: none;
+    border-color: #8D85F1;
+}
+
+.qr-container button {
+    padding: 10px 15px;
+    background: #8D85F1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.qr-container button:hover {
+    background: #7b72f4;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.02);
+}
+
+#qrcode {
+    margin-top: 20px;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Back Button */
+.back-button {
+    background: #2867f0;
+    color: white;
+    border: none;
+    padding: 0.8rem 20px;
+    width: 4rem;
+    height: 2.5rem;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #0190f6;
+    transform: scale(1.05);
+}
+
+.toggle-btn {
+    position: fixed;
+    top: 0;
+    right: 20px;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Toggle theme style */
+#toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+/* Dark mode effect */
+.dark-mode #toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+.toggle-btn:hover {
+    background: #0056b3;
+}
+
+body.dark-mode {
+    background: #121212;
+    color: #fff;
+}
+
+/* Dark mode for header */
+.dark-mode nav {
+    background: linear-gradient(135deg, #1e1e1e, #333);
+}
+
+.dark-mode .qr-container {
+    background: #2A2A2A;
+}
+
+.dark-mode .qr-container button:hover {
+    background-color: #121212;
+    color: #fff;
+}

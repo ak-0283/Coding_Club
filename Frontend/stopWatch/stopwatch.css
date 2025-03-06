@@ -69,3 +69,30 @@ button {
   padding: 5px 10px;
   border-radius: 5px;
 }
+.dark-mode {
+  background-color: #212529;
+  color: white;
+  padding: 50px;
+}
+
+.dark-mode .container {
+  background: #4b5259;
+  color: white;
+}
+
+.dark-mode button {
+  background: #495057;
+}
+.dark-mode h1 {
+  color: goldenrod;
+}
+.dark-mode .laps li {
+  background: #333;
+}
+.dark-mode h3 {
+  color: goldenrod;
+}
+
+.dark-mode button:hover {
+  background: #6c757d;
+}

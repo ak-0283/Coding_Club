@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+    background-color: #099fea68;
+}
+
+::-webkit-scrollbar:hover {
+    background-color: #57bff3;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #00232A, #09797A);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #09797A, #00232A);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    background: linear-gradient(to right, #001E26, #097F7F);
+    margin: 10rem auto;
+}
+
+.guess-container {
+    max-width: 400px;
+    margin: auto;
+    background: #8ED3D6;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.guess-container:hover {
+    transform: scale(1.05);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.guess-container h2,
+.guess-container p {
+    color: #001E26;
+    margin-bottom: 1.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    padding: 10px;
+    width: 80%;
+    font-size: 0.9rem;
+    margin-top: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+input:focus {
+    outline: none;
+    border-color: #001E26;
+}
+
+input::placeholder {
+    font-size: 0.9rem;
+    color: #001E26;
+}
+
+#message {
+    color: #001E26;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+button {
+    font-size: 1rem;
+    padding: 10px 15px;
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to right, #001E26, #097F7F);
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: linear-gradient(to left, #001E26, #097F7F);
+    transform: scale(1.05);
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Back Button */
+.back-button {
+    background: #2867f0;
+    color: white;
+    border: none;
+    padding: 0.8rem 20px;
+    width: 4rem;
+    height: 2.5rem;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #0190f6;
+    transform: scale(1.05);
+}
+
+.toggle-btn {
+    position: fixed;
+    top: 0;
+    right: 20px;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Toggle theme style */
+#toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+/* Dark mode effect */
+.dark-mode #toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+.toggle-btn:hover {
+    background: #0056b3;
+}
+
+body.dark-mode {
+    background: #121212;
+    color: #fff;
+}
+
+/* Dark mode for header */
+.dark-mode nav {
+    background: linear-gradient(135deg, #1e1e1e, #333);
+}
+
+.dark-mode .guess-container {
+    background: #313131;
+    border: 1px solid #fff;
+    outline: 1rem solid #313131;
+}
+
+.dark-mode .guess-container h2,
+.dark-mode .guess-container p ,
+.dark-mode #message {
+    color: #fff;
+}

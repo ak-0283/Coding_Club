@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- Back Button -->
+    <div class="navbar">
+        <a href="../projectPage/projectpage.html">
+            <button id="back-button"> <img src="./back.png" alt="back button"></button>
+        </a>
+    </div>
+
+
+    <!-- Main content -->
+    <div class="container">
+        <h1>Password Generator</h1>
+
+        <div class="slider-container">
+            <div class="slider-label">
+                <span>Password Length</span>
+                <span id="lengthValue">6</span>
+            </div>
+            <input type="range" id="length" min="4" max="20" value="6">
+        </div>
+
+        <div class="option">
+            <input type="checkbox" id="uppercase" checked>
+            <label for="uppercase">Uppercase (A-Z)</label>
+        </div>
+
+        <div class="option">
+            <input type="checkbox" id="lowercase" checked>
+            <label for="lowercase">Lowercase (a-z)</label>
+        </div>
+
+        <div class="option">
+            <input type="checkbox" id="numbers" checked>
+            <label for="numbers">Numbers (0-9)</label>
+        </div>
+
+        <div class="option">
+            <input type="checkbox" id="special" checked>
+            <label for="special">Special (!@#$%)</label>
+        </div>
+
+        <div class="result">
+            <input type="text" id="password" readonly>
+            <button id="copyBtn">Copy</button>
+        </div>
+
+        <button id="generateBtn">Generate Password</button>
+    </div>
+
+    <noscript>You have to enable JavaScript from your browser setting to view this Site...</noscript>
+    <script src="./passApp.js"></script>
+</body>
+
+</html>

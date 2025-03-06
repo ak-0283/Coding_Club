@@ -1,0 +1,101 @@
+<style>
+  .close {
+    color: #0f345c;
+  }
+
+  .dark-mode .close {
+    color: goldenrod;
+  }
+
+  .modal-content h2 {
+    margin: 1rem;
+    color: #20418f;
+    text-shadow: 2px 2px 2px #9f9c9c;
+  }
+
+  .dark-mode .modal-content h2 {
+    color: goldenrod;
+    text-shadow: none;
+  }
+
+  .modal-content div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.2rem 0.5rem;
+  }
+
+  .modal-content div label {
+    margin-right: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #20418f;
+  }
+
+  .dark-mode .modal-content div label {
+    color: goldenrod;
+  }
+
+  input {
+    display: block;
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #20418f;
+    border-radius: 5px;
+  }
+  .dark-mode input {
+    border-color: goldenrod;
+    background: transparent;
+    color: white;
+  }
+
+  input::placeholder {
+    color: #20418f;
+  }
+
+  #save-btn {
+    display: block;
+    width: 98%;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 5px;
+    background: linear-gradient(to right, #2a67ac, #20418f);
+    color: white;
+    cursor: pointer;
+  }
+
+  #save-btn:hover {
+    background: linear-gradient(to right, #20418f, #2a67ac);
+    transform: translateY(-5px);
+    box-shadow: 4px 4px 5px #0f345c;
+  }
+</style>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Edit Profile</h2>
+    <img
+      id="preview-img"
+      src="profile.jpg"
+      alt="Profile Picture"
+      class="profile-pic"
+      style="width: 80px; height: 80px; border-radius: 50%"
+    />
+    <div class="content">
+      <label for="">Photo</label>
+      <input type="file" id="image-upload" accept="image/*" />
+    </div>
+
+    <div class="name">
+      <label for="">Name</label>
+      <input type="text" id="edit-name" placeholder="Enter name" />
+    </div>
+    <div class="email">
+      <label for="">Email</label>
+      <input type="email" id="edit-email" placeholder="Enter email" />
+    </div>
+    <button id="save-btn">Save</button>
+  </div>
+</div>

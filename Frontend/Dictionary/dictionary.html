@@ -11,6 +11,7 @@
         background-color: #1e1e1e;
         color: #ffffff;
         padding: 20px;
+        position: relative;
       }
       .container {
         max-width: 500px;
@@ -20,7 +21,8 @@
         border-radius: 8px;
         margin: auto;
       }
-      input {
+      input,
+      select {
         width: 80%;
         padding: 10px;
         margin-bottom: 10px;
@@ -36,8 +38,13 @@
         border: none;
         cursor: pointer;
         border-radius: 5px;
+        margin: 5px;
       }
       .result {
+        margin-top: 20px;
+        text-align: left;
+      }
+      .favorites {
         margin-top: 20px;
         text-align: left;
       }
@@ -46,38 +53,131 @@
   <body>
     <div class="container">
       <h2>Dictionary App</h2>
+      <p id="wordOfTheDay"></p>
+      <select id="languageSelect">
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <option value="hi">Hindi</option>
+        <option value="de">German</option>
+      </select>
+
       <input type="text" id="wordInput" placeholder="Enter a word" />
       <button onclick="searchWord()">Search</button>
+      <button onclick="toggleThesaurusMode()">Thesaurus Mode</button>
+      <button onclick="addToFavorites()">Add to Favorites</button>
+      <button onclick="speakText()">Speak</button>
       <div id="result" class="result"></div>
+      <h3>Favorites</h3>
+      <ul id="favoritesList" class="favorites"></ul>
     </div>
 
     <script>
+      let thesaurusMode = false;
+
       async function searchWord() {
         const word = document.getElementById("wordInput").value;
         if (!word) return alert("Please enter a word");
 
-        const response = await fetch(
-          `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-        );
-        const data = await response.json();
-
-        if (data.title) {
-          document.getElementById("result").innerHTML = "<p>Word not found</p>";
-          return;
+        if (!history.includes(word)) {
+          history.push(word);
+          updateHistoryList();
         }
 
-        const meaning = data[0].meanings[0].definitions[0].definition;
-        const phonetics = data[0].phonetics[0]?.text || "N/A";
-        const example =
-          data[0].meanings[0].definitions[0].example || "No example available";
+        if (thesaurusMode) {
+          const synUrl = `https://api.datamuse.com/words?rel_syn=${word}`;
+          const antUrl = `https://api.datamuse.com/words?rel_ant=${word}`;
 
-        document.getElementById("result").innerHTML = `
-                <h3>${word}</h3>
-                <p><strong>Phonetics:</strong> ${phonetics}</p>
-                <p><strong>Meaning:</strong> ${meaning}</p>
-                <p><strong>Example:</strong> ${example}</p>
-            `;
+          const [synRes, antRes] = await Promise.all([
+            fetch(synUrl),
+            fetch(antUrl),
+          ]);
+          const synData = await synRes.json();
+          const antData = await antRes.json();
+
+          const synonyms =
+            synData.map((item) => item.word).join(", ") || "No synonyms found";
+          const antonyms =
+            antData.map((item) => item.word).join(", ") || "No antonyms found";
+
+          document.getElementById("result").innerHTML = `
+            <h3>Synonyms for ${word}</h3>
+            <p>${synonyms}</p>
+          
+          `;
+        } else {
+          const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+          const response = await fetch(url);
+          const data = await response.json();
+
+          if (data.title || data.length === 0) {
+            document.getElementById("result").innerHTML =
+              "<p>Word not found</p>";
+            return;
+          }
+
+          const meaning = data[0].meanings[0].definitions[0].definition;
+          const example =
+            data[0].meanings[0].definitions[0].example ||
+            "No example available";
+
+          document.getElementById("result").innerHTML = `
+              <h3>${word}</h3>
+              <p><strong>Meaning:</strong> ${meaning}</p>
+              <p><strong>Example:</strong> ${example}</p>
+          `;
+        }
       }
+
+      function addToFavorites() {
+        const word = document.getElementById("wordInput").value;
+        if (!word) return;
+        const list = document.getElementById("favoritesList");
+        const li = document.createElement("li");
+        li.textContent = word;
+        list.appendChild(li);
+      }
+
+      function toggleThesaurusMode() {
+        thesaurusMode = !thesaurusMode;
+        alert(`Thesaurus Mode: ${thesaurusMode ? "ON" : "OFF"}`);
+      }
+
+      function speakText() {
+        const word = document.getElementById("wordInput").value;
+        const resultElement = document.getElementById("result");
+        if (!word || !resultElement.innerHTML) return;
+
+        let text = `${word}. `;
+        const meaningElement = resultElement.querySelector("p strong");
+        if (meaningElement) {
+          text += meaningElement.nextSibling.textContent.trim() + ". ";
+        }
+
+        const exampleElement = resultElement.querySelector("p:nth-of-type(2)");
+        if (exampleElement) {
+          text += exampleElement.textContent.trim();
+        }
+
+        const speech = new SpeechSynthesisUtterance(text);
+        speech.lang = "en-US";
+        speech.rate = 1;
+        speech.pitch = 1;
+        window.speechSynthesis.speak(speech);
+      }
+
+      async function getWordOfTheDay() {
+        const response = await fetch(
+          "https://random-word-api.herokuapp.com/word"
+        );
+        const data = await response.json();
+        document.getElementById(
+          "wordOfTheDay"
+        ).innerHTML = `<strong>Word of the Day:</strong> ${data[0]}`;
+      }
+
+      getWordOfTheDay();
     </script>
   </body>
 </html>
+<!-- this is acommment -->

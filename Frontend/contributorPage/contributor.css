@@ -43,9 +43,11 @@
 
 /* Team Container */
 .team-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
+    gap: 10px;
+    width: 100%;
     max-width: 90%;
     margin: 30px auto;
     padding: 10px;
@@ -597,7 +599,7 @@ button:hover {
     background: white;
     padding: 20px;
     margin: 20px auto;
-    width: 75%;
+    width: 80%;
     max-width: 900px;
     border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);

@@ -5,13 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currency Converter</title>
     <link rel="stylesheet" href="./currency.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
 </head>
 <body>
-    <div class="navbar"> 
-        <a href="../projectPage/projectpage.html">
-            <button id="back-button"> <img src="./back.png" alt="back button"></button>
-        </a>
-    </div>
+
+
+    <!-- Main page -->
+
+    <nav class="navbar"> 
+        <button
+        class="back-button"
+        onclick="history.go(-1)"
+      >
+        <i class="fa-solid fa-arrow-left fa-xl"></i>
+      </button>
+      <button id="toggleTheme" class="toggle-btn">🌙</button>
+    </nav>
+
     <div class="container">
         <h2>Currency Converter</h2>
         <label for="amount">Amount:</label>
@@ -91,5 +105,6 @@
 
         window.onload = fetchCurrencies;
     </script>
+    <script src="currency.js"></script>
 </body>
 </html>

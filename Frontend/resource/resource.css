@@ -1,3 +1,22 @@
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 10px;
+  background-color: #099fea68;
+}
+
+::-webkit-scrollbar:hover {
+  background-color: #57bff3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #32C7E4, #FBC4BC);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #FBC4BC, #32C7E4);
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -7,23 +26,34 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+  from {
+    opacity: 0;
+  }
 
+  to {
+    opacity: 1;
+  }
+}
 header {
   background-color: #32c7e4;
   color: white;
   text-align: center;
   padding: 20px;
   font-size: 1.5em;
-  box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
   animation: slideDown 1s ease-in-out;
 }
 
 @keyframes slideDown {
-  from { transform: translateY(-50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .resources {
@@ -40,7 +70,8 @@ header {
   transform: scale(1.02);
 }
 
-h1, h2 {
+h1,
+h2 {
   color: #333;
 }
 

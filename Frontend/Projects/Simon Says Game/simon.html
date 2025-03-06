@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Says Game</title>
+    <link rel="stylesheet" href="simon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <button class="back-button" onclick="history.back()">
+            <i class="fa-solid fa-arrow-left fa-xl"></i>
+        </button>
+        <button id="toggleTheme" class="toggle-btn">🌙</button>
+    </nav>
+    <div class="simon-container">
+        <h1>Simon Says Game</h1>
+        <div class="grid" id="grid">
+            <div class="square green" id="green" onclick="playerClick('green')"></div>
+            <div class="square red" id="red" onclick="playerClick('red')"></div>
+            <div class="square blue" id="blue" onclick="playerClick('blue')"></div>
+            <div class="square yellow" id="yellow" onclick="playerClick('yellow')"></div>
+        </div>
+        <p id="status">Press Start to Play!</p>
+        <button onclick="startGame()">Start Game</button>
+    </div>
+    <script src="simon.js"></script>
+</body>
+
+</html>

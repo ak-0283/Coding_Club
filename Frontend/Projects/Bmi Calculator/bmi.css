@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+
+  /* background-color: #f4f4f4; */
+
+  background: linear-gradient(to right, #003366, #336699);
+  margin: 10rem auto;
+}
+
+.bmi-container {
+  max-width: 400px;
+  margin: auto;
+  background: #CCFF99;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bmi-container:hover {
+  transform: scale(1.05);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bmi-container h2 {
+  color: #27470d;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input,
+button {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3a6219;
+}
+
+input::placeholder {
+  color: #3a6219;
+}
+
+button {
+  background: #518428;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background: #3a6219;
+  transform: scale(1.05);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Back Button */
+.back-button {
+  background: #2867f0;
+  color: white;
+  border: none;
+  padding: 0.8rem 20px;
+  width: 4rem;
+  height: 2.5rem;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: #0190f6;
+  transform: scale(1.05);
+}
+
+.toggle-btn {
+  position: fixed;
+  top: 0;
+  right: 20px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Toggle theme style */
+#toggleTheme {
+  background: transparent;
+  box-shadow: none;
+  position: absolute;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+/* Dark mode effect */
+.dark-mode #toggleTheme {
+  background: transparent;
+  box-shadow: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+.toggle-btn:hover {
+  background: #0056b3;
+}
+
+body.dark-mode {
+  background: #121212;
+  color: #fff;
+}
+
+/* Dark mode for header */
+.dark-mode nav {
+  background: linear-gradient(135deg, #1e1e1e, #333);
+}
+
+.dark-mode .bmi-container {
+  background: #313131;
+  border: 1px solid #fff;
+  outline: 1rem solid #313131;
+}
+
+.dark-mode .bmi-container h2 {
+  color: #fff;
+}

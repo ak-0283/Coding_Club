@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator</title>
+  <link rel="stylesheet" href="bmi.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <button class="back-button" onclick="history.back()">
+      <i class="fa-solid fa-arrow-left fa-xl"></i>
+    </button>
+    <button id="toggleTheme" class="toggle-btn">🌙</button>
+  </nav>
+
+  <div class="bmi-container">
+    <h2>BMI Calculator</h2>
+    <input type="number" id="weight" placeholder="Enter weight in kg">
+    <input type="number" id="height" placeholder="Enter height in meters">
+    <button onclick="calculateBMI()">Calculate BMI</button>
+    <div id="result"></div>
+  </div>
+  <script src="bmi.js"></script>
+</body>
+
+</html>

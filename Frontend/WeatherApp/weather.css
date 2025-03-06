@@ -1,19 +1,27 @@
 /* General body styling */
+.header{
+  display: flex;
+  width: 100%;
+}
+.weather-body.dark-mode{
+  background: linear-gradient(to right, #333435, #202222);
+}
 .weather-body {
   font-family: "Poppins", sans-serif;
   background: linear-gradient(to right, #4facfe, #00f2fe);
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
+.dark-mode .weather-container{
+  background: rgba(80, 79, 79, 0.9);
+}
+
 
 /* Container for the weather app */
 .weather-container {
   max-width: 420px;
   background: rgba(255, 255, 255, 0.9);
+  margin: 12rem auto;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
@@ -27,6 +35,9 @@
   font-weight: bold;
   color: #333;
   margin-bottom: 20px;
+}
+.dark-mode .weather-header{
+  color: #fff;
 }
 
 /* Search box */
@@ -108,3 +119,56 @@
   background: rgba(0, 0, 0, 0.6);
   cursor: pointer;
 }
+
+/* Toggle Button */
+.toggle-btn {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1000;
+
+  /* Centering the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Toggle theme style */
+#toggleTheme {
+  background: transparent;
+  box-shadow: none;
+  position: absolute;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+/* Dark mode effect */
+.dark-mode #toggleTheme {
+  background: transparent;
+  box-shadow: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+.toggle-btn:hover {
+  background: #0056b3;
+}
+

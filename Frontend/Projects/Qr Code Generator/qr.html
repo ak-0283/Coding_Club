@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="qr.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <button class="back-button" onclick="history.back()">
+            <i class="fa-solid fa-arrow-left fa-xl"></i>
+        </button>
+        <button id="toggleTheme" class="toggle-btn">🌙</button>
+    </nav>
+    <div class="qr-container">
+        <h2>QR Code Generator</h2>
+        <input type="text" id="text" placeholder="Enter text or URL">
+        <button onclick="generateQR()">Generate QR Code</button>
+        <div id="qrcode"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="qr.js"></script>
+</body>
+
+</html>

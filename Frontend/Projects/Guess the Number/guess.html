@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+    <link rel="stylesheet" href="guess.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <button class="back-button" onclick="history.back()">
+            <i class="fa-solid fa-arrow-left fa-xl"></i>
+        </button>
+        <button id="toggleTheme" class="toggle-btn">🌙</button>
+    </nav>
+
+    <div class="guess-container">
+        <h2>Guess the Number</h2>
+        <p>I'm thinking of a number between 1 and 100. Can you guess it?</p>
+        <input type="number" id="guess" placeholder="Enter your guess" min="1" max="100">
+        <button onclick="checkGuess()">Submit Guess</button>
+        <p id="message"></p>
+        <button onclick="resetGame()">Restart</button>
+    </div>
+    <script src="guess.js"></script>
+</body>
+
+</html>
