@@ -360,6 +360,7 @@ nav ul {
   padding: 30px;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 20px;
 }
 
@@ -371,7 +372,7 @@ nav ul li a {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   padding: 10px 15px;
   border-radius: 5px;
   transition: all 0.3s ease;
@@ -1028,185 +1029,8 @@ button:hover {
     right: 5%;
   }
 }
-<<<<<<< HEAD:Frontend/style.css
+
 #profile-pic{
   height: 30px;
   width: 30px;
-=======
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
-body {
-  padding: 0px;
-}
-
-header {
-  padding: 20px 0px !important;
-  width: 100% !important;
-}
-
-footer {
-  width: 100% !important;
-  padding: 5px 0px !important;
-}
-
-/* .wrapper {
-  justify-content: space-evenly !important;
-} */
-
-body {
-  background-color: #f5f5f5;
-  color: #333;
-}
-
-.container {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.intro {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: #333;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 800px;
-  margin: 20px auto;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  transition: transform 0.3s ease-in-out;
-}
-
-.dark-mode h1,
-.dark-mode h2,
-.dark-mode h3 {
-  color: #ffcc00 !important;
-}
-
-
-.intro:hover {
-  transform: scale(1.02);
-}
-
-h1 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 20px;
-}
-
-.faq-item {
-  border-bottom: 1px solid #ddd;
-  padding: 15px 0;
-}
-
-.faq-item:last-child {
-  border-bottom: none;
-}
-
-.question {
-  font-weight: bold;
-  cursor: pointer;
-  color: #1f618d;
-}
-
-.answer {
-  display: none;
-  padding-top: 10px;
-  color: #555;
-}
-
-.search-box {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-@media (max-width: 600px) {
-  .container {
-    padding: 15px;
-  }
-}
-
-#eventSearch {
-  width: 90%;
-  padding: 10px;
-  font-size: 16px;
-  margin: 10px auto;
-  display: block;
-  border: 2px solid #2fa5f4;
-  border-radius: 5px;
-}
-
-.btn {
-  margin-top: 20px;
-  display: inline-block;
-  background-color: #00c8ff;
-  color: white;
-  padding: 12px 24px;
-  font-size: 18px;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.btn:hover {
-  background-color: #054e9b;
-  transform: scale(1.05);
-}
-
-.profile {
-  padding: 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 18px;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-
-.profile-pic {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
-
-.search-container {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-#searchBar {
-  width: 80%;
-  max-width: 400px;
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-}
-
-.projects-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
->>>>>>> 8d24ab48845cd08e0a5c0ce6bb1690af43fdfb8d:Frontend/mainPage/style.css
 }

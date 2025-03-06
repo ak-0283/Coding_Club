@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doubt Resolution Forum</title>
+    <link rel="stylesheet" href="doubt.css">
+</head>
+<body>
+
+    <header>
+        <h1>Doubt Resolution Forum</h1>
+        <a href="../index.html" class="back-btn">🔙 Back to Home</a>
+    </header>
+
+    <main>
+        <div class="doubt-form">
+            <h2>Post Your Doubt</h2>
+            <input type="text" id="doubt-input" placeholder="Enter your doubt...">
+            <button onclick="postDoubt()">Submit</button>
+        </div>
+
+        <h2>All Doubts</h2>
+        <div id="doubt-list"></div>
+    </main>
+
+    <script src="doubt.js"></script>
+</body>
+</html>
