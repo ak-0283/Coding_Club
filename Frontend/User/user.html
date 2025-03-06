@@ -1,157 +1,428 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Profile</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-      }
-      body {
-        background: linear-gradient(to right, #4facfe, #00f2fe);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      .container {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 350px;
-        text-align: center;
-      }
-      .profile-img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        margin-bottom: 15px;
-        border: 3px solid #007bff;
-      }
-      .info {
-        margin-bottom: 15px;
-        font-size: 18px;
-        font-weight: bold;
-        color: #333;
-      }
-      input,
-      select {
-        width: 100%;
-        padding: 8px;
-        margin: 5px 0;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        display: none;
-      }
-      button {
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: 0.3s ease;
-      }
-      .edit-btn {
-        background: #007bff;
-        color: white;
-      }
-      .edit-btn:hover {
-        background: #0056b3;
-      }
-      .save-btn {
-        background: #28a745;
-        color: white;
-        display: none;
-      }
-      .save-btn:hover {
-        background: #218838;
-      }
-      .cancel-btn {
-        background: #dc3545;
-        color: white;
-        display: none;
-      }
-      .cancel-btn:hover {
-        background: #c82333;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <img
-        src="https://via.placeholder.com/80"
-        class="profile-img"
-        alt="User"
-      />
-      <h2>User Profile</h2>
 
-      <div class="info">Name: <span id="displayName">John Doe</span></div>
-      <div class="info">
-        Email: <span id="displayEmail">john@example.com</span>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <title>User Profile</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #14ADF6, #69C2F1);
+    }
+
+    .info {
+      margin-bottom: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s ease;
+    }
+
+    .edit-btn {
+      background: linear-gradient(to right, #0FACF6, #67C1F1);
+      color: white;
+    }
+
+    .edit-btn:hover {
+      background: #0056b3;
+    }
+
+    .save-btn {
+      background: #28a745;
+      color: white;
+      display: none;
+    }
+
+    .save-btn:hover {
+      background: #218838;
+    }
+
+    .cancel-btn {
+      background: #dc3545;
+      color: white;
+      display: none;
+    }
+
+    .cancel-btn:hover {
+      background: #c82333;
+    }
+
+    .dark-mode .profile-container {
+      background: rgb(72, 72, 72);
+    }
+
+    .dark-mode .profile-container h2 {
+      color: goldenrod;
+    }
+
+    .profile-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
+      text-align: center;
+      width: 380px;
+      margin: 5rem auto;
+    }
+
+    .profile-container:hover {
+      transform: scale(1.02);
+      box-shadow: 5px 10px 20px rgba(255, 255, 255, 0.5);
+    }
+
+    .dark-mode .profile-container,
+    .dark-mode .profile-container:hover {
+      box-shadow: 3px 3px 10px goldenrod;
+    }
+
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #67C1F1;
+      box-shadow: 2px 2px 5px #67C1F1;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      margin: 15px 0;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .actions button {
+      background: linear-gradient(to right, #0FACF6, #67C1F1);
+      color: #00277b;
+      border: none;
+      padding: 10px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .actions button:hover {
+      background: linear-gradient(to right, #012e7d, #67C1F1);
+      transform: translateY(-5px);
+      box-shadow: 4px 4px 5px #0FACF6;
+      color: #fff;
+    }
+
+    .dark-mode .modal-content{
+      background-color: #484848;
+    }
+    
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .close {
+      cursor: pointer;
+      float: right;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+    }
+
+    /* Back Button */
+    .back-button {
+      background: #2867f0;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 4rem;
+      height: 2.5rem;
+      margin-top: 0;
+    }
+
+    .back-button:hover {
+      background: #0190f6;
+      transform: scale(1.05);
+    }
+
+    /* Dark Mode Button */
+    .toggle {
+      margin-left: auto;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #ffd700, #ffa500);
+      cursor: pointer;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      width: 3.5rem;
+    }
+
+    .toggle:hover {
+      background: linear-gradient(135deg, #ffa500, #ff4500);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
+
+    body.dark-mode {
+      background: #333;
+      color: #fff;
+    }
+
+    .dark-mode .toggle {
+      background: linear-gradient(135deg, #4b4b4b, #000);
+    }
+
+    .dark-mode .toggle:hover {
+      background: linear-gradient(135deg, #6b6b6b, #222);
+    }
+
+    /* Icon Visibility */
+    .sun {
+      display: inline;
+    }
+
+    .moon {
+      display: none;
+    }
+
+    .dark-mode .sun {
+      display: none;
+    }
+
+    .dark-mode .moon {
+      display: inline;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <button class="back-button" onclick="window.location.href = '../index.html'">
+      <i class="fa-solid fa-arrow-left fa-xl"></i>
+    </button>
+    <!-- <button type="button" id="darkModeToggle" class="toggle">
+      <span class="icon sun">☀️</span>
+      <span class="icon moon">🌙</span>
+    </button> -->
+  </nav>
+  <div class="profile-container">
+    <img id="profilePic" src="https://i.pravatar.cc/150" alt="Profile Picture" class="profile-pic">
+    <h2 id="displayName" class="username">John Doe</h2>
+    <p id="displayEmail" class="email">@johndoe</p>
+    <div class="stats">
+      <div class="stat">
+        <p>Event Attended</p><span>1</span>
       </div>
-      <div class="info">Gender: <span id="displayGender">Male</span></div>
-
-      <input type="text" id="name" placeholder="Full Name" />
-      <input type="email" id="email" placeholder="Email" />
-      <select id="gender">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select>
-
-      <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
-      <button class="save-btn" onclick="saveProfile()">Save</button>
-      <button class="cancel-btn" onclick="cancelEdit()">Cancel</button>
+      <div class="stat">
+        <p>Certificate Earned</p><span>1</span>
+      </div>
+      <div class="stat">
+        <p>Project Viewed</p><span>1</span>
+      </div>
     </div>
+    <div class="actions">
+      <button id="edit-btn">Edit Profile</button>
+      <button id="settings-btn">Settings</button>
+    </div>
+  </div>
 
-    <script>
-      function editProfile() {
-        document.getElementById("name").style.display = "block";
-        document.getElementById("email").style.display = "block";
-        document.getElementById("gender").style.display = "block";
+  <div id="modal-container"></div>
 
-        document.getElementById("name").value =
-          document.getElementById("displayName").innerText;
-        document.getElementById("email").value =
-          document.getElementById("displayEmail").innerText;
-        document.getElementById("gender").value = document
-          .getElementById("displayGender")
-          .innerText.toLowerCase();
+  <!-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("edituser.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("modal-container").innerHTML = data;
 
-        document.querySelector(".edit-btn").style.display = "none";
-        document.querySelector(".save-btn").style.display = "block";
-        document.querySelector(".cancel-btn").style.display = "block";
+          setTimeout(() => {
+            const editBtn = document.getElementById("edit-btn");
+            const closeBtn = document.querySelector(".close");
+            const saveBtn = document.getElementById("save-btn");
+
+            const profileName = document.querySelector(".username");
+            const profileEmail = document.querySelector(".email");
+            const profilePic = document.querySelector(".profile-pic");
+
+            const nameInput = document.getElementById("edit-name");
+            const emailInput = document.getElementById("edit-email");
+            const imageInput = document.getElementById("image-upload");
+            const previewImg = document.getElementById("preview-img");
+
+            editBtn.addEventListener("click", function () {
+              document.getElementById("modal").style.display = "flex";
+
+              nameInput.value = profileName.textContent;
+              emailInput.value = profileEmail.textContent;
+              previewImg.src = profilePic.src;
+            });
+
+            closeBtn.addEventListener("click", function () {
+              document.getElementById("modal").style.display = "none";
+            });
+
+            imageInput.addEventListener("change", function () {
+              const file = imageInput.files[0];
+              if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                  previewImg.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+              }
+            });
+
+            saveBtn.addEventListener("click", function () {
+              const newName = nameInput.value;
+              const newEmail = emailInput.value;
+
+              profileName.textContent = newName;
+              profileEmail.textContent = newEmail;
+
+              if (imageInput.files.length > 0) {
+                profilePic.src = previewImg.src;
+              }
+
+              document.getElementById("modal").style.display = "none";
+            });
+          }, 100);
+        });
+    });
+
+  </script> -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const darkModeToggle = document.getElementById("darkModeToggle");
+
+      const isDarkMode = localStorage.getItem("darkMode") === "enabled";
+      if (isDarkMode) {
+        document.body.classList.add("dark-mode");
+        darkModeToggle.querySelector(".sun").style.display = "none";
+        darkModeToggle.querySelector(".moon").style.display = "inline";
+      } else {
+        darkModeToggle.querySelector(".sun").style.display = "inline";
+        darkModeToggle.querySelector(".moon").style.display = "none";
       }
 
-      function saveProfile() {
-        let name = document.getElementById("name").value;
-        let email = document.getElementById("email").value;
-        let gender = document.getElementById("gender").value;
 
-        document.getElementById("displayName").innerText = name;
-        document.getElementById("displayEmail").innerText = email;
-        document.getElementById("displayGender").innerText =
-          gender.charAt(0).toUpperCase() + gender.slice(1);
+      darkModeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        const isDarkModeActive = document.body.classList.contains("dark-mode");
 
-        cancelEdit();
-      }
 
-      function cancelEdit() {
-        document.getElementById("name").style.display = "none";
-        document.getElementById("email").style.display = "none";
-        document.getElementById("gender").style.display = "none";
+        if (isDarkModeActive) {
+          darkModeToggle.querySelector(".sun").style.display = "none";
+          darkModeToggle.querySelector(".moon").style.display = "inline";
+          localStorage.setItem("darkMode", "enabled");
+        } else {
+          darkModeToggle.querySelector(".sun").style.display = "inline";
+          darkModeToggle.querySelector(".moon").style.display = "none";
+          localStorage.setItem("darkMode", "disabled");
+        }
+      });
+    });
+  </script>
 
-        document.querySelector(".edit-btn").style.display = "block";
-        document.querySelector(".save-btn").style.display = "none";
-        document.querySelector(".cancel-btn").style.display = "none";
-      }
-    </script>
-  </body>
+  <!-- <script>
+        function editProfile() {
+            document.getElementById("name").style.display = "block";
+            document.getElementById("email").style.display = "block";
+            document.getElementById("gender").style.display = "block";
+
+            document.getElementById("name").value = document.getElementById("displayName").innerText;
+            document.getElementById("email").value = document.getElementById("displayEmail").innerText;
+            document.getElementById("gender").value = document.getElementById("displayGender").innerText.toLowerCase();
+
+            document.querySelector(".edit-btn").style.display = "none";
+            document.querySelector(".save-btn").style.display = "block";
+            document.querySelector(".cancel-btn").style.display = "block";
+        }
+
+        function saveProfile() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let gender = document.getElementById("gender").value;
+
+            document.getElementById("displayName").innerText = name;
+            document.getElementById("displayEmail").innerText = email;
+            document.getElementById("displayGender").innerText = gender.charAt(0).toUpperCase() + gender.slice(1);
+
+            cancelEdit();
+        }
+
+        function cancelEdit() {
+            document.getElementById("name").style.display = "none";
+            document.getElementById("email").style.display = "none";
+            document.getElementById("gender").style.display = "none";
+
+            document.querySelector(".edit-btn").style.display = "block";
+            document.querySelector(".save-btn").style.display = "none";
+            document.querySelector(".cancel-btn").style.display = "none";
+        }
+    </script> -->
+</body>
+
 </html>

@@ -44,77 +44,98 @@ body {
     border-radius: 5px;
 }
 
-.event-main-button{
-    background: linear-gradient(135deg,#0ca32d,#1097d6);
+.event-main-button {
+    background: linear-gradient(135deg, #0ca32d, #1097d6);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-    transition: all 0,.3s ease-in-out;
+    transition: all 0, .3s ease-in-out;
 }
-.event-main-button:hover{
-    background: linear-gradient(135deg,#0a5a1b,#06608a);
+
+.event-main-button:hover {
+    background: linear-gradient(135deg, #0a5a1b, #06608a);
     transform: scale(1.12);
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
-.add-event-form{
+
+.add-event-form {
     display: none;
     margin: 50px;
-  }
-  .add-event-form h3{
+}
+
+.add-event-form h3 {
     font-size: 1.6rem;
 
-  }
-  
-  .add-event-form form{
+}
+
+.add-event-form form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border: none;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.20) ;
-     margin-top: 20px;
-     padding-bottom: 50px;
-  }
-  
-  
-  .eventbttn{
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.20);
+    margin-top: 20px;
+    padding-bottom: 50px;
+}
+
+
+.eventbttn {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-  }
-  @media (max-width: 400px){
-    .add-event-form{
+}
+
+#eventSearch {
+    width: 69%;
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px auto;
+    display: block;
+    border: 2px solid #2fa5f4 !important;
+    border-radius: 5px;
+}
+
+@media (max-width: 400px) {
+    .add-event-form {
         margin: 10px;
-        
+
     }
-    .add-event-form form{
+
+    .add-event-form form {
         padding: 20px;
     }
-    .eventbttn{
-         display: flex;
-         flex-direction: column;
+
+    .eventbttn {
+        display: flex;
+        flex-direction: column;
     }
-  }
-  .eventbttn button{
-     margin-right: 10px;
-     background: #0ca32d;
-  }
+}
+
+.eventbttn button {
+    margin-right: 10px;
+    background: #0ca32d;
+}
+
 /* Hackathon Section */
 .demo-hackathons {
     text-align: center;
     margin: 30px auto;
     padding: 20px;
     width: 80%;
+    /* height: 580px; */
 }
 
 .hackathon-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 1rem;
     gap: 20px;
 }
 
 .hackathon-card {
     background: white;
     padding: 15px;
+    /* margin: 1rem; */
     width: 300px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -129,6 +150,22 @@ body {
 .event-date {
     font-weight: bold;
     color: #555;
+}
+
+.more-event-btn {
+    display: inline-block;
+    background-color: #00c8ff !important;
+    color: white;
+    padding: 12px 24px;
+    font-size: 18px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.more-event-btn:hover {
+    background-color: #054e9b !important;
+    transform: scale(1.05) !important;
 }
 
 .event-desc {
@@ -165,10 +202,11 @@ body {
 .add-event-btn:hover {
     background-color: #218838;
 }
-.dark-mode .hackathon-card{
+
+.dark-mode .hackathon-card {
     background: #1e1e1e;
     border: 1px solid black;
-    box-shadow: (4px 8px 15px rgba(255,255,255,0.1));
+    box-shadow: (4px 8px 15px rgba(255, 255, 255, 0.1));
 }
 
 /* Event Form */
@@ -183,7 +221,8 @@ body {
     border-radius: 8px;
 }
 
-.event-form input, .event-form textarea {
+.event-form input,
+.event-form textarea {
     width: 90%;
     padding: 8px;
     margin: 5px 0;
@@ -228,12 +267,15 @@ body {
     transition: 0.3s;
     z-index: 1000;
 }
+
 .scroll-btn:hover {
     background: #0056b3;
 }
-.main{
+
+.main {
     width: 95%;
 }
+
 ::-webkit-scrollbar {
     width: 10px;
     border-radius: 10px;
@@ -650,7 +692,7 @@ nav ul li a div:hover {
     }
 }
 
-/* scroll button */ 
+/* scroll button */
 .scroll-btn {
     position: fixed;
     bottom: 20px;
@@ -747,6 +789,7 @@ nav ul li a div:hover {
 }
 
 @media (max-width: 100px) {
+
     .newsletter input,
     .newsletter button {
         width: 300px;

@@ -52,7 +52,7 @@
       .wrapper {
         justify-content: space-evenly !important;
       }
-      .projectlevel{
+      .projectlevel {
         padding-top: 20px;
         margin-top: 10px;
         max-width: 90%;
@@ -90,7 +90,7 @@
             <li><a href="../reviewPage/review.html">Reviews</a></li>
             <li><a href="../index.html#feedback">Feedback</a></li>
             <li>
-              <a href="../Frontend//User/user.html">
+              <a href="../User/user.html">
                 <div class="profile">
                   <img
                     id="profile-pic"
@@ -121,7 +121,7 @@
             <li><a href="../reviewPage/review.html">Reviews</a></li>
             <li><a href="../index.html#feedback">Feedback</a></li>
             <li>
-              <a href="../Frontend//User/user.html">
+              <a href="../User/user.html">
                 <div class="profile">
                   <img
                     id="profile-pic"
@@ -138,160 +138,217 @@
     </header>
     <section id="projects">
       <h2 data-aos="fade-up">More Projects</h2>
-      <p data-aos="fade-up">Check out the amazing projects built by our club members.</p>
-      
+      <p data-aos="fade-up">
+        Check out the amazing projects built by our club members.
+      </p>
+
       <section data-aos="fade-up" class="projects-section">
         <h2 data-aos="fade-up">Our Projects</h2>
-    
+
         <div class="search-container">
-          <input type="text" id="searchBar" placeholder="Search projects..." oninput="searchProjects()" />
+          <input
+            type="text"
+            id="searchBar"
+            placeholder="Search projects..."
+            oninput="searchProjects()"
+          />
           <span id="clearBtn" onclick="clearSearch()">✖</span>
         </div>
-        
-        <label  class="projectlevel" for="projectLevel">Choose Project Level:</label>
+
+        <label class="projectlevel" for="projectLevel"
+          >Choose Project Level:</label
+        >
         <select id="projectLevel" onchange="filterProjects()">
           <option value="all">All</option>
           <option value="beginner">Beginner</option>
           <option value="intermediate">Intermediate</option>
           <option value="advanced">Advanced</option>
         </select>
-        
-        <div id="noResults" style="display: none; color: red; text-align: center; margin-top: 10px;">
+
+        <div
+          id="noResults"
+          style="
+            display: none;
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+          "
+        >
           No projects found
         </div>
-        
+
         <div data-aos="fade-up" class="projects-container">
           <div data-aos="fade-up" class="project-card" data-level="beginner">
-            <img src="https://tse1.mm.bing.net/th?id=OIP.NXuyZrgL1obgCPMawBsdagHaFj&pid=Api&P=0&h=180" alt="Weather App" />
+            <img
+              src="https://tse1.mm.bing.net/th?id=OIP.NXuyZrgL1obgCPMawBsdagHaFj&pid=Api&P=0&h=180"
+              alt="Weather App"
+            />
             <h3>Weather App</h3>
             <p>Get real-time weather updates using an API with JavaScript.</p>
             <a href="../WeatherApp/weather.html" class="view-demo">View Demo</a>
           </div>
-          
+
           <div data-aos="fade-up" class="project-card" data-level="beginner">
-            <img src="https://tse2.mm.bing.net/th?id=OIP.ZDHGb4WYPBoc0UHpTpqHEQHaHa&pid=Api&P=0&h=180" alt="Stopwatch" />
+            <img
+              src="https://tse2.mm.bing.net/th?id=OIP.ZDHGb4WYPBoc0UHpTpqHEQHaHa&pid=Api&P=0&h=180"
+              alt="Stopwatch"
+            />
             <h3>Stopwatch</h3>
-            <p>A simple stopwatch with start, stop, and reset functionalities.</p>
-            <a href="../stopWatch/stopwatch.html" class="view-demo">View Demo</a>
+            <p>
+              A simple stopwatch with start, stop, and reset functionalities.
+            </p>
+            <a href="../stopWatch/stopwatch.html" class="view-demo"
+              >View Demo</a
+            >
           </div>
-          
-          <div data-aos="fade-up" class="project-card" data-level="intermediate">
-            <img src="https://tse1.mm.bing.net/th?id=OIP.BmhluxQYLRxghM9SnmsizwHaHa&pid=Api&P=0&h=180" alt="Quiz App" />
+
+          <div
+            data-aos="fade-up"
+            class="project-card"
+            data-level="intermediate"
+          >
+            <img
+              src="https://tse1.mm.bing.net/th?id=OIP.BmhluxQYLRxghM9SnmsizwHaHa&pid=Api&P=0&h=180"
+              alt="Quiz App"
+            />
             <h3>Quiz App</h3>
             <p>A dynamic quiz application with multiple-choice questions.</p>
             <a href="../quiz/quiz.html" class="view-demo">View Demo</a>
           </div>
-          
+
           <div data-aos="fade-up" class="project-card" data-level="beginner">
-            <img src="https://tse4.mm.bing.net/th?id=OIP.VKuYktZzJL1ZMlmmdZdy3gHaHa&pid=Api&P=0&h=180" alt="Calculator" />
+            <img
+              src="https://tse4.mm.bing.net/th?id=OIP.VKuYktZzJL1ZMlmmdZdy3gHaHa&pid=Api&P=0&h=180"
+              alt="Calculator"
+            />
             <h3>Calculator</h3>
             <p>A basic calculator with arithmetic operations.</p>
-            <a href="#" class="view-demo">View Demo</a>
+            <a href="../Calculator/calculator.html" class="view-demo"
+              >View Demo</a
+            >
           </div>
-                <!-- Project 5 -->
-      <div data-aos="fade-up" class="project-card" data-level="intermediate">
-        <img
-          src="https://tse2.mm.bing.net/th?id=OIP.KClPuMcdij_dNc9g986ouQHaEK&pid=Api&P=0&h=180"
-          alt="Project 5"
-        />
-        <h3>Notes App</h3>
-        <p>A simple note-taking app with local storage support.</p>
-        <a href="#" class="view-demo">View Demo</a>
-      </div>
+          <!-- Project 5 -->
+          <div
+            data-aos="fade-up"
+            class="project-card"
+            data-level="intermediate"
+          >
+            <img
+              src="https://tse2.mm.bing.net/th?id=OIP.KClPuMcdij_dNc9g986ouQHaEK&pid=Api&P=0&h=180"
+              alt="Project 5"
+            />
+            <h3>Notes App</h3>
+            <p>A simple note-taking app with local storage support.</p>
+            <a href="../NotesAPP/notes.html" class="view-demo">View Demo</a>
+          </div>
 
-      <!-- Project 6 -->
-      <div data-aos="fade-up" class="project-card" data-level="advanced">
-        <img
-          src="https://tse3.mm.bing.net/th?id=OIP.TVOoHP8uphtl1uwMapMK7gHaFG&pid=Api&P=0&h=180"
-          alt="Project 6"
-        />
-        <h3>Drum Kit</h3>
-        <p>A virtual drum kit that plays sounds when keys are pressed.</p>
-        <a
-          href="https://drumkit-by-codingclub.netlify.app/"
-          class="view-demo"
-          >View Demo</a
-        >
-      </div>
+          <!-- Project 6 -->
+          <div data-aos="fade-up" class="project-card" data-level="advanced">
+            <img
+              src="https://tse3.mm.bing.net/th?id=OIP.TVOoHP8uphtl1uwMapMK7gHaFG&pid=Api&P=0&h=180"
+              alt="Project 6"
+            />
+            <h3>Drum Kit</h3>
+            <p>A virtual drum kit that plays sounds when keys are pressed.</p>
+            <a
+              href="https://drumkit-by-codingclub.netlify.app/"
+              class="view-demo"
+              >View Demo</a
+            >
+          </div>
 
-      <!-- Project 7 -->
-      <div data-aos="fade-up" class="project-card" data-level="advanced">
-        <img
-          src="https://tse1.mm.bing.net/th?id=OIP.h1AIt1jWm7WDY-nzneN5NwHaEO&pid=Api&P=0&h=180"
-          alt="Project 7"
-        />
-        <h3>Typing Speed Test</h3>
-        <p>Test your typing speed with a live timer and accuracy meter.</p>
-        <a href="#" class="view-demo">View Demo</a>
-      </div>
+          <!-- Project 7 -->
+          <div data-aos="fade-up" class="project-card" data-level="advanced">
+            <img
+              src="https://tse1.mm.bing.net/th?id=OIP.h1AIt1jWm7WDY-nzneN5NwHaEO&pid=Api&P=0&h=180"
+              alt="Project 7"
+            />
+            <h3>Typing Speed Test</h3>
+            <p>Test your typing speed with a live timer and accuracy meter.</p>
+            <a href="../typingSpeed/typingSpeed.html" class="view-demo"
+              >View Demo</a
+            >
+          </div>
 
-      <!-- Project 8 -->
-      <div data-aos="fade-up" class="project-card" data-level="intermediate">
-        <img
-          src="https://tse2.mm.bing.net/th?id=OIP.TOVMfI6SYNBaSi58lkDrKwHaGg&pid=Api&P=0&h=180"
-          alt="Project 8"
-        />
-        <h3>Expense Tracker</h3>
-        <p>A budget tracker to monitor income and expenses.</p>
-        <a href="#" class="view-demo">View Demo</a>
-      </div>
+          <!-- Project 8 -->
+          <div
+            data-aos="fade-up"
+            class="project-card"
+            data-level="intermediate"
+          >
+            <img
+              src="https://tse2.mm.bing.net/th?id=OIP.TOVMfI6SYNBaSi58lkDrKwHaGg&pid=Api&P=0&h=180"
+              alt="Project 8"
+            />
+            <h3>Expense Tracker</h3>
+            <p>A budget tracker to monitor income and expenses.</p>
+            <a href="../ExpenseTracker/expenseTracker.html" class="view-demo"
+              >View Demo</a
+            >
+          </div>
 
-      <!-- Project 9 -->
-      <div data-aos="fade-up" class="project-card" data-level="advanced">
-        <img
-          src="https://tse2.mm.bing.net/th?id=OIP.SGo6FQ6cFF_JooD-byuUWQHaFj&pid=Api&P=0&h=180"
-          alt="Project 9"
-        />
-        <h3>Dictionary App</h3>
-        <p>Search words and get meanings using a dictionary API.</p>
-        <a
-          href="https://codingclub-dictionary.netlify.app/"
-          class="view-demo"
-          >View Demo</a
-        >
-      </div>
+          <!-- Project 9 -->
+          <div data-aos="fade-up" class="project-card" data-level="advanced">
+            <img
+              src="https://tse2.mm.bing.net/th?id=OIP.SGo6FQ6cFF_JooD-byuUWQHaFj&pid=Api&P=0&h=180"
+              alt="Project 9"
+            />
+            <h3>Dictionary App</h3>
+            <p>Search words and get meanings using a dictionary API.</p>
+            <a href="../Dictionary/dictionary.html" class="view-demo"
+              >View Demo</a
+            >
+          </div>
 
-      <!-- Project 10 -->
-      <div data-aos="fade-up" class="project-card" data-level="beginner">
-        <img
-          src="https://tse1.mm.bing.net/th?id=OIP.4wsAxVNjaitv8pDEoxdtoAHaFj&pid=Api&P=0&h=180"
-          alt="Project 10"
-        />
-        <h3>Portfolio Website</h3>
-        <p>A personal portfolio to showcase your work and projects.</p>
-        <a
-          href="https://personalportfolio-codingclub.netlify.app/"
-          class="view-demo"
-          >View Demo</a
-        >
-      </div>
+          <!-- Project 10 -->
+          <div data-aos="fade-up" class="project-card" data-level="beginner">
+            <img
+              src="https://tse1.mm.bing.net/th?id=OIP.4wsAxVNjaitv8pDEoxdtoAHaFj&pid=Api&P=0&h=180"
+              alt="Project 10"
+            />
+            <h3>Portfolio Website</h3>
+            <p>A personal portfolio to showcase your work and projects.</p>
+            <a
+              href="https://personalportfolio-codingclub.netlify.app/"
+              class="view-demo"
+              >View Demo</a
+            >
+          </div>
 
-      <!-- Project 11 (Currency converter app) -->
-      <div data-aos="fade-up" class="project-card" data-level="medium">
-        <img src="../currencyConverter/Screenshot 02-03-2025 01_21_54.png" alt="Project 11" />
-        <h3>Currency Converter</h3>
-        <p>A currency converter, where you can change one currency to another currencies</p>
-        <a href="../currencyConverter/index.html" class="view-demo">View Demo</a>
-      </div>
+          <!-- Project 11 (Currency converter app) -->
+          <div data-aos="fade-up" class="project-card" data-level="medium">
+            <img
+              src="../currencyConverter/Screenshot 02-03-2025 01_21_54.png"
+              alt="Project 11"
+            />
+            <h3>Currency Converter</h3>
+            <p>
+              A currency converter, where you can change one currency to another
+              currencies
+            </p>
+            <a href="../currencyConverter/index.html" class="view-demo"
+              >View Demo</a
+            >
+          </div>
         </div>
       </section>
     </section>
-    
+
     <script>
-    function filterProjects() {
-      const level = document.getElementById("projectLevel").value;
-      const projects = document.querySelectorAll(".project-card");
-    
-      projects.forEach((project) => {
-        if (level === "all" || project.getAttribute("data-level") === level) {
-          project.style.display = "block";
-        } else {
-          project.style.display = "none";
-        }
-      });
-    }
+      function filterProjects() {
+        const level = document.getElementById("projectLevel").value;
+        const projects = document.querySelectorAll(".project-card");
+
+        projects.forEach((project) => {
+          if (level === "all" || project.getAttribute("data-level") === level) {
+            project.style.display = "block";
+          } else {
+            project.style.display = "none";
+          }
+        });
+      }
     </script>
-    
+
     <footer class="footer">
       <div class="wrapper">
         <div class="newsletter">
@@ -409,7 +466,3 @@
     <script src="../card/card.js"></script>
   </body>
 </html>
-
-
-
-

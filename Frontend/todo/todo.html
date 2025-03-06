@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gray-900 text-white flex justify-center items-center h-screen"
+  >
+    <div class="w-96 bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h1 class="text-2xl font-bold text-center mb-4">To-Do List</h1>
+      <div class="flex mb-4">
+        <input
+          id="taskInput"
+          type="text"
+          class="flex-1 p-2 rounded-l bg-gray-700 text-white outline-none"
+          placeholder="Add a new task"
+        />
+        <button onclick="addTask()" class="bg-blue-500 p-2 rounded-r">
+          Add
+        </button>
+      </div>
+      <ul id="taskList" class="space-y-2"></ul>
+    </div>
+
+    <script>
+      let tasks = [];
+
+      function renderTasks() {
+        const taskList = document.getElementById("taskList");
+        taskList.innerHTML = "";
+        tasks.forEach((task, index) => {
+          taskList.innerHTML += `
+                    <li class="flex justify-between items-center p-2 bg-gray-700 rounded">
+                        <span class="${task.completed ? "line-through" : ""}">${
+            task.text
+          }</span>
+                        <div>
+                            <button onclick="toggleComplete(${index})" class="text-green-400 mx-1">✔</button>
+                            <button onclick="editTask(${index})" class="text-yellow-400 mx-1">✎</button>
+                            <button onclick="deleteTask(${index})" class="text-red-400 mx-1">✖</button>
+                        </div>
+                    </li>`;
+        });
+      }
+
+      function addTask() {
+        const taskInput = document.getElementById("taskInput");
+        if (taskInput.value.trim() !== "") {
+          tasks.push({ text: taskInput.value, completed: false });
+          taskInput.value = "";
+          renderTasks();
+        }
+      }
+
+      function deleteTask(index) {
+        tasks.splice(index, 1);
+        renderTasks();
+      }
+
+      function toggleComplete(index) {
+        tasks[index].completed = !tasks[index].completed;
+        renderTasks();
+      }
+
+      function editTask(index) {
+        const newText = prompt("Edit your task:", tasks[index].text);
+        if (newText !== null && newText.trim() !== "") {
+          tasks[index].text = newText;
+          renderTasks();
+        }
+      }
+    </script>
+  </body>
+</html>

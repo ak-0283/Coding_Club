@@ -84,8 +84,12 @@
           <li><a href="contributorPage/contributor.html">Contributors</a></li>
           <li><a href="reviewPage/review.html">Reviews</a></li>
           <li><a href="#feedback">Feedback</a></li>
+<<<<<<< HEAD
           <li><a href="doubtpage/doubt.html">Doubts</a></li>
           <li><a href="../Frontend//User/user.html"> 
+=======
+          <li><a href="./User/user.html">
+>>>>>>> upstream/main
               <div class="profile"><img id="profile-pic" class="profile-pic" alt="Profile Picture">Account
               </div>
             </a></li>
@@ -273,7 +277,7 @@
           </a>
         </div>
       </div>
-      <a data-aos="fade-up" href="eventPage/event.html" class="btn" target="_blank">More Events</a>
+      <a class="more-event-btn" data-aos="fade-up" href="eventPage/event.html"  target="_blank">More Events</a>
     </section>
   </section>
 
@@ -413,32 +417,32 @@
           <img src="images/todo.jpeg" alt="Project 3">
           <h3>To-Do App</h3>
           <p>A simple and interactive to-do app using HTML, CSS, and JavaScript.</p>
-          <a href="https://todoapp-codingclub.netlify.app/" class="view-demo">View Demo</a>
+          <a href="todo/todo.html" class="view-demo">View Demo</a>
         </div>
 
         <div data-aos="fade-up" class="project-card" data-title="Guessing Game">
           <img src="images/guess.jpeg" alt="Project 4">
           <h3>Guessing Game</h3>
           <p>A fun guessing game built with JavaScript.</p>
-          <a href="https://guessing-gameonline.netlify.app/" class="view-demo">View Demo</a>
+          <a href="guessing game/guessGame.html" class="view-demo">View Demo</a>
         </div>
 
         <div data-aos="fade-up" class="project-card" data-title="Random Color Generator">
           <img src="images/color.jpeg" alt="Project 5">
           <h3>Random Color Generator</h3>
           <p>Click a button to generate a random color with hex codes.</p>
-          <a href="https://random-colour-generator-web.netlify.app/" class="view-demo">View Demo</a>
+          <a href="ColorPicker/colorpicker.html" class="view-demo">View Demo</a>
         </div>
 
         <div data-aos="fade-up" class="project-card" data-title="Password Generator">
           <img src="images/password.jpeg" alt="Project 6">
           <h3>Password Generator</h3>
           <p>A simple and interactive Password Generator using HTML, CSS, and JavaScript.</p>
-          <a href="https://passwordgeneratorcodingclub.netlify.app/" class="view-demo">View Demo</a>
+          <a href="password generator/passgen.html" class="view-demo">View Demo</a>
         </div>
 
       </div>
-      <a href="projectPage/projectpage.html" class="btn" target="_blank">More Projects</a>
+      <a href="projectPage/projectpage.html" class="more-event-btn" target="_blank">More Projects</a>
     </section>
   </section>
 
@@ -525,9 +529,9 @@
   </section>
 
   <section id="faq" class="container">
-
-    <h1 data-aos="fade-up">Frequently Asked Questions</h1>
-    <input data-aos="fade-up" type="text" class="search-box" placeholder="Search FAQ..." onkeyup="searchFAQ()">
+    <div class="faq-container">
+      <h1 data-aos="fade-up">Frequently Asked Questions</h1>
+    <input data-aos="fade-up" type="text" id="searchBar" placeholder="Search FAQ..." onkeyup="searchFAQ()">
 
     <p id="no-results" style="display: none; text-align: center; color: red; font-weight: bold;">
       No results found.
@@ -600,38 +604,42 @@
     </section>
 
 
+    </div>
+
+    
 
 
 
-  </section>
+
+  <!-- </section> -->
   </section>
 </div>
 
-  <script>
-    function toggleAnswer(element) {
-      let answer = element.nextElementSibling;
-      answer.style.display = answer.style.display === "block" ? "none" : "block";
-    }
+<script>
+  function toggleAnswer(element) {
+    let answer = element.nextElementSibling;
+    answer.style.display = answer.style.display === "display" ? "none " : "block ";
+  }
 
-    function searchFAQ() {
-      let input = document.querySelector('.search-box').value.toLowerCase();
-      let questions = document.querySelectorAll('.faq-item');
-      let noResultsMessage = document.getElementById('no-results');
-      let hasResults = false;
+  function searchFAQ() {
+    let input = document.querySelector('.search-box').value.toLowerCase();
+    let questions = document.querySelectorAll('.faq-item');
+    let noResultsMessage = document.getElementById('no-results');
+    let hasResults = false;
 
-      questions.forEach(item => {
-        let text = item.textContent.toLowerCase();
-        if (text.includes(input)) {
-          item.style.display = "block";
-          hasResults = true;
-        } else {
-          item.style.display = "none";
-        }
-      });
+    questions.forEach(item => {
+      let text = item.textContent.toLowerCase();
+      if (text.includes(input)) {
+        item.style.display = "block";
+        hasResults = true;
+      } else {
+        item.style.display = "none";
+      }
+    });
 
-      noResultsMessage.style.display = hasResults ? "none" : "block";
-    }
-  </script>
+    noResultsMessage.style.display = hasResults ? "none" : "block";
+  }
+</script>
 
 
 

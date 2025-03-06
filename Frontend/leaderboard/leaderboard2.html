@@ -23,7 +23,16 @@
         margin: 0;
         padding: 0;
     }
-  
+    
+    .dark-mode .leaderboard{
+  background: #444;
+  color: #ddd;
+
+    }
+  .dark-mode .leaderboard li{
+  background-color: #444;
+}
+
     .leaderboard {
         width: 50%;
         margin: 50px auto;
@@ -117,11 +126,12 @@
       </nav>
   </header>
   <div class="leaderboard">
-    <h2>Top 10 participants of Hack the Future </h2>
+    <h2>Top 10 participants of Hack the Future</h2>
+    <input type="text" id="search-bar" placeholder="Search participants...">
     <ul id="leaderboard-list"></ul>
-  </div>
-  
-  <script>
+</div>
+
+<script>
     const participants = [
         { name: "Sophia", title: "3rd Year in Mechanical Engineering", email: "sophia@example.com", logo: "https://randomuser.me/api/portraits/women/11.jpg" },
         { name: "Liam", title: "2nd Year in Computer Science", email: "liam@example.com", logo: "https://randomuser.me/api/portraits/men/12.jpg" },
@@ -134,19 +144,36 @@
         { name: "Mia", title: "3rd Year in Mechatronics", email: "mia@example.com", logo: "https://randomuser.me/api/portraits/women/19.jpg" },
         { name: "Benjamin", title: "2nd Year in Robotics Engineering", email: "benjamin@example.com", logo: "https://randomuser.me/api/portraits/men/20.jpg" }
     ];
-  
+
     const leaderboardList = document.getElementById("leaderboard-list");
-  
-    participants.forEach((participant, index) => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-            <span class="rank">#${index + 1}</span>
-            <img src="${participant.logo}" alt="${participant.name}">
-            <span><strong>${participant.name}</strong> <br> ${participant.title} <br> <small>${participant.email}</small></span>
-        `;
-        leaderboardList.appendChild(li);
+    const searchBar = document.getElementById("search-bar");
+
+    function displayParticipants(filteredParticipants) {
+        leaderboardList.innerHTML = "";
+        filteredParticipants.forEach((participant, index) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                 <span class="rank">#${index + 1}</span>
+                <img src="${participant.logo}" alt="${participant.name}">
+                <div class="details">
+                    <span><strong>${participant.name}</strong></span>
+                    <span>${participant.title}</span>
+                    <span class="email">${participant.email}</span>
+                </div>
+            `;
+            leaderboardList.appendChild(li);
+        });
+    }
+
+    searchBar.addEventListener("input", () => {
+        const searchTerm = searchBar.value.toLowerCase();
+        const filteredParticipants = participants.filter(p => p.name.toLowerCase().includes(searchTerm));
+        displayParticipants(filteredParticipants);
     });
-  </script>
+
+    displayParticipants(participants);
+</script>
+
   <footer class="footer">
     <div class="wrapper">
       <div class="newsletter">

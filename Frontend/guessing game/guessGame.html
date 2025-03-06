@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Guessing Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="flex items-center justify-center h-screen bg-gray-900 text-white"
+  >
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center w-96">
+      <h1 class="text-2xl font-bold mb-4">Guess the Word!</h1>
+      <label class="block mb-2">Select Difficulty:</label>
+      <select id="difficulty" class="p-2 bg-gray-700 rounded w-full mb-4">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      <button onclick="startGame()" class="bg-blue-500 px-4 py-2 rounded mb-4">
+        Start Game
+      </button>
+      <div id="wordContainer" class="flex justify-center gap-2 mb-4"></div>
+      <input
+        type="text"
+        id="guess"
+        maxlength="1"
+        class="p-2 bg-gray-700 rounded w-12 text-center text-xl"
+        placeholder="A"
+      />
+      <button onclick="checkGuess()" class="bg-green-500 px-4 py-2 rounded">
+        Submit Guess
+      </button>
+      <p id="message" class="mt-4"></p>
+      <p id="attempts" class="text-sm mt-2"></p>
+    </div>
+
+    <script>
+      let word, attemptsLeft, guessedWord;
+      const words = { easy: "CAT", medium: "HOUSE", hard: "PLANET" };
+
+      function startGame() {
+        const difficulty = document.getElementById("difficulty").value;
+        word = words[difficulty].toUpperCase();
+        attemptsLeft =
+          difficulty === "easy" ? 3 : difficulty === "medium" ? 5 : 7;
+        guessedWord = Array(word.length).fill("_");
+        document.getElementById("wordContainer").innerHTML = guessedWord
+          .map(
+            (letter) =>
+              `<span class='w-12 h-12 bg-gray-700 text-xl flex items-center justify-center rounded'>${letter}</span>`
+          )
+          .join("");
+        document.getElementById("message").textContent =
+          "Game Started! Guess a letter!";
+        document.getElementById(
+          "attempts"
+        ).textContent = `Attempts left: ${attemptsLeft}`;
+      }
+
+      function checkGuess() {
+        const userGuess = document.getElementById("guess").value.toUpperCase();
+        if (!userGuess || userGuess.length !== 1) {
+          document.getElementById("message").textContent =
+            "Enter a single letter!";
+          return;
+        }
+        let correct = false;
+        for (let i = 0; i < word.length; i++) {
+          if (word[i] === userGuess && guessedWord[i] === "_") {
+            guessedWord[i] = userGuess;
+            correct = true;
+          }
+        }
+        document.getElementById("wordContainer").innerHTML = guessedWord
+          .map(
+            (letter) =>
+              `<span class='w-12 h-12 bg-gray-700 text-xl flex items-center justify-center rounded'>${letter}</span>`
+          )
+          .join("");
+        if (!correct) attemptsLeft--;
+        if (guessedWord.join("") === word) {
+          document.getElementById("message").textContent =
+            "🎉 Correct! You won!";
+        } else if (attemptsLeft === 0) {
+          document.getElementById(
+            "message"
+          ).textContent = `💀 Game Over! The word was ${word}`;
+        } else {
+          document.getElementById("message").textContent = correct
+            ? "Good guess!"
+            : "Wrong guess! Try again.";
+        }
+        document.getElementById(
+          "attempts"
+        ).textContent = `Attempts left: ${attemptsLeft}`;
+      }
+    </script>
+  </body>
+</html>

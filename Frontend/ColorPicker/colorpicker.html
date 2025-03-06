@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Picker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="flex items-center justify-center min-h-screen bg-gray-900 text-white"
+  >
+    <div class="grid grid-cols-5 gap-1 w-full h-screen"></div>
+
+    <script>
+      const container = document.querySelector(".grid");
+
+      function getRandomColor() {
+        return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+      }
+
+      function createColorGrid() {
+        for (let i = 0; i < 25; i++) {
+          const colorBox = document.createElement("div");
+          const color = getRandomColor();
+          colorBox.style.backgroundColor = color;
+          colorBox.className =
+            "w-full h-full flex items-center justify-center text-xs font-bold cursor-pointer";
+          colorBox.innerText = color;
+          colorBox.addEventListener("click", () => {
+            navigator.clipboard.writeText(color);
+            alert(`Copied: ${color}`);
+          });
+          container.appendChild(colorBox);
+        }
+      }
+
+      createColorGrid();
+    </script>
+  </body>
+</html>

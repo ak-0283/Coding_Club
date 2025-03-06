@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #1e1e2e;
+        color: white;
+      }
+      .container {
+        background: #282a36;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        width: 320px;
+      }
+      input[type="text"] {
+        width: calc(100% - 16px);
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 18px;
+        background: #44475a;
+        color: white;
+        outline: none;
+      }
+      button {
+        background: #6272a4;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+      button:hover {
+        background: #50fa7b;
+      }
+      label {
+        display: block;
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Password Generator</h2>
+      <input type="text" id="password" readonly />
+      <label>
+        <input type="checkbox" id="includeNumbers" /> Include Numbers
+      </label>
+      <label>
+        <input type="checkbox" id="includeSpecialChars" /> Include Special
+        Characters
+      </label>
+      <label>
+        Length: <input type="number" id="length" min="4" max="20" value="12" />
+      </label>
+      <button onclick="generatePassword()">Generate Password</button>
+      <button onclick="copyPassword()">Copy to Clipboard</button>
+    </div>
+
+    <script>
+      function generatePassword() {
+        const length = document.getElementById("length").value;
+        const includeNumbers =
+          document.getElementById("includeNumbers").checked;
+        const includeSpecialChars = document.getElementById(
+          "includeSpecialChars"
+        ).checked;
+
+        let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        if (includeNumbers) chars += "0123456789";
+        if (includeSpecialChars) chars += "!@#$%^&*()_+{}[]<>?";
+
+        let password = "";
+        for (let i = 0; i < length; i++) {
+          password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+
+        document.getElementById("password").value = password;
+      }
+
+      function copyPassword() {
+        const passwordField = document.getElementById("password");
+        passwordField.select();
+        document.execCommand("copy");
+        alert("Password copied to clipboard!");
+      }
+    </script>
+  </body>
+</html>

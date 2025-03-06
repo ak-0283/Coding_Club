@@ -23,6 +23,7 @@ function resetStopwatch() {
   minutes = 0;
   hours = 0;
   document.querySelector(".stopwatch").innerText = "00:00:00";
+  document.getElementById("lapList").innerHTML = "";
 }
 
 function updateTime() {
@@ -39,4 +40,12 @@ function updateTime() {
     2,
     "0"
   )}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+function recordLap() {
+  const lapTime = document.querySelector(".stopwatch").innerText;
+  const lapList = document.getElementById("lapList");
+  const lapItem = document.createElement("li");
+  lapItem.innerText = lapTime;
+  lapList.appendChild(lapItem);
 }

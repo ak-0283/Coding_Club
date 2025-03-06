@@ -7,11 +7,18 @@
     <link rel="stylesheet" href="stopwatch.css" />
   </head>
   <body>
-    <h1>Simple Stopwatch</h1>
-    <div class="stopwatch">00:00:00</div>
-    <button onclick="startStopwatch()">Start</button>
-    <button onclick="stopStopwatch()">Stop</button>
-    <button onclick="resetStopwatch()">Reset</button>
+    <div class="container">
+      <h1>Stopwatch</h1>
+      <div class="stopwatch">00:00:00</div>
+      <button class="start" onclick="startStopwatch()">Start</button>
+      <button class="stop" onclick="stopStopwatch()">Stop</button>
+      <button class="reset" onclick="resetStopwatch()">Reset</button>
+      <button class="lap" onclick="recordLap()">Lap</button>
+      <div class="laps">
+        <h3>Laps</h3>
+        <ul id="lapList"></ul>
+      </div>
+    </div>
 
     <script src="stopwatch.js"></script>
   </body>
