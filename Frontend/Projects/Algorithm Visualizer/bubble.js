@@ -18,10 +18,10 @@ async function bubbleSort() {
             bars[j].style.backgroundColor = "red";
             bars[j + 1].style.backgroundColor = "red";
             await new Promise(resolve => setTimeout(resolve, 300));
-            
+
             let height1 = parseInt(bars[j].style.height);
             let height2 = parseInt(bars[j + 1].style.height);
-            
+
             if (height1 > height2) {
                 bars[j].style.height = height2 + "px";
                 bars[j + 1].style.height = height1 + "px";

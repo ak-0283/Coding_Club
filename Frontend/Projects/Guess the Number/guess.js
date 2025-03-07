@@ -27,7 +27,6 @@ function resetGame() {
     document.getElementById("message").innerText = "";
     document.getElementById("guess").value = "";
 }
-
 // Theme Toggle
 if (toggleTheme) {
     toggleTheme.addEventListener("click", function () {

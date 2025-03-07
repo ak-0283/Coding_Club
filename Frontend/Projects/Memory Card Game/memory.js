@@ -90,7 +90,6 @@ if (toggleTheme) {
         toggleTheme.textContent = isDarkMode ? "☀️" : "🌙";
         localStorage.setItem("theme", isDarkMode ? "dark" : "light");
     });
-
     // Load theme preference on page load
     if (localStorage.getItem("theme") === "dark") {
         document.body.classList.add("dark-mode");

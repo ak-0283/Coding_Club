@@ -13,7 +13,6 @@ function calculateBMI() {
     alert("Please enter valid values for weight and height.");
   }
 }
-
 // Theme Toggle
 if (toggleTheme) {
   toggleTheme.addEventListener("click", function () {

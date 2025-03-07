@@ -2,7 +2,6 @@ let board = ['', '', '', '', '', '', '', '', ''];
         let currentPlayer = 'X';
         let gameActive = true;
         let score = { X: 0, O: 0 };
-        
         function renderBoard() {
             const boardElement = document.getElementById("board");
             boardElement.innerHTML = '';

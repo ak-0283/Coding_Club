@@ -24,7 +24,6 @@ function addSnippet() {
     document.getElementById("snippetContainer").appendChild(snippetDiv);
     document.getElementById("codeInput").value = "";
 }
-
 // Theme Toggle
 if (toggleTheme) {
     toggleTheme.addEventListener("click", function () {

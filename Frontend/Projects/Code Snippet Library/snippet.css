@@ -205,7 +205,6 @@ body.dark-mode {
 .dark-mode .timer{
     text-shadow: none;
 }
-
 .dark-mode .snippet-container button:hover{
     background-color: #121212;
     color: #fff;
