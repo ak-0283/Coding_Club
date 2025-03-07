@@ -14,22 +14,27 @@
   </button>
   <div class="grid grid-cols-5 gap-1 w-full h-screen"></div>
 
-  <div class="mt-4 p-4 w-full max-w-lg text-center">
-    <h1>Please Click on two Color from the above to generate Gradient</h1>
-    <h2 class="text-lg font-bold mb-2">Gradient Preview</h2>
-    <div id="gradientPreview" class="w-full h-32 rounded border border-gray-500"></div>
-    <button id="copyGradientBtn"
-      class="mt-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded hidden">
-      Copy CSS
-    </button>
-  </div>
+    <div class="mt-4 p-4 w-full max-w-lg text-center">
+      <h1>Please Click on two Color from the above to generate Gradient</h1>
+      <h2 class="text-lg font-bold mb-2">Gradient Preview</h2>
+      <div
+        id="gradientPreview"
+        class="w-full h-32 rounded border border-gray-500"
+      ></div>
+      <button
+        id="copyGradientBtn"
+        class="mt-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded hidden"
+      >
+        Copy CSS
+      </button>
+    </div>
 
-  <script>
-    const container = document.querySelector(".grid");
-    const regenerateBtn = document.getElementById("regenerateBtn");
-    const gradientPreview = document.getElementById("gradientPreview");
-    const copyGradientBtn = document.getElementById("copyGradientBtn");
-    let selectedColors = [];
+    <script>
+      const container = document.querySelector(".grid");
+      const regenerateBtn = document.getElementById("regenerateBtn");
+      const gradientPreview = document.getElementById("gradientPreview");
+      const copyGradientBtn = document.getElementById("copyGradientBtn");
+      let selectedColors = [];
 
     function getRandomColor() {
       return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -56,49 +61,48 @@
         copyButton.className =
           "px-3 py-1 bg-white text-black rounded opacity-80 hover:opacity-100";
 
-        copyButton.addEventListener("click", (event) => {
-          event.stopPropagation();
-          navigator.clipboard.writeText(color);
-          alert(`Copied: ${color}`);
-        });
+          copyButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            navigator.clipboard.writeText(color);
+            alert(`Copied: ${color}`);
+          });
 
-        colorBox.addEventListener("click", () =>
-          selectColorForGradient(color)
-        );
+          colorBox.addEventListener("click", () =>
+            selectColorForGradient(color)
+          );
 
-        overlay.appendChild(copyButton);
-        colorBox.appendChild(overlay);
-        container.appendChild(colorBox);
+          overlay.appendChild(copyButton);
+          colorBox.appendChild(overlay);
+          container.appendChild(colorBox);
+        }
       }
-    }
 
-    function selectColorForGradient(color) {
-      if (selectedColors.length < 2) {
-        selectedColors.push(color);
-      } else {
-        selectedColors = [selectedColors[1], color];
+      function selectColorForGradient(color) {
+        if (selectedColors.length < 2) {
+          selectedColors.push(color);
+        } else {
+          selectedColors = [selectedColors[1], color];
+        }
+        updateGradientPreview();
       }
-      updateGradientPreview();
-    }
 
-    function updateGradientPreview() {
-      if (selectedColors.length === 2) {
-        const gradientCSS = `linear-gradient(to right, ${selectedColors[0]}, ${selectedColors[1]})`;
-        gradientPreview.style.background = gradientCSS;
-        copyGradientBtn.classList.remove("hidden");
-        copyGradientBtn.onclick = () => {
-          navigator.clipboard.writeText(`background: ${gradientCSS};`);
-          alert("Gradient CSS copied!");
-        };
-      } else {
-        gradientPreview.style.background = "";
-        copyGradientBtn.classList.add("hidden");
+      function updateGradientPreview() {
+        if (selectedColors.length === 2) {
+          const gradientCSS = `linear-gradient(to right, ${selectedColors[0]}, ${selectedColors[1]})`;
+          gradientPreview.style.background = gradientCSS;
+          copyGradientBtn.classList.remove("hidden");
+          copyGradientBtn.onclick = () => {
+            navigator.clipboard.writeText(`background: ${gradientCSS};`);
+            alert("Gradient CSS copied!");
+          };
+        } else {
+          gradientPreview.style.background = "";
+          copyGradientBtn.classList.add("hidden");
+        }
       }
-    }
 
-    regenerateBtn.addEventListener("click", createColorGrid);
-    createColorGrid();
-  </script>
-</body>
-
+      regenerateBtn.addEventListener("click", createColorGrid);
+      createColorGrid();
+    </script>
+  </body>
 </html>

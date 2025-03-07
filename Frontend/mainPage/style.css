@@ -1,3 +1,8 @@
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   border-radius: 10px;
@@ -29,6 +34,13 @@
   .why-text {
     color: #ddd; /* Dark mode adjustment */
   }
+}
+
+.navItems{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 body {
@@ -250,6 +262,7 @@ body {
   cursor: pointer;
   transition: 0.3s;
   z-index: 1000;
+  margin: 0px;
 
   /* Centering the icon */
   display: flex;
@@ -951,6 +964,9 @@ button:hover {
   transform: translateX(100%);
   z-index: 1001;
   transition: transform 0.3s ease-in-out;
+  flex-wrap: wrap;
+  gap: 8px; /* Reduce spacing */
+  font-size: 14px; /* Smaller font to fit */
 }
 
 .dark-mode .nav-links {
@@ -1032,9 +1048,6 @@ button:hover {
     right: 5%;
   }
 }
-#profile-pic {
-  height: 30px;
-  width: 30px;
 
   * {
     margin: 0;

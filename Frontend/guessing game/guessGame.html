@@ -12,7 +12,7 @@
     </script>
   </head>
   <body
-    class="flex items-center justify-center h-screen bg-gray-900 text-white dark:bg-white dark:text-black"
+    class="flex items-center justify-center h-screen bg-gray-900 text-white dark:bg-white dark:text-black transition-all duration-500"
   >
     <div class="absolute top-4 right-4">
       <button
@@ -24,13 +24,25 @@
       </button>
     </div>
     <div
-      class="bg-gray-800 dark:bg-gray-200 p-6 rounded-lg shadow-lg text-center w-96"
+      id="gameContainer"
+      class="bg-gray-800 dark:bg-gray-200 p-6 rounded-lg shadow-lg text-center w-96 transition-all duration-500"
     >
       <h1 class="text-2xl font-bold mb-4">Guess the Word!</h1>
+      <label class="block mb-2">Select Category:</label>
+      <select
+        id="category"
+        class="p-2 bg-gray-700 dark:bg-gray-300 rounded w-full mb-4"
+      >
+        <option value="animals">Animals</option>
+        <option value="objects">Objects</option>
+        <option value="countries">Countries</option>
+      </select>
+
       <label class="block mb-2">Select Difficulty:</label>
       <select
         id="difficulty"
         class="p-2 bg-gray-700 dark:bg-gray-300 rounded w-full mb-4"
+        onchange="updateTheme()"
       >
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
@@ -39,7 +51,15 @@
       <button onclick="startGame()" class="bg-blue-500 px-4 py-2 rounded mb-4">
         Start Game
       </button>
+      <button
+        onclick="retryGame()"
+        class="bg-gray-500 px-4 py-2 rounded mb-4 hidden"
+        id="retryBtn"
+      >
+        Retry
+      </button>
       <div id="timer" class="text-lg font-bold mb-2">Time Left: 30s</div>
+
       <div id="wordContainer" class="flex justify-center gap-2 mb-4"></div>
       <input
         type="text"
@@ -48,7 +68,7 @@
         class="p-2 bg-gray-700 dark:bg-gray-300 rounded w-12 text-center text-xl"
         placeholder="A"
       />
-      <button onclick="checkGuess()" class="bg-green-500 px-4 py-2 rounded">
+      <button onclick="checkGuess()" class="bg-green-900 px-4 py-2 rounded">
         Submit Guess
       </button>
       <p id="message" class="mt-4"></p>
@@ -58,12 +78,18 @@
     </div>
     <script>
       let word, attemptsLeft, guessedWord, timer, timeLeft;
-      const words = { easy: "CAT", medium: "HOUSE", hard: "PLANET" };
+      const words = {
+        animals: { easy: "CAT", medium: "TIGER", hard: "ELEPHANT" },
+        objects: { easy: "PEN", medium: "LAPTOP", hard: "MICROSCOPE" },
+        countries: { easy: "INDIA", medium: "CANADA", hard: "AUSTRALIA" },
+      };
+
       const scoreboard = [];
 
       function startGame() {
+        const category = document.getElementById("category").value;
         const difficulty = document.getElementById("difficulty").value;
-        word = words[difficulty].toUpperCase();
+        word = words[category][difficulty].toUpperCase();
         attemptsLeft =
           difficulty === "easy" ? 3 : difficulty === "medium" ? 5 : 7;
         timeLeft = 30;
@@ -82,8 +108,13 @@
         document.getElementById(
           "timer"
         ).textContent = `Time Left: ${timeLeft}s`;
+        document.getElementById("retryBtn").classList.add("hidden");
         clearInterval(timer);
         timer = setInterval(updateTimer, 1000);
+      }
+      function retryGame() {
+        document.getElementById("retryBtn").classList.add("hidden");
+        startGame();
       }
 
       function updateTimer() {
@@ -97,6 +128,7 @@
           document.getElementById(
             "message"
           ).textContent = `💀 Time's up! The word was ${word}`;
+          document.getElementById("retryBtn").classList.remove("hidden");
         }
       }
 
@@ -114,14 +146,17 @@
             correct = true;
           }
         }
+
         document.getElementById("wordContainer").innerHTML = guessedWord
           .map(
             (letter) =>
               `<span class='w-12 h-12 bg-gray-700 dark:bg-gray-300 text-xl flex items-center justify-center rounded'>${letter}</span>`
           )
           .join("");
+
         if (!correct) attemptsLeft--;
-        if (guessedWord.join("") === word) {
+
+        if (!guessedWord.includes("_")) {
           clearInterval(timer);
           document.getElementById("message").textContent =
             "🎉 Correct! You won!";
@@ -136,9 +171,17 @@
             ? "Good guess!"
             : "Wrong guess! Try again.";
         }
+
         document.getElementById(
           "attempts"
         ).textContent = `Attempts left: ${attemptsLeft}`;
+        if (attemptsLeft <= 0) {
+          clearInterval(timer);
+          document.getElementById(
+            "message"
+          ).textContent = `💀 No attempts left! The word was ${word}`;
+          document.getElementById("retryBtn").classList.remove("hidden");
+        }
       }
 
       function updateScoreboard(score) {
@@ -155,6 +198,22 @@
         document.documentElement.classList.toggle("dark");
         const button = document.getElementById("themeToggle");
         button.textContent = button.textContent === "🌙" ? "☀️" : "🌙";
+      }
+
+      function updateTheme() {
+        const difficulty = document.getElementById("difficulty").value;
+        const gameContainer = document.getElementById("gameContainer");
+
+        if (difficulty === "easy") {
+          gameContainer.classList.add("bg-green-500");
+          gameContainer.classList.remove("bg-yellow-500", "bg-red-500");
+        } else if (difficulty === "medium") {
+          gameContainer.classList.add("bg-yellow-500");
+          gameContainer.classList.remove("bg-green-500", "bg-red-500");
+        } else {
+          gameContainer.classList.add("bg-red-500");
+          gameContainer.classList.remove("bg-green-500", "bg-yellow-500");
+        }
       }
     </script>
   </body>
