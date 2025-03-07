@@ -29,7 +29,6 @@ function filterTeam() {
     displayTeam(filtered);
   }
 }
-
 function displayTeam(contributors) {
   const teamContainer = document.getElementById("teamContainer");
   teamContainer.innerHTML = "";

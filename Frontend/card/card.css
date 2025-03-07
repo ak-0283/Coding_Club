@@ -58,8 +58,10 @@ h1 {
   cursor: pointer;
   font-size: 16px;
   border-radius: 50%;
-  width: 30px; /* Set fixed width */
-  height: 30px; /* Set fixed height */
+  width: 30px;
+  /* Set fixed width */
+  height: 30px;
+  /* Set fixed height */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,6 +76,7 @@ h1 {
     opacity: 0;
     transform: scale(0.8);
   }
+
   to {
     opacity: 1;
     transform: scale(1);

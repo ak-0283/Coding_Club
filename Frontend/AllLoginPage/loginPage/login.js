@@ -31,7 +31,7 @@ function login() {
 }
 
 
-document.getElementById("togglePassword").addEventListener("click", function() {
+document.getElementById("togglePassword").addEventListener("click", function () {
     let passwordInput = document.getElementById("signup-password");
     let icon = this;
 

@@ -13,7 +13,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Full height of viewport */
+    height: 100vh;
+    /* Full height of viewport */
 }
 
 /* Navbar */
@@ -57,10 +58,11 @@ body {
     text-align: center;
 }
 
-.login-wrapper:hover{
+.login-wrapper:hover {
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
     transform: scale(1.02);
 }
+
 /* Login Title */
 .login-title {
     font-size: 24px;
@@ -79,7 +81,7 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
-.login-input:hover, 
+.login-input:hover,
 .login-input:focus {
     border-color: #017afc;
     outline: none;
@@ -139,6 +141,7 @@ body {
 
     }
 }
+
 .password-container {
     position: relative;
     display: flex;
@@ -146,14 +149,15 @@ body {
     width: 100%;
 }
 
-input::placeholder{
+input::placeholder {
     font-size: 1rem !important;
 }
 
 .signup-input {
     width: 100%;
     padding: 10px;
-    padding-right: 40px; /* Space for the eye icon */
+    padding-right: 40px;
+    /* Space for the eye icon */
     font-size: 1rem;
     border: 2px solid #ccc;
     border-radius: 5px;
@@ -176,16 +180,18 @@ body.dark-mode {
     background: #121212;
     color: #fff;
 }
+
 /* Dark mode for header */
 .dark-mode nav {
     background: linear-gradient(135deg, #1e1e1e, #333);
 }
 
-.dark-mode .login-wrapper{
+.dark-mode .login-wrapper {
     background: #444;
     color: #fff;
     border: none;
 }
+
 .dark-mode .login-wrapper h2,
 .dark-mode .login-wrapper p.login-text {
     color: #fff;
@@ -205,40 +211,40 @@ body.dark-mode {
     cursor: pointer;
     transition: 0.3s;
     z-index: 1000;
-  
+
     /* Centering the icon */
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  /* Toggle theme style */
-  #toggleTheme {
+}
+
+/* Toggle theme style */
+#toggleTheme {
     background: transparent;
     box-shadow: none;
     position: absolute;
     transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  
-  /* Click animation (subtle scaling effect) */
-  #toggleTheme:active {
+}
+
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
     transform: scale(0.9);
     opacity: 0.7;
-  }
-  
-  /* Dark mode effect */
-  .dark-mode #toggleTheme {
+}
+
+/* Dark mode effect */
+.dark-mode #toggleTheme {
     background: transparent;
     box-shadow: none;
     transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  
-  /* Click animation in dark mode */
-  .dark-mode #toggleTheme:active {
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
     transform: scale(0.9);
     opacity: 0.7;
-  }
-  
-  .toggle-btn:hover {
+}
+
+.toggle-btn:hover {
     background: #0056b3;
-  }
+}

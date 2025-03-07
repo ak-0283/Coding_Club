@@ -1,51 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculator</title>
-    <link rel="stylesheet" href="calculator.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-  </head>
-  <body>
-    <nav class="navbar">
-      <button
-        class="back-button"
-        onclick="window.location.href = '../index.html'"
-      >
-        <i class="fa-solid fa-arrow-left fa-xl"></i>
-      </button>
-      <button id="toggleTheme" class="toggle-btn">🌙</button>
-    </nav>
-    <div class="calculator">
-      <input type="text" id="display" disabled />
-      <div class="buttons">
-        <button class="clear" onclick="clearDisplay()">C</button>
-        <button class="operator" onclick="appendValue('/')">÷</button>
-        <button class="operator" onclick="appendValue('*')">×</button>
-        <button class="operator" onclick="appendValue('-')">−</button>
-        <button onclick="appendValue('7')">7</button>
-        <button onclick="appendValue('8')">8</button>
-        <button onclick="appendValue('9')">9</button>
-        <button class="operator" onclick="appendValue('+')">+</button>
-        <button onclick="appendValue('4')">4</button>
-        <button onclick="appendValue('5')">5</button>
-        <button onclick="appendValue('6')">6</button>
-        <button class="equal" onclick="calculateResult()">=</button>
-        <button onclick="appendValue('1')">1</button>
-        <button onclick="appendValue('2')">2</button>
-        <button onclick="appendValue('3')">3</button>
-        <button onclick="appendValue('0')">0</button>
-      </div>
-    </div>
-    <div class="history">
-      <h2>History</h2>
-      <div id="history-list"></div>
-    </div>
 
-    <script src="calculator.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator</title>
+  <link rel="stylesheet" href="calculator.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <button class="back-button" onclick="window.location.href = '../index.html'">
+      <i class="fa-solid fa-arrow-left fa-xl"></i>
+    </button>
+    <button id="toggleTheme" class="toggle-btn">🌙</button>
+  </nav>
+  <div class="calculator">
+    <input type="text" id="display" disabled />
+    <div class="buttons">
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button class="operator" onclick="appendValue('/')">÷</button>
+      <button class="operator" onclick="appendValue('*')">×</button>
+      <button class="operator" onclick="appendValue('-')">−</button>
+      <button onclick="appendValue('7')">7</button>
+      <button onclick="appendValue('8')">8</button>
+      <button onclick="appendValue('9')">9</button>
+      <button class="operator" onclick="appendValue('+')">+</button>
+      <button onclick="appendValue('4')">4</button>
+      <button onclick="appendValue('5')">5</button>
+      <button onclick="appendValue('6')">6</button>
+      <button class="equal" onclick="calculateResult()">=</button>
+      <button onclick="appendValue('1')">1</button>
+      <button onclick="appendValue('2')">2</button>
+      <button onclick="appendValue('3')">3</button>
+      <button onclick="appendValue('0')">0</button>
+    </div>
+  </div>
+  <div class="history">
+    <h2>History</h2>
+    <div id="history-list"></div>
+  </div>
+
+  <script src="calculator.js"></script>
+</body>
+
 </html>
