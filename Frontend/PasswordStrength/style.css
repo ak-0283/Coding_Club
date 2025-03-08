@@ -4,12 +4,35 @@ body{
     font-family: Arial, sans-serif;
     background-color: #f4e6e6;
 }
+body.dark-mode{
+    background-color: #1a1a1a;
+    color: white;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgb(61, 87, 91);
+    color: rgb(248, 246, 246);
+}
+.toggle-btn{
+    font-size: 30px;
+}
+.navbar>button>i{
+    font-size: 30px;
+    padding: 20px 10px;
+}
 div{
     font-size:x-large;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
+}
+.dark-mode div>form{
+    background: rgb(39,16,55);
+background: linear-gradient(90deg, rgba(39,16,55,1) 0%, rgba(78,14,10,0.9971638313528537) 50%, rgba(25,15,1,1) 100%);
 }
 div>form{
     background: rgb(238, 193, 174);

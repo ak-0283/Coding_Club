@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password strength</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="navbar">
+        <button class="back-button" onclick="history.back()">
+            <i id="back-btn" class="fa-solid fa-arrow-left fa-xl"></i>
+        </button>
+        <button id="toggleTheme" class="toggle-btn">🌙</button>
+    </nav>
     <div>
         <form action="">
             Password Strength Checker <input type="text" placeholder="as34fs!4">
@@ -60,4 +67,22 @@
         }
     }
  </script>
+ <script>
+    if (toggleTheme) {
+toggleTheme.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+
+    // Save theme preference
+    const isDarkMode = document.body.classList.contains("dark-mode");
+    toggleTheme.textContent = isDarkMode ? "☀️" : "🌙";
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+});
+
+// Load theme preference on page load
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+    toggleTheme.textContent = "☀️";
+}
+}
+</script>
 </html>
