@@ -5,20 +5,26 @@ body {
     margin: 0;
   }
   
-  
+  body.dark-mode {
+    background-color: #333;
+  }
   /* head */
   .head {
-    height: 120px;
-    width: 510px;
+    height: auto;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
-    display: block;
+    display: flex;
+    justify-content: space-between;
     float: center;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
+  .toggle-btn{
+    
+    font-size: 30px;
+}
   div.game {
     box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
   }
@@ -116,7 +122,10 @@ body {
     left: 0;
     right: 0;
   }
-  
+  .dark-mode .field, .dark-mode .grid {
+    background-color: #333 ;
+    border-color: #333;
+  }
   .field {
     z-index: 50;
   }
