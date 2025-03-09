@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trivia Battle</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #222;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: auto;
+        background: #333;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      }
+      .question {
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+      .options button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: none;
+        border-radius: 5px;
+        background: #444;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .options button:hover {
+        background: #666;
+      }
+      .timer {
+        font-size: 18px;
+        margin: 10px 0;
+        color: yellow;
+      }
+      .scores {
+        display: flex;
+        justify-content: space-between;
+        font-size: 18px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Trivia Battle</h1>
+      <div class="question" id="question">Loading...</div>
+      <div class="options" id="options"></div>
+      <div class="timer" id="timer">Time Left: 10s</div>
+      <div class="scores">
+        <div>Player 1: <span id="score1">0</span></div>
+        <div>Player 2: <span id="score2">0</span></div>
+      </div>
+    </div>
+
+    <script>
+      const questions = [
+        {
+          q: "What is the capital of France?",
+          options: ["Paris", "London", "Rome", "Berlin"],
+          answer: "Paris",
+        },
+        {
+          q: "Which planet is known as the Red Planet?",
+          options: ["Earth", "Mars", "Jupiter", "Venus"],
+          answer: "Mars",
+        },
+        { q: "What is 5 + 3?", options: ["5", "7", "8", "10"], answer: "8" },
+        {
+          q: "Who wrote 'Hamlet'?",
+          options: ["Shakespeare", "Hemingway", "Tolkien", "Austen"],
+          answer: "Shakespeare",
+        },
+        {
+          q: "What is the largest ocean?",
+          options: ["Atlantic", "Pacific", "Indian", "Arctic"],
+          answer: "Pacific",
+        },
+        {
+          q: "Which element has the chemical symbol 'O'?",
+          options: ["Gold", "Oxygen", "Osmium", "Iron"],
+          answer: "Oxygen",
+        },
+        {
+          q: "How many continents are there?",
+          options: ["5", "6", "7", "8"],
+          answer: "7",
+        },
+        {
+          q: "Who painted the Mona Lisa?",
+          options: ["Da Vinci", "Van Gogh", "Picasso", "Rembrandt"],
+          answer: "Da Vinci",
+        },
+        {
+          q: "What is the boiling point of water in Celsius?",
+          options: ["90", "100", "110", "120"],
+          answer: "100",
+        },
+        {
+          q: "What is the square root of 64?",
+          options: ["6", "7", "8", "9"],
+          answer: "8",
+        },
+        {
+          q: "What is the currency of Japan?",
+          options: ["Yuan", "Won", "Yen", "Ringgit"],
+          answer: "Yen",
+        },
+        {
+          q: "Who discovered gravity?",
+          options: ["Einstein", "Newton", "Galileo", "Tesla"],
+          answer: "Newton",
+        },
+        {
+          q: "Which country hosted the 2016 Olympics?",
+          options: ["USA", "China", "Brazil", "UK"],
+          answer: "Brazil",
+        },
+        {
+          q: "What is the longest river in the world?",
+          options: ["Amazon", "Nile", "Yangtze", "Mississippi"],
+          answer: "Nile",
+        },
+        {
+          q: "Which is the fastest land animal?",
+          options: ["Cheetah", "Lion", "Tiger", "Horse"],
+          answer: "Cheetah",
+        },
+        {
+          q: "What is 12 x 12?",
+          options: ["124", "144", "132", "120"],
+          answer: "144",
+        },
+        {
+          q: "Which gas do plants use for photosynthesis?",
+          options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+          answer: "Carbon Dioxide",
+        },
+        {
+          q: "What is the hardest natural substance?",
+          options: ["Gold", "Iron", "Diamond", "Quartz"],
+          answer: "Diamond",
+        },
+        {
+          q: "Who invented the telephone?",
+          options: ["Einstein", "Bell", "Edison", "Tesla"],
+          answer: "Bell",
+        },
+        {
+          q: "Which planet has the most moons?",
+          options: ["Earth", "Saturn", "Jupiter", "Neptune"],
+          answer: "Saturn",
+        },
+        {
+          q: "Which metal is liquid at room temperature?",
+          options: ["Mercury", "Gold", "Iron", "Silver"],
+          answer: "Mercury",
+        },
+        {
+          q: "What does WWW stand for?",
+          options: [
+            "World Wide Web",
+            "Wireless Web Work",
+            "Wide World Web",
+            "Web World Wide",
+          ],
+          answer: "World Wide Web",
+        },
+        {
+          q: "Which country is known as the Land of the Rising Sun?",
+          options: ["China", "Japan", "South Korea", "India"],
+          answer: "Japan",
+        },
+        {
+          q: "What is the capital of Australia?",
+          options: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+          answer: "Canberra",
+        },
+      ];
+
+      let currentQuestionIndex = 0;
+      let playerTurn = 1;
+      let scores = { 1: 0, 2: 0 };
+      let timeLeft = 10;
+      let timerInterval;
+
+      function loadQuestion() {
+        if (currentQuestionIndex >= questions.length) {
+          alert(`Game Over!\nPlayer 1: ${scores[1]} | Player 2: ${scores[2]}`);
+          location.reload();
+          return;
+        }
+
+        const qData = questions[currentQuestionIndex];
+        document.getElementById("question").textContent = qData.q;
+
+        const optionsContainer = document.getElementById("options");
+        optionsContainer.innerHTML = "";
+        qData.options.forEach((option) => {
+          const button = document.createElement("button");
+          button.textContent = option;
+          button.onclick = () => checkAnswer(option);
+          optionsContainer.appendChild(button);
+        });
+
+        resetTimer();
+      }
+      loadQuestion();
+    </script>
+  </body>
+</html>
