@@ -72,7 +72,7 @@
 
   <header>
     <div class="logo-container">
-      <img src="images/codingclub.png" alt="logo">
+      <img src="images/codingclub.svg" alt="logo">
     </div>
     <h1 id="typingText"></h1>
     <nav>
@@ -122,9 +122,9 @@
   </header>
 
   <section id="home">
-    <h2 data-aos="fade-up">Home</h2>
-    <p data-aos="fade-up">Join us to explore the world of programming and innovation.</p>
-    <div data-aos="fade-up" class="features">
+    <h2>Home</h2>
+    <p>Join us to explore the world of programming and innovation.</p>
+    <div class="features">
       <div class="feature-box">
         <i class="fas fa-code"></i>
         <h3>Coding</h3>
@@ -232,22 +232,22 @@
     </div>
 
     <div class="why-us-container">
-      <div class="why-box" data-aos="zoom-in">
+      <div class="why-box">
         <i class="fas fa-bolt"></i>
         <h3>Cutting-Edge Technologies</h3>
         <p>Stay ahead with the latest programming languages and frameworks.</p>
       </div>
-      <div class="why-box" data-aos="zoom-in">
+      <div class="why-box">
         <i class="fas fa-users"></i>
         <h3>Strong Community</h3>
         <p>Join a vibrant community of developers, learners, and experts.</p>
       </div>
-      <div class="why-box" data-aos="zoom-in">
+      <div class="why-box" >
         <i class="fas fa-chalkboard-teacher"></i>
         <h3>Expert Mentorship</h3>
         <p>Get guidance from industry professionals and experienced developers.</p>
       </div>
-      <div class="why-box" data-aos="zoom-in">
+      <div class="why-box" >
         <i class="fas fa-lightbulb"></i>
         <h3>Innovation Hub</h3>
         <p>Work on real-world projects and transform your ideas into reality.</p>
@@ -257,16 +257,16 @@
 
 
   <section id="events">
-    <h2 data-aos="fade-up">Events</h2>
+    <h2 >Events</h2>
 
     <!-- Search Bar -->
-    <input data-aos="fade-up" type="text" id="eventSearch" placeholder="Search events here..." onkeyup="filterEvents()">
+    <input type="text" id="eventSearch" placeholder="Search events here..." onkeyup="filterEvents()">
 
     <!-- Add Event Button -->
-    <button data-aos="fade-up" class="event-main-button" onclick="toggleEventForm()">Add Event</button>
+    <button class="event-main-button" onclick="toggleEventForm()">Add Event</button>
 
     <!-- Add Event Form (Hidden by Default) -->
-    <div data-aos="fade-up" class="add-event-form" id="eventForm" style="display: none;">
+    <div class="add-event-form" id="eventForm" style="display: none;">
 
       <form onsubmit="return addEvent(event)">
         <input type="text" id="eventName" placeholder="Event Name" required>
@@ -280,14 +280,14 @@
     </div>
 
     <!-- Demo Hackathons Section -->
-    <section data-aos="fade-up" class="demo-hackathons">
+    <section class="demo-hackathons">
 
 
       <h2>🔥 Upcoming Hackathons/Events</h2>
       <!-- <div class="hackathon-container"> -->
 
       <p id="noResultMessage" style="display: none; color: red; text-align: center;">No results found</p>
-      <div data-aos="fade-up" class="hackathon-container" id="hackathon-container">
+      <div class="hackathon-container" id="hackathon-container">
         <div class="hackathon-card">
 
           <h3>Beginner's Hackathon 2025</h3>
@@ -298,7 +298,7 @@
           </a>
         </div>
 
-        <div data-aos="fade-up" class="hackathon-card">
+        <div class="hackathon-card">
           <h3>AI Challenge Hackathon</h3>
           <p class="event-date">📅 March 15, 2025</p>
           <p class="event-desc">Build AI-powered applications in this fun and interactive challenge.</p>
@@ -307,7 +307,7 @@
           </a>
         </div>
 
-        <div data-aos="fade-up" class="hackathon-card">
+        <div  class="hackathon-card">
           <h3>Full Stack Coding Challenge</h3>
           <p class="event-date">📅 March 25, 2025</p>
           <p class="event-desc">Showcase your full-stack development skills in this exciting challenge.</p>
@@ -316,7 +316,7 @@
           </a>
         </div>
       </div>
-      <a class="more-event-btn" data-aos="fade-up" href="eventPage/event.html" target="_blank">More Events</a>
+      <a class="more-event-btn" href="eventPage/event.html" target="_blank">More Events</a>
     </section>
   </section>
 
@@ -324,44 +324,44 @@
   <section id="projects">
 
     <!-- Search Bar -->
-    <div class="search-container" data-aos="fade-up">
+    <div class="search-container" >
       <input type="text" id="searchBar" placeholder="Search projects..." onkeyup="filterProjects()">
     </div>
 
 
-    <h2 data-aos="fade-up">Projects</h2>
-    <p data-aos="fade-up">Check out the amazing projects built by our club members.</p>
+    <h2>Projects</h2>
+    <p>Check out the amazing projects built by our club members.</p>
 
 
-    <section data-aos="fade-up" class="projects-section">
-      <h2 data-aos="fade-up">Our Projects</h2>
+    <section  class="projects-section">
+      <h2 >Our Projects</h2>
 
       <h2 id="noResults" style="display: none; text-align: center; color: rgb(7, 177, 223);">No results found</h2>
-      <div data-aos="fade-up" class="projects-container">
+      <div class="projects-container">
 
 
-        <div data-aos="fade-up" class="project-card" data-title="To-Do App">
+        <div class="project-card" data-title="To-Do App">
           <img src="images/todo.jpeg" alt="Project 3">
           <h3>To-Do App</h3>
           <p>A simple and interactive to-do app using HTML, CSS, and JavaScript.</p>
           <a href="todo/todo.html" class="view-demo">View Demo</a>
         </div>
 
-        <div data-aos="fade-up" class="project-card" data-title="Guessing Game">
+        <div class="project-card" data-title="Guessing Game">
           <img src="images/guess.jpeg" alt="Project 4">
           <h3>Guessing Game</h3>
           <p>A fun guessing game built with JavaScript.</p>
           <a href="guessing game/guessGame.html" class="view-demo">View Demo</a>
         </div>
 
-        <div data-aos="fade-up" class="project-card" data-title="Random Color Generator">
+        <div  class="project-card" data-title="Random Color Generator">
           <img src="images/color.jpeg" alt="Project 5">
           <h3>Random Color Generator</h3>
           <p>Click a button to generate a random color with hex codes.</p>
           <a href="ColorPicker/colorpicker.html" class="view-demo">View Demo</a>
         </div>
 
-        <div data-aos="fade-up" class="project-card" data-title="Password Generator">
+        <div  class="project-card" data-title="Password Generator">
           <img src="images/password.jpeg" alt="Project 6">
           <h3>Password Generator</h3>
           <p>A simple and interactive Password Generator using HTML, CSS, and JavaScript.</p>
@@ -375,13 +375,13 @@
 
 
     <!-- 
-        <div data-aos="fade-up" class="project-card" data-title="Password Generator">
+        <div  class="project-card" data-title="Password Generator">
           <img src="./images/bubble_game.jpg" alt="Project 6">
           <h3>Bubble game</h3>
           <p>Capture the bubble, and get points-> using HTML, CSS, and JavaScript.</p>
           <a href="./bubble_game/bubble.html" class="view-demo">View Demo</a>
         </div>
-        <div data-aos="fade-up" class="project-card" data-title="Password Generator">
+        <div  class="project-card" data-title="Password Generator">
           <img src="images/password.jpeg" alt="Project 6">
           <h3>Password Generator</h3>
           <p>A simple and interactive Password Generator using HTML, CSS, and JavaScript.</p>
@@ -419,9 +419,9 @@
   </script>
 
   <section id="contact" class="container" style="background-color: transparent; box-shadow: none;">
-    <div data-aos="fade-up" class="feedback-form container  p-6 rounded-lg shadow-lg w-full max-w-md">
-      <h2 data-aos="fade-up">Contact Us</h2>
-      <form data-aos="fade-up" id="form" method="POST" action="https://api.web3forms.com/submit">
+    <div  class="feedback-form container  p-6 rounded-lg shadow-lg w-full max-w-md">
+      <h2 >Contact Us</h2>
+      <form  id="form" method="POST" action="https://api.web3forms.com/submit">
         <input type="hidden" name="access_key" value="PUBLIC_KEY">
         <input name="name" type="text" placeholder="Your Name" required>
         <input name="email" type="email" placeholder="Your Email" required>
@@ -431,7 +431,7 @@
         <textarea name="message" id="message" placeholder="Your Message" maxlength="200" required></textarea>
         <p id="charCount">0 / 200</p>
         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-        <div data-aos="fade-up" class="icons-btn">
+        <div  class="icons-btn">
           <a href="https://www.linkedin.com/in/abhay-kumar-117b4327b/" target="_blank"><i
               class="fa-brands fa-linkedin fa-2x"></i></a>
           <a href="https://github.com/ak-0283" target="_blank"><i class="fa-brands fa-github fa-2x"></i></a>
@@ -443,11 +443,11 @@
   </section>
 
   <section id="feedback" class="bg-blue-200 flex items-center justify-center min-h-screen flex-col">
-    <div data-aos="fade-up" class="feedback-form bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-      <h2 data-aos="fade-up" class="text-2xl font-bold text-center mb-4">We value your opinion.</h2>
-      <p data-aos="fade-up" class="text-center mb-4">How would you rate your overall experience?</p>
+    <div  class="feedback-form bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+      <h2  class="text-2xl font-bold text-center mb-4">We value your opinion.</h2>
+      <p  class="text-center mb-4">How would you rate your overall experience?</p>
 
-      <div data-aos="fade-up" class="flex justify-center mb-4" id="stars">
+      <div  class="flex justify-center mb-4" id="stars">
         <i class="fas fa-star text-gray-400 text-2xl mx-1 cursor-pointer" data-value="1"></i>
         <i class="fas fa-star text-gray-400 text-2xl mx-1 cursor-pointer" data-value="2"></i>
         <i class="fas fa-star text-gray-400 text-2xl mx-1 cursor-pointer" data-value="3"></i>
@@ -455,8 +455,8 @@
         <i class="fas fa-star text-gray-400 text-2xl mx-1 cursor-pointer" data-value="5"></i>
       </div>
 
-      <p data-aos="fade-up" class="text-center mb-4">Kindly take a moment to tell us what you think.</p>
-      <form id="feedback-form" data-aos="fade-up">
+      <p  class="text-center mb-4">Kindly take a moment to tell us what you think.</p>
+      <form id="feedback-form" >
         <input type="text" id="name" name="name" class="w-full p-2 border rounded mb-4" placeholder="Your Name"
           required>
         <input type="email" id="email" name="email" class="w-full p-2 border rounded mb-4" placeholder="Your Email"
@@ -467,7 +467,7 @@
           required>
         <textarea id="feedback" name="feedback" class="w-full p-2 border rounded mb-4" rows="4"
           placeholder="Your feedback..." required></textarea>
-        <button type="submit" data-aos="fade-up" class="bg-blue-600 text-white py-2 px-4 rounded w-full">Share my
+        <button type="submit"  class="bg-blue-600 text-white py-2 px-4 rounded w-full">Share my
           feedback</button>
       </form>
     </div>
@@ -475,86 +475,86 @@
 
   <section id="faq" class="container">
     <div class="faq-container">
-      <h1 data-aos="fade-up">Frequently Asked Questions</h1>
-      <input data-aos="fade-up" type="text" id="searchBar" placeholder="Search FAQ..." onkeyup="searchFAQ()">
+      <h1 >Frequently Asked Questions</h1>
+      <input  type="text" id="searchBar" placeholder="Search FAQ..." onkeyup="searchFAQ()">
 
       <p id="no-results" style="display: none; text-align: center; color: red; font-weight: bold;">
         No results found.
       </p>
-      <section data-aos="fade-up" class="faq-item">
+      <section  class="faq-item">
 
 
-        <p data-aos="fade-up" class="question" onclick="toggleAnswer(this)">💻 What is the coding club about?</p>
-        <p data-aos="fade-up" class="answer">Our coding club is a community for programmers of all levels to
+        <p  class="question" onclick="toggleAnswer(this)">💻 What is the coding club about?</p>
+        <p  class="answer">Our coding club is a community for programmers of all levels to
           collaborate,
           learn, and work on projects together.</p>
       </section>
 
-      <section data-aos="fade-up" class="faq-item">
-        <p data-aos="fade-up" class="question" onclick="toggleAnswer(this)">🚀 Who can join the coding club?</p>
-        <p data-aos="fade-up" class="answer">Anyone interested in coding, whether a beginner or an experienced
+      <section  class="faq-item">
+        <p  class="question" onclick="toggleAnswer(this)">🚀 Who can join the coding club?</p>
+        <p  class="answer">Anyone interested in coding, whether a beginner or an experienced
           developer,
           is welcome to join!</p>
       </section>
 
-      <section data-aos="fade-up" class="faq-item">
-        <p data-aos="fade-up" class="question" onclick="toggleAnswer(this)">📚 Do I need prior coding experience to
+      <section  class="faq-item">
+        <p  class="question" onclick="toggleAnswer(this)">📚 Do I need prior coding experience to
           join?
         </p>
-        <p data-aos="fade-up" class="answer">No, beginners are welcome! We provide mentorship and learning resources
+        <p  class="answer">No, beginners are welcome! We provide mentorship and learning resources
           to
           help you get started.</p>
       </section>
 
-      <section data-aos="fade-up" class="faq-item">
-        <p data-aos="fade-up" class="question" onclick="toggleAnswer(this)">🎉 What types of events does the club
+      <section  class="faq-item">
+        <p  class="question" onclick="toggleAnswer(this)">🎉 What types of events does the club
           organize?</p>
-        <p data-aos="fade-up" class="answer">We host hackathons, coding competitions, guest lectures, and hands-on
+        <p  class="answer">We host hackathons, coding competitions, guest lectures, and hands-on
           workshops on various programming topics.</p>
       </section>
 
-      <section data-aos="fade-up" class="faq-item">
-        <p data-aos="fade-up" class="question" onclick="toggleAnswer(this)">📝 How can I register for an event?</p>
-        <p data-aos="fade-up" class="answer">You can register for upcoming events on our website under the “Events”
+      <section  class="faq-item">
+        <p  class="question" onclick="toggleAnswer(this)">📝 How can I register for an event?</p>
+        <p  class="answer">You can register for upcoming events on our website under the “Events”
           section. Some events may require prior registration.</p>
       </section>
 
-      <section data-aos="fade-up" class="faq-item">
-        <p data-aos="fade-up" class="question" onclick="toggleAnswer(this)">💡 Can I suggest or start a project?</p>
-        <p data-aos="fade-up" class="answer">Absolutely! If you have an idea, you can propose it to the club, and if
+      <section  class="faq-item">
+        <p  class="question" onclick="toggleAnswer(this)">💡 Can I suggest or start a project?</p>
+        <p  class="answer">Absolutely! If you have an idea, you can propose it to the club, and if
           approved, members can collaborate with you to bring it to life.</p>
       </section>
 
-      <section data-aos="fade-up" class="faq-item">
-        <p data-aos="fade-up" class="question" onclick="toggleAnswer(this)">🔧 What kind of projects does the club
+      <section  class="faq-item">
+        <p  class="question" onclick="toggleAnswer(this)">🔧 What kind of projects does the club
           work
           on?</p>
-        <p data-aos="fade-up" class="answer">We work on a variety of projects, including web development, app
+        <p  class="answer">We work on a variety of projects, including web development, app
           development,
           AI, game development, and open-source contributions.</p>
       </section>
 
-      <section data-aos="fade-up" class="faq-item">
-        <p data-aos="fade-up" class="question" onclick="toggleAnswer(this)">🖥️ How can I join a project?</p>
-        <p data-aos="fade-up" class="answer">Visit the “Projects” section of our website to see ongoing projects. You
+      <section  class="faq-item">
+        <p  class="question" onclick="toggleAnswer(this)">🖥️ How can I join a project?</p>
+        <p  class="answer">Visit the “Projects” section of our website to see ongoing projects. You
           can
           join a project by contacting the project lead.</p>
       </section>
 
-      <section data-aos="fade-up" class="faq-item">
-        <p data-aos="fade-up" class="question" onclick="toggleAnswer(this)">🎓 What programming languages do we focus
+      <section  class="faq-item">
+        <p  class="question" onclick="toggleAnswer(this)">🎓 What programming languages do we focus
           on?
         </p>
-        <p data-aos="fade-up" class="answer">We cover various languages, including Python, JavaScript, Java, C++, and
+        <p  class="answer">We cover various languages, including Python, JavaScript, Java, C++, and
           more
           based on member interests.</p>
       </section>
 
-      <section data-aos="fade-up" class="faq-item">
-        <p data-aos="fade-up" class="question" onclick="toggleAnswer(this)">🛠️ How can I get help with coding
+      <section  class="faq-item">
+        <p  class="question" onclick="toggleAnswer(this)">🛠️ How can I get help with coding
           problems?
         </p>
-        <p data-aos="fade-up" class="answer">You can ask questions in our Discord group, attend help sessions, or
+        <p  class="answer">You can ask questions in our Discord group, attend help sessions, or
           connect
           with mentors during club meetings.</p>
       </section>
@@ -875,9 +875,9 @@
 
   <script src="card/card.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
+  <!-- <script>
     AOS.init({ duration: 100, once: true });
-  </script>
+  </script> -->
   <script src="feedbackPage/feedback.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
