@@ -24,7 +24,8 @@ html, body {
 .why-choose-us {
   text-align: center;
   padding: 60px 20px;
-  background: linear-gradient(135deg, #f9f9f9, #e3e3e3); /* Light mode */
+  background: linear-gradient(135deg, #fffefe, #f5f3f3); /* Light mode */
+  color: #000;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -32,7 +33,7 @@ html, body {
 .section-heading {
   font-size: 2.2rem;
   font-weight: 700;
-  color: #222;
+  color: #008DFE;
   margin-bottom: 15px;
   position: relative;
   display: inline-block;
@@ -98,37 +99,37 @@ html, body {
 }
 
 /* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  .why-choose-us {
+
+.dark-mode  .why-choose-us {
     background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
     box-shadow: none;
   }
   
-  .section-heading {
+ .dark-mode .section-heading {
     color: #fff;
   }
 
-  .why-text {
+  .dark-mode .why-text {
     color: #ccc;
   }
 
-  .why-box {
+  .dark-mode .why-box {
     background: #222;
     box-shadow: 0 6px 12px rgba(255, 255, 255, 0.1);
   }
 
-  .why-box:hover {
+  .dark-mode .why-box:hover {
     box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
   }
 
-  .why-box h3 {
+  .dark-mode .why-box h3 {
     color: #f9f9f9;
   }
 
-  .why-box p {
+  .dark-mode .why-box p {
     color: #bbb;
   }
-}
+
 
 .navItems{
   display: flex;
