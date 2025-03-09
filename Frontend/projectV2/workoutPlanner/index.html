@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout Planner</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        padding: 20px;
+        transition: background 0.3s, color 0.3s;
+      }
+      .container {
+        max-width: 600px;
+        margin: auto;
+        background: #888;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        color: white;
+      }
+      .input-section input,
+      .input-section select,
+      .input-section button {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        font-size: 16px;
+        background: white;
+        color: black;
+        border: none;
+        border-radius: 5px;
+      }
+      .workout-list ul {
+        list-style: none;
+        padding: 0;
+      }
+      .workout-list li {
+        background: #ddd;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        color: black;
+      }
+      .delete-btn {
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+      }
+      .dark-mode {
+        background-color: #1e1e1e;
+        color: white;
+      }
+      .container.dark-mode {
+        background: #444;
+      }
+      .input-section input,
+      .input-section select,
+      .input-section button {
+        background: white;
+        color: black;
+      }
+      .toggle-btn {
+        background: #444;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-top: 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Workout Planner</h1>
+      <button class="toggle-btn" onclick="toggleDarkMode()">Dark Mode</button>
+      <div class="input-section">
+        <input type="text" id="workout-name" placeholder="Workout Name" />
+        <input
+          type="number"
+          id="workout-duration"
+          placeholder="Duration (mins)"
+        />
+        <select id="workout-type">
+          <option value="Cardio">Cardio</option>
+          <option value="Strength">Strength</option>
+          <option value="Flexibility">Flexibility</option>
+        </select>
+        <button onclick="addWorkout()">Add Workout</button>
+      </div>
+      <div class="workout-list">
+        <h2>Your Workouts</h2>
+        <ul id="workouts"></ul>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        loadWorkouts();
+        checkDarkMode();
+      });
+
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        document.querySelector(".container").classList.toggle("dark-mode");
+        let button = document.querySelector(".toggle-btn");
+        if (document.body.classList.contains("dark-mode")) {
+          localStorage.setItem("darkMode", "enabled");
+          button.textContent = "Switch to Light Mode";
+        } else {
+          localStorage.setItem("darkMode", "disabled");
+          button.textContent = "Switch to Dark Mode";
+        }
+      }
+
+      function checkDarkMode() {
+        let darkMode = localStorage.getItem("darkMode");
+        let button = document.querySelector(".toggle-btn");
+        if (darkMode === "enabled") {
+          document.body.classList.add("dark-mode");
+          document.querySelector(".container").classList.add("dark-mode");
+          button.textContent = "Switch to Light Mode";
+        } else {
+          document.body.classList.remove("dark-mode");
+          document.querySelector(".container").classList.remove("dark-mode");
+          button.textContent = "Switch to Dark Mode";
+        }
+      }
+    </script>
+  </body>
+</html>
