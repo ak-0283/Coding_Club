@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grocery List</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+      }
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      h1 {
+        margin-bottom: 10px;
+      }
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 10px;
+      }
+      input {
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+      li {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+      }
+      .delete-btn {
+        background-color: #dc3545;
+        padding: 4px 8px;
+        border-radius: 5px;
+      }
+      .delete-btn:hover {
+        background-color: #c82333;
+      }
+      .clear-btn {
+        margin-top: 10px;
+        background-color: #007bff;
+      }
+      .clear-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Grocery List</h1>
+      <div class="input-group">
+        <input type="text" id="grocery-item" placeholder="Enter item name" />
+        <input type="number" id="grocery-quantity" placeholder="Qty" min="1" />
+        <button onclick="addItem()">Add</button>
+      </div>
+      <ul id="grocery-list"></ul>
+      <button class="clear-btn" onclick="clearList()">Clear All</button>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", loadList);
+
+      function addItem() {
+        const itemName = document.getElementById("grocery-item").value.trim();
+        const itemQuantity = document
+          .getElementById("grocery-quantity")
+          .value.trim();
+        if (itemName === "" || itemQuantity === "") return;
+
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `${itemName} (${itemQuantity}) <button class='delete-btn' onclick='deleteItem(this)'>X</button>`;
+        document.getElementById("grocery-list").appendChild(listItem);
+        saveList();
+        document.getElementById("grocery-item").value = "";
+        document.getElementById("grocery-quantity").value = "";
+      }
+
+      function deleteItem(button) {
+        button.parentElement.remove();
+        saveList();
+      }
+
+      function clearList() {
+        document.getElementById("grocery-list").innerHTML = "";
+        localStorage.removeItem("groceryList");
+      }
+
+      function saveList() {
+        const items = Array.from(
+          document.getElementById("grocery-list").children
+        ).map((li) => li.innerHTML);
+        localStorage.setItem("groceryList", JSON.stringify(items));
+      }
+
+      function loadList() {
+        const savedItems = JSON.parse(localStorage.getItem("groceryList"));
+        if (savedItems) {
+          savedItems.forEach((itemHTML) => {
+            const listItem = document.createElement("li");
+            listItem.innerHTML = itemHTML;
+            document.getElementById("grocery-list").appendChild(listItem);
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

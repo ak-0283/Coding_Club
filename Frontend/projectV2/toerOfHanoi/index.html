@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tower of Hanoi</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f0f4f8;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        margin-bottom: 10px;
+      }
+      #controls {
+        margin-bottom: 20px;
+      }
+      #controls input[type="number"] {
+        width: 50px;
+        font-size: 16px;
+        padding: 2px;
+      }
+      #controls button {
+        padding: 6px 12px;
+        margin: 0 5px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        background: #4caf50;
+        color: white;
+        transition: background 0.3s ease;
+      }
+      #controls button:hover {
+        background: #45a049;
+      }
+      #game {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-end;
+        height: 400px;
+      }
+      .tower {
+        position: relative;
+        width: 30%;
+        height: 100%;
+        border: 2px solid #ccc;
+        background: #fff;
+        border-radius: 8px;
+        padding-top: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+      .tower:hover {
+        background: #f9f9f9;
+      }
+      .pole {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 8px;
+        height: 70%;
+        background: #333;
+        border-radius: 4px;
+      }
+      .disk-container {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 4px;
+        padding-bottom: 20px;
+      }
+      .disk {
+        height: 20px;
+        background: #2196f3;
+        border-radius: 4px;
+        text-align: center;
+        color: #fff;
+        line-height: 20px;
+        font-size: 12px;
+        transition: transform 0.2s, background 0.2s;
+        user-select: none;
+      }
+      .disk.selected {
+        background: #ff9800;
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tower of Hanoi</h1>
+    <div id="controls">
+      <label for="diskCount">Disks:</label>
+      <input type="number" id="diskCount" value="3" min="3" max="8" />
+      <button id="resetButton">Reset</button>
+      <button id="solveButton">Solve</button>
+      <span style="margin-left: 15px"
+        >Moves: <span id="moveCount">0</span></span
+      >
+    </div>
+    <div id="game">
+      <div class="tower" data-index="0">
+        <div class="pole"></div>
+        <div class="disk-container"></div>
+      </div>
+      <div class="tower" data-index="1">
+        <div class="pole"></div>
+        <div class="disk-container"></div>
+      </div>
+      <div class="tower" data-index="2">
+        <div class="pole"></div>
+        <div class="disk-container"></div>
+      </div>
+    </div>
+
+    <script>
+      // Game state variables
+      let towers = [[], [], []];
+      let selectedTower = null;
+      let moveCount = 0;
+      let diskCount = parseInt(document.getElementById("diskCount").value);
+      let isSolving = false;
+
+      const towerElements = document.querySelectorAll(".tower");
+      const moveCountEl = document.getElementById("moveCount");
+      const resetButton = document.getElementById("resetButton");
+      const solveButton = document.getElementById("solveButton");
+      const diskCountInput = document.getElementById("diskCount");
+
+      // Initialize game
+      function initGame() {
+        towers = [[], [], []];
+        moveCount = 0;
+        updateMoveCount();
+        selectedTower = null;
+        isSolving = false;
+
+        diskCount = parseInt(diskCountInput.value);
+        // Create disks on tower 0 (largest at bottom)
+        for (let i = diskCount; i >= 1; i--) {
+          towers[0].push(i);
+        }
+        renderTowers();
+      }
+
+      // Render towers and disks
+      function renderTowers() {
+        towerElements.forEach((towerEl) => {
+          const index = parseInt(towerEl.getAttribute("data-index"));
+          const container = towerEl.querySelector(".disk-container");
+          container.innerHTML = ""; // clear previous
+          towers[index].forEach((disk, pos) => {
+            const diskEl = document.createElement("div");
+            diskEl.classList.add("disk");
+            // If this disk is the top disk and tower is selected, mark it.
+            if (selectedTower === index && pos === towers[index].length - 1) {
+              diskEl.classList.add("selected");
+            }
+            // Set width proportional to disk size
+            diskEl.style.width = disk * (100 / (diskCount + 1)) + "%";
+            diskEl.textContent = disk;
+            container.appendChild(diskEl);
+          });
+        });
+      }
+
+      // Update move counter display
+      function updateMoveCount() {
+        moveCountEl.textContent = moveCount;
+      }
+
+      // Check if move is valid
+      function isValidMove(from, to) {
+        if (towers[from].length === 0) return false;
+        const movingDisk = towers[from][towers[from].length - 1];
+        const targetDisk = towers[to][towers[to].length - 1];
+        return !targetDisk || movingDisk < targetDisk;
+      }
+
+      // Handle tower click events
+      function towerClick(e) {
+        if (isSolving) return; // disable manual moves during auto-solve
+        const towerIndex = parseInt(e.currentTarget.getAttribute("data-index"));
+        // If no tower selected yet, choose the top disk from this tower (if exists)
+        if (selectedTower === null) {
+          if (towers[towerIndex].length === 0) return; // nothing to select
+          selectedTower = towerIndex;
+          renderTowers();
+        } else {
+          // If clicking the same tower, deselect
+          if (selectedTower === towerIndex) {
+            selectedTower = null;
+            renderTowers();
+            return;
+          }
+          // Otherwise try moving the disk
+          if (isValidMove(selectedTower, towerIndex)) {
+            const disk = towers[selectedTower].pop();
+            towers[towerIndex].push(disk);
+            moveCount++;
+            updateMoveCount();
+            checkWin();
+          }
+          selectedTower = null;
+          renderTowers();
+        }
+      }
+
+      // Check win condition: All disks on tower 2 (last tower)
+      function checkWin() {
+        if (towers[2].length === diskCount) {
+          setTimeout(() => {
+            alert("Congratulations! You solved it in " + moveCount + " moves.");
+          }, 200);
+        }
+      }
+
+      // Auto-solver logic using recursive algorithm
+      function autoSolve() {
+        const moves = [];
+        function solve(n, from, aux, to) {
+          if (n === 1) {
+            moves.push({ from, to });
+            return;
+          }
+          solve(n - 1, from, to, aux);
+          moves.push({ from, to });
+          solve(n - 1, aux, from, to);
+        }
+        solve(diskCount, 0, 1, 2);
+        return moves;
+      }
+
+      // Animate moves from the auto-solver
+      function animateMoves(moves) {
+        if (moves.length === 0) {
+          isSolving = false;
+          return;
+        }
+        isSolving = true;
+        const move = moves.shift();
+        // Animate the move
+        if (isValidMove(move.from, move.to)) {
+          const disk = towers[move.from].pop();
+          towers[move.to].push(disk);
+          moveCount++;
+          updateMoveCount();
+          renderTowers();
+        }
+        setTimeout(() => {
+          animateMoves(moves);
+        }, 500);
+      }
+
+      // Attach click listeners to towers
+      towerElements.forEach((towerEl) => {
+        towerEl.addEventListener("click", towerClick);
+      });
+
+      // Reset and solve button events
+      resetButton.addEventListener("click", initGame);
+      solveButton.addEventListener("click", () => {
+        if (isSolving) return;
+        const moves = autoSolve();
+        animateMoves(moves);
+      });
+      diskCountInput.addEventListener("change", initGame);
+
+      // Start the game
+      initGame();
+    </script>
+  </body>
+</html>
