@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2048 Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .tile {
+        transition: all 0.2s ease-in-out;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-100 dark:bg-gray-900 text-black dark:text-white flex flex-col items-center justify-center min-h-screen"
+  >
+    <h1 class="text-4xl font-bold mb-4">2048</h1>
+    <div class="mb-2">
+      <button
+        onclick="restartGame()"
+        class="px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Restart
+      </button>
+      <button
+        onclick="undoMove()"
+        class="px-4 py-2 bg-green-500 text-white rounded"
+      >
+        Undo
+      </button>
+    </div>
+    <div class="text-lg mb-2">
+      Score: <span id="score">0</span> | Best: <span id="bestScore">0</span>
+    </div>
+    <div
+      id="game-board"
+      class="grid grid-cols-4 gap-2 bg-gray-300 dark:bg-gray-800 p-4 rounded-lg shadow-lg"
+    ></div>
+    <p class="mt-4 text-center max-w-lg">
+      Use the arrow keys to slide the tiles. When two tiles with the same number
+      touch, they merge into one! Try to reach 2048!
+    </p>
+    <script>
+      const boardSize = 4;
+      let board = Array.from({ length: boardSize }, () =>
+        Array(boardSize).fill(0)
+      );
+      let prevBoard = [];
+      let score = 0;
+      let bestScore = localStorage.getItem("bestScore") || 0;
+
+      document.getElementById("bestScore").innerText = bestScore;
+      const gameBoard = document.getElementById("game-board");
+      gameBoard.style.width = "300px";
+      gameBoard.style.height = "300px";
+
+      function drawBoard() {
+        gameBoard.innerHTML = "";
+        board.forEach((row) => {
+          row.forEach((tile) => {
+            let div = document.createElement("div");
+            div.className = `tile w-16 h-16 flex items-center justify-center text-lg font-bold rounded-lg ${getTileColor(
+              tile
+            )}`;
+            div.innerText = tile === 0 ? "" : tile;
+            gameBoard.appendChild(div);
+          });
+        });
+        document.getElementById("score").innerText = score;
+      }
+
+      function getTileColor(value) {
+        return value === 0
+          ? "bg-gray-200 dark:bg-gray-700"
+          : value === 2
+          ? "bg-yellow-100 dark:bg-yellow-600"
+          : "bg-yellow-400 dark:bg-yellow-500";
+      }
+
+      function generateTile() {
+        let emptyTiles = [];
+        board.forEach((row, r) =>
+          row.forEach((tile, c) => tile === 0 && emptyTiles.push([r, c]))
+        );
+        if (emptyTiles.length > 0) {
+          let [r, c] =
+            emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+          board[r][c] = Math.random() > 0.1 ? 2 : 4;
+        }
+      }
+
+      function move(direction) {
+        prevBoard = board.map((row) => [...row]);
+        let moved = false;
+
+        if (direction === "left") {
+          board = board.map((row) => slide(row));
+        } else if (direction === "right") {
+          board = board.map((row) => slide(row.reverse()).reverse());
+        } else if (direction === "up") {
+          board = transpose(board);
+          board = board.map((row) => slide(row));
+          board = transpose(board);
+        } else if (direction === "down") {
+          board = transpose(board);
+          board = board.map((row) => slide(row.reverse()).reverse());
+          board = transpose(board);
+        }
+
+        if (!boardsEqual(prevBoard, board)) {
+          generateTile();
+          drawBoard();
+          checkGameOver();
+        }
+      }
+
+      function slide(row) {
+        let newRow = row.filter((val) => val);
+        for (let i = 0; i < newRow.length - 1; i++) {
+          if (newRow[i] === newRow[i + 1]) {
+            newRow[i] *= 2;
+            score += newRow[i];
+            newRow.splice(i + 1, 1);
+          }
+        }
+        while (newRow.length < boardSize) newRow.push(0);
+        return newRow;
+      }
+
+      function transpose(matrix) {
+        return matrix[0].map((_, i) => matrix.map((row) => row[i]));
+      }
+
+      function boardsEqual(b1, b2) {
+        return JSON.stringify(b1) === JSON.stringify(b2);
+      }
+
+      function checkGameOver() {
+        if (!board.flat().includes(0)) {
+          alert("Game Over! Score: " + score);
+          if (score > bestScore) {
+            bestScore = score;
+            localStorage.setItem("bestScore", bestScore);
+            document.getElementById("bestScore").innerText = bestScore;
+          }
+          restartGame();
+        }
+      }
+
+      function restartGame() {
+        board = Array.from({ length: boardSize }, () =>
+          Array(boardSize).fill(0)
+        );
+        score = 0;
+        generateTile();
+        generateTile();
+        drawBoard();
+      }
+
+      function undoMove() {
+        board = prevBoard.map((row) => [...row]);
+        drawBoard();
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (
+          ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(
+            event.key
+          )
+        ) {
+          move(event.key.replace("Arrow", "").toLowerCase());
+        }
+      });
+
+      restartGame();
+    </script>
+  </body>
+</html>
