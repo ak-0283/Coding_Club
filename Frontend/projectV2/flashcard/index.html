@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flashcard Study Tool</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: #ffffff;
+        text-align: center;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: auto;
+      }
+      .flashcard {
+        background: #1e1e1e;
+        width: 100%;
+        padding: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.5s, box-shadow 0.3s ease-in-out;
+        perspective: 1000px;
+        position: relative;
+      }
+      .flashcard:hover {
+        box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+      }
+      .flashcard.flip {
+        transform: rotateY(180deg);
+      }
+      .flashcard p {
+        transition: opacity 0.3s ease-in-out;
+      }
+      .form-group {
+        margin-top: 20px;
+      }
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        background-color: #6200ea;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+      }
+      button:hover {
+        background-color: #3700b3;
+        transform: scale(1.05);
+      }
+      .light-mode {
+        background-color: #ffffff;
+        color: #000000;
+      }
+      .light-mode .flashcard {
+        background-color: rgb(153, 153, 160);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Flashcard Study Tool</h1>
+      <button id="theme-toggle" onclick="toggleTheme()">
+        Switch to Light Mode
+      </button>
+      <div class="flashcard" onclick="flipCard()">
+        <p id="card-content">Click to Flip</p>
+      </div>
+      <p>Progress: <span id="progress">0</span> / <span id="total">0</span></p>
+      <div class="form-group">
+        <input type="text" id="question" placeholder="Enter question" />
+        <input type="text" id="answer" placeholder="Enter answer" />
+        <button onclick="addCard()">Add Card</button>
+        <button onclick="shuffleCards()">Shuffle</button>
+      </div>
+      <button onclick="prevCard()">Previous</button>
+      <button onclick="nextCard()">Next</button>
+      <button onclick="deleteCard()">Delete Card</button>
+      <button onclick="editCard()">Edit Card</button>
+    </div>
+    <script>
+      let cards = JSON.parse(localStorage.getItem("flashcards")) || [];
+      let currentIndex = 0;
+      let isFlipped = false;
+      updateProgress();
+
+      function flipCard() {
+        isFlipped = !isFlipped;
+        let cardContent = document.getElementById("card-content");
+        cardContent.style.opacity = "0";
+        setTimeout(() => {
+          cardContent.textContent = isFlipped
+            ? cards[currentIndex]?.answer || "No Answer"
+            : cards[currentIndex]?.question || "No Question";
+          cardContent.style.opacity = "1";
+        }, 300);
+      }
+
+      function addCard() {
+        let question = document.getElementById("question").value;
+        let answer = document.getElementById("answer").value;
+        if (question && answer) {
+          cards.push({ question, answer });
+          localStorage.setItem("flashcards", JSON.stringify(cards));
+          updateProgress();
+          alert("Card Added!");
+        }
+      }
+
+      function shuffleCards() {
+        cards = cards.sort(() => Math.random() - 0.5);
+        currentIndex = 0;
+        flipCard();
+      }
+
+      function prevCard() {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        isFlipped = false;
+        flipCard();
+      }
+
+      function nextCard() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        isFlipped = false;
+        flipCard();
+      }
+
+      function deleteCard() {
+        if (cards.length > 0) {
+          cards.splice(currentIndex, 1);
+          localStorage.setItem("flashcards", JSON.stringify(cards));
+          currentIndex = 0;
+          updateProgress();
+          flipCard();
+        }
+      }
+
+      function editCard() {
+        let newQuestion = prompt(
+          "Edit Question:",
+          cards[currentIndex].question
+        );
+        let newAnswer = prompt("Edit Answer:", cards[currentIndex].answer);
+        if (newQuestion && newAnswer) {
+          cards[currentIndex] = { question: newQuestion, answer: newAnswer };
+          localStorage.setItem("flashcards", JSON.stringify(cards));
+          flipCard();
+        }
+      }
+
+      function updateProgress() {
+        document.getElementById("progress").textContent = cards.length
+          ? currentIndex + 1
+          : 0;
+        document.getElementById("total").textContent = cards.length;
+      }
+
+      function toggleTheme() {
+        document.body.classList.toggle("light-mode");
+        let themeButton = document.getElementById("theme-toggle");
+        if (document.body.classList.contains("light-mode")) {
+          themeButton.textContent = "Switch to Dark Mode";
+        } else {
+          themeButton.textContent = "Switch to Light Mode";
+        }
+      }
+    </script>
+  </body>
+</html>
