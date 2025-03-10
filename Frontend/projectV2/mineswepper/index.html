@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minesweeper</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f8f9fa;
+      }
+      #game-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+      }
+      #grid {
+        display: grid;
+        gap: 2px;
+        background-color: #ccc;
+        padding: 5px;
+      }
+      .cell {
+        width: 40px;
+        height: 40px;
+        background-color: #eee;
+        border: 1px solid #aaa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      .mine {
+        background-color: red;
+      }
+      .revealed {
+        background-color: #ddd;
+        cursor: default;
+      }
+      .flag {
+        background-color: yellow;
+      }
+      #controls {
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Minesweeper</h1>
+    <div id="controls">
+      <button onclick="startGame()">Restart</button>
+      <label for="difficulty">Difficulty:</label>
+      <select id="difficulty" onchange="startGame()">
+        <option value="easy">Easy</option>
+        <option value="medium" selected>Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      <span>Time: <span id="timer">0</span> sec</span>
+    </div>
+    <div id="game-container">
+      <div id="grid"></div>
+    </div>
+    <h2>Rules</h2>
+    <p>
+      Click on a cell to reveal it. Right-click to place a flag. Numbers
+      indicate adjacent mines. Clear all safe cells to win!
+    </p>
+    <script>
+      let grid, timer, timeElapsed, revealedCells, totalCells, mines, gameOver;
+
+      function startGame() {
+        clearInterval(timer);
+        document.getElementById("grid").innerHTML = "";
+        timeElapsed = 0;
+        document.getElementById("timer").textContent = timeElapsed;
+        timer = setInterval(() => {
+          timeElapsed++;
+          document.getElementById("timer").textContent = timeElapsed;
+        }, 1000);
+
+        let difficulty = document.getElementById("difficulty").value;
+        let rows, cols;
+        if (difficulty === "easy") {
+          rows = cols = 8;
+          mines = 10;
+        } else if (difficulty === "medium") {
+          rows = cols = 10;
+          mines = 20;
+        } else {
+          rows = cols = 15;
+          mines = 40;
+        }
+        totalCells = rows * cols;
+        revealedCells = 0;
+        gameOver = false;
+
+        grid = Array.from({ length: rows }, () => Array(cols).fill(0));
+        let minePositions = new Set();
+        while (minePositions.size < mines) {
+          minePositions.add(Math.floor(Math.random() * totalCells));
+        }
+        minePositions.forEach((pos) => {
+          let r = Math.floor(pos / cols),
+            c = pos % cols;
+          grid[r][c] = -1;
+          for (let dr of [-1, 0, 1]) {
+            for (let dc of [-1, 0, 1]) {
+              let nr = r + dr,
+                nc = c + dc;
+              if (
+                nr >= 0 &&
+                nr < rows &&
+                nc >= 0 &&
+                nc < cols &&
+                grid[nr][nc] !== -1
+              ) {
+                grid[nr][nc]++;
+              }
+            }
+          }
+        });
+
+        const gridElement = document.getElementById("grid");
+        gridElement.style.gridTemplateColumns = `repeat(${cols}, 40px)`;
+        grid.forEach((row, r) => {
+          row.forEach((cell, c) => {
+            const cellElement = document.createElement("div");
+            cellElement.classList.add("cell");
+            cellElement.dataset.row = r;
+            cellElement.dataset.col = c;
+            cellElement.onclick = () => revealCell(r, c, cellElement);
+            cellElement.oncontextmenu = (e) => {
+              e.preventDefault();
+              toggleFlag(cellElement);
+            };
+            gridElement.appendChild(cellElement);
+          });
+        });
+      }
+
+      function revealCell(r, c, cellElement) {
+        if (
+          gameOver ||
+          cellElement.classList.contains("revealed") ||
+          cellElement.classList.contains("flag")
+        )
+          return;
+        if (grid[r][c] === -1) {
+          cellElement.classList.add("mine");
+          revealAllMines();
+          alert("Game Over!");
+          clearInterval(timer);
+          gameOver = true;
+          return;
+        }
+        cellElement.classList.add("revealed");
+        cellElement.textContent = grid[r][c] || "";
+        revealedCells++;
+
+        if (grid[r][c] === 0) {
+          for (let dr of [-1, 0, 1]) {
+            for (let dc of [-1, 0, 1]) {
+              let nr = r + dr,
+                nc = c + dc;
+              if (
+                nr >= 0 &&
+                nr < grid.length &&
+                nc >= 0 &&
+                nc < grid[0].length
+              ) {
+                let neighbor = document.querySelector(
+                  `[data-row='${nr}'][data-col='${nc}']`
+                );
+                if (neighbor && !neighbor.classList.contains("revealed")) {
+                  revealCell(nr, nc, neighbor);
+                }
+              }
+            }
+          }
+        }
+        checkWin();
+      }
+
+      function revealAllMines() {
+        document.querySelectorAll(".cell").forEach((cell) => {
+          let r = cell.dataset.row,
+            c = cell.dataset.col;
+          if (grid[r][c] === -1) {
+            cell.classList.add("mine");
+          }
+        });
+      }
+
+      function toggleFlag(cellElement) {
+        if (!cellElement.classList.contains("revealed") && !gameOver) {
+          cellElement.classList.toggle("flag");
+          cellElement.textContent = cellElement.classList.contains("flag")
+            ? "🚩"
+            : "";
+        }
+      }
+
+      function checkWin() {
+        if (revealedCells === totalCells - mines) {
+          alert("You Win!");
+          clearInterval(timer);
+          gameOver = true;
+        }
+      }
+
+      startGame();
+    </script>
+  </body>
+</html>
