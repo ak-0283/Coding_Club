@@ -9,20 +9,46 @@
   <body>
     <nav class="navbar">
       <button class="toggle-dark-mode" onclick="toggleDarkMode()">
-        🌙 Dark Mode
+        <span class="moon-icon">🌙</span> Dark Mode
       </button>
     </nav>
     <div class="container">
       <h2>Typing Speed Test</h2>
-      <p id="text">The quick brown fox jumps over the lazy dog.</p>
+      <div id="text">The quick brown fox jumps over the lazy dog.</div>
       <textarea id="input" placeholder="Start typing here..."></textarea>
       <div class="stats">
-        <p>Time: <span id="time">0</span>s</p>
-        <p>Speed: <span id="speed">0</span> WPM</p>
-        <p>Accuracy: <span id="accuracy">0</span>%</p>
-        <p>Personal Best: <span id="personalBest">-</span> s</p>
+        <div class="stat-card">
+          <div class="stat-label">Time</div>
+          <div class="stat-value" id="time">0</div>
+          <div class="stat-unit">seconds</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Speed</div>
+          <div class="stat-value" id="speed">0</div>
+          <div class="stat-unit">WPM</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Accuracy</div>
+          <div class="stat-value" id="accuracy">0</div>
+          <div class="stat-unit">%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Personal Best</div>
+          <div class="stat-value" id="personalBest">-</div>
+          <div class="stat-unit">seconds</div>
+        </div>
       </div>
-      <button onclick="resetTest()">Reset</button>
+      <button onclick="resetTest()" id="resetBtn">Reset</button>
+    </div>
+
+    <div class="success-overlay" id="successOverlay">
+      <div class="success-message">
+        <h3>Test Completed!</h3>
+        <p>Your time: <span id="finalTime">0</span> seconds</p>
+        <p>Your speed: <span id="finalSpeed">0</span> WPM</p>
+        <p>Your accuracy: <span id="finalAccuracy">0</span>%</p>
+        <button onclick="closeSuccess()">Continue</button>
+      </div>
     </div>
 
     <script src="typingSpeed.js"></script>

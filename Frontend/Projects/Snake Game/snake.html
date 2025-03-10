@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake Game</title>
+  <link rel="stylesheet" href="snake.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <button class="back-button" onclick="history.back()">
+        <i class="fa-solid fa-arrow-left fa-xl"></i>
+    </button>
+    <button id="toggleTheme" class="toggle-btn">🌙</button>
+</nav>
+  <div class="game-container">
+    <div class="game-header">
+      <div class="score-container">Score: <span id="score">0</span></div>
+      <div class="high-score-container">High Score: <span id="high-score">0</span></div>
+    </div>
+    <div class="game-board" id="game-board"></div>
+    <div class="controls">
+      <button class="control-btn" id="start-pause">Start</button>
+      <button class="control-btn" id="reset">Reset</button>
+    </div>
+    <div class="overlay" id="overlay">
+      <h2>Snake Game</h2>
+      <p>Use arrow keys or WASD to move</p>
+      <button class="start-btn" id="overlay-start">Start Game</button>
+    </div>
+  </div>
+
+  <script src="snake.js"></script>
+</body>
+</html>

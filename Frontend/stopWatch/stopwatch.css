@@ -4,8 +4,10 @@ body {
   background-color: #f4f4f4;
   margin: 0;
   padding: 50px;
+  overflow-x: hidden;
 }
 .container {
+  margin: 4rem auto;
   background: white;
   padding: 30px;
   border-radius: 10px;
@@ -69,6 +71,48 @@ button {
   padding: 5px 10px;
   border-radius: 5px;
 }
+
+.navbar {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-button {
+  background: #2867f0;
+  color: white;
+  border: none;
+  padding: 0.8rem 20px;
+  width: 4rem;
+  height: 2.5rem;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: #0190f6;
+  transform: scale(1.05);
+}
+
+.toggle-dark-mode {
+  position: absolute;
+  top: 14px;
+  right: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .dark-mode {
   background-color: #212529;
   color: white;

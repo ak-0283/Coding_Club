@@ -16,7 +16,7 @@
     <nav class="navbar">
       <button
         class="back-button"
-        onclick="window.location.href = '../../index.html'"
+        onclick="history.back()"
       >
         <i class="fa-solid fa-arrow-left fa-xl"></i>
       </button>
@@ -44,6 +44,66 @@
       </p>
       <p id="login-message" class="login-message"></p>
     </div>
+
+    <footer class="footer">
+      <div class="wrapper">
+        <div class="newsletter">
+          <h3>Subscribe to our Newsletter</h3>
+          <form id="subscribeForm">
+            <input type="email" id="emailInput" placeholder="Enter your email" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+  
+        <div class="quick-contact">
+          <h3>Quick Links</h3>
+          <ul>
+            <li class="sec-nav"><a href="../../index.html">Home</a></li>
+            <li class="sec-nav">
+              <a href="../../index.html#about">About</a>
+            </li>
+            <li class="sec-nav">
+              <a href="../../eventPage/event.html">Events</a>
+            </li>
+            <li class="sec-nav">
+              <a href="../../projectPage/projectpage.html">Projects</a>
+            </li>
+            <li class="sec-nav">
+              <a href="../../index.html#contact">Contact</a>
+            </li>
+            <li class="sec-nav">
+              <a href="../../index.html#faq">FAQ</a>
+            </li>
+            <li class="sec-nav">
+              <a href="../../index.html#feedback">Feedback</a>
+            </li>
+          </ul>
+        </div>
+        <div class="quick-contact">
+          <h3>Contact Us</h3>
+          <p>📍 123 Street, City, Country</p>
+          <p>
+            <i class="fa-solid fa-earth-americas"></i>&nbsp;&nbsp;&nbsp;yourwebsite.com
+          </p>
+          <p>📞 +123 456 7890</p>
+        </div>
+  
+        <div class="social-sharing">
+          <h3>Share Our Blog</h3>
+          <a href="#" id="facebookShare" class="social-icon">Facebook</a>
+          <a href="#" id="twitterShare" class="social-icon">Twitter</a>
+          <a href="#" id="linkedinShare" class="social-icon">LinkedIn</a>
+          <a href="#" id="whatsappShare" class="social-icon">Instagram</a>
+        </div>
+      </div>
+  
+      <div class="privacy">
+        <a href="../privacyPage/privacy.html">Privacy Policy</a> |
+        <a href="../termsPage/terms.html">Terms & Conditions</a>
+      </div>
+  
+      <div class="copyright">© 2025 Coding Club. All rights reserved.</div>
+    </footer>
 
     <script src="../../mainPage/script.js"></script>
 

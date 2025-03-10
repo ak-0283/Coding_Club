@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Pet Simulator</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        transition: background 0.3s, color 0.3s;
+      }
+      .header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 20px;
+        background: #f4f4f4;
+        transition: background 0.3s, color 0.3s;
+      }
+      .toggle-dark {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background: #333;
+        color: white;
+        transition: background 0.3s;
+      }
+      .toggle-dark:hover {
+        background: #555;
+      }
+      .container {
+        max-width: 400px;
+        margin: 30px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background 0.3s, color 0.3s;
+      }
+      .pet {
+        font-size: 100px;
+        transition: transform 0.3s ease-in-out;
+        cursor: pointer;
+      }
+      .status {
+        margin: 20px 0;
+        font-size: 18px;
+      }
+      button {
+        margin: 5px;
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .feed {
+        background: #ffcc00;
+      }
+      .play {
+        background: #4caf50;
+        color: white;
+      }
+      .rest {
+        background: #2196f3;
+        color: white;
+      }
+      .feed:hover {
+        background: #e6b800;
+      }
+      .play:hover {
+        background: #45a049;
+      }
+      .rest:hover {
+        background: #1976d2;
+      }
+
+      .dark-mode {
+        background: #222;
+        color: #fff;
+      }
+      .dark-mode .header {
+        background: #333;
+        color: #fff;
+      }
+      .dark-mode .container {
+        background: #444;
+        color: #fff;
+      }
+      .dark-mode .toggle-dark {
+        background: #ffcc00;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <button class="toggle-dark" onclick="toggleDarkMode()">🌙</button>
+    </div>
+    <div class="container">
+      <h1>Virtual Pet Simulator</h1>
+      <div class="pet" id="pet" onclick="petPet()">🐶</div>
+      <div class="status">
+        <p>Hunger: <span id="hunger">50</span></p>
+        <p>Happiness: <span id="happiness">50</span></p>
+        <p>Energy: <span id="energy">50</span></p>
+      </div>
+      <button class="feed" onclick="feedPet()">Feed 🍖</button>
+      <button class="play" onclick="playWithPet()">Play 🎾</button>
+      <button class="rest" onclick="restPet()">Rest 💤</button>
+    </div>
+
+    <script>
+      let hunger = 50;
+      let happiness = 50;
+      let energy = 50;
+      const pet = document.getElementById("pet");
+      const body = document.body;
+      const toggleButton = document.querySelector(".toggle-dark");
+
+      function updateStatus() {
+        document.getElementById("hunger").textContent = hunger;
+        document.getElementById("happiness").textContent = happiness;
+        document.getElementById("energy").textContent = energy;
+      }
+
+      function feedPet() {
+        hunger = Math.max(0, hunger - 10);
+        energy = Math.min(100, energy + 5);
+        pet.style.transform = "scale(1.1)";
+        setTimeout(() => (pet.style.transform = "scale(1)"), 300);
+        updateStatus();
+      }
+
+      function playWithPet() {
+        happiness = Math.min(100, happiness + 10);
+        energy = Math.max(0, energy - 10);
+        hunger = Math.min(100, hunger + 5);
+        pet.style.transform = "rotate(10deg)";
+        setTimeout(() => (pet.style.transform = "rotate(0)"), 300);
+        updateStatus();
+      }
+
+      function restPet() {
+        energy = Math.min(100, energy + 15);
+        hunger = Math.min(100, hunger + 5);
+        pet.style.opacity = "0.5";
+        setTimeout(() => (pet.style.opacity = "1"), 500);
+        updateStatus();
+      }
+
+      function petPet() {
+        happiness = Math.min(100, happiness + 5);
+        pet.style.transform = "scale(1.2)";
+        setTimeout(() => (pet.style.transform = "scale(1)"), 300);
+        updateStatus();
+      }
+
+      function toggleDarkMode() {
+        body.classList.toggle("dark-mode");
+        if (body.classList.contains("dark-mode")) {
+          toggleButton.innerHTML = "☀️";
+        } else {
+          toggleButton.innerHTML = "🌙";
+        }
+      }
+
+      setInterval(() => {
+        hunger = Math.min(100, hunger + 2);
+        happiness = Math.max(0, happiness - 2);
+        energy = Math.max(0, energy - 1);
+        updateStatus();
+      }, 3000);
+    </script>
+  </body>
+</html>

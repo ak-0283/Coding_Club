@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Zone Converter with Live Clock</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #282c36;
+        color: white;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #3b3f4a;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+      .toggle-dark {
+        cursor: pointer;
+        background: #444;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        color: white;
+        transition: background-color 0.3s;
+        font-size: 16px;
+      }
+      .toggle-dark:hover {
+        background: #555;
+      }
+      .container {
+        max-width: 500px;
+        margin: auto;
+        background-color: #3b3f4a;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      }
+      input,
+      select,
+      button {
+        padding: 10px;
+        margin: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+      }
+      button {
+        background-color: #61dafb;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #52b7e0;
+      }
+      .result,
+      .live-clock {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Time Zone Converter</h1>
+      <!-- Toggle button text indicates the next mode -->
+      <button class="toggle-dark" onclick="toggleDarkMode()" id="toggleBtn">
+        Light
+      </button>
+    </header>
+    <div class="container">
+      <p>Enter your local time and convert it to a different time zone.</p>
+      <label for="time">Local Time:</label>
+      <input type="time" id="time" />
+      <br />
+      <label for="timezone">Convert to:</label>
+      <select id="timezone" onchange="updateLiveClock()">
+        <option value="America/New_York">New York (EST)</option>
+        <option value="Europe/London">London (GMT)</option>
+        <option value="Asia/Tokyo">Tokyo (JST)</option>
+        <option value="Australia/Sydney">Sydney (AEST)</option>
+      </select>
+      <br />
+      <button onclick="convertTime()">Convert</button>
+      <div class="result" id="result"></div>
+      <!-- Live Clock Display -->
+      <div class="live-clock" id="liveClock">Live Time: --:--:--</div>
+    </div>
+
+    <script>
+      function convertTime() {
+        const timeInput = document.getElementById("time").value;
+        const targetZone = document.getElementById("timezone").value;
+        if (!timeInput) {
+          alert("Please enter a valid time!");
+          return;
+        }
+        const [hours, minutes] = timeInput.split(":").map(Number);
+        let now = new Date();
+        now.setHours(hours, minutes, 0, 0);
+        let options = {
+          timeZone: targetZone,
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        };
+        let convertedTime = new Intl.DateTimeFormat([], options).format(now);
+        document.getElementById(
+          "result"
+        ).innerText = `Converted Time (${targetZone}): ${convertedTime}`;
+      }
+
+      function toggleDarkMode() {
+        const body = document.body;
+        const toggleBtn = document.getElementById("toggleBtn");
+        if (body.style.backgroundColor === "white") {
+          // Switch to dark mode
+          body.style.backgroundColor = "#282c36";
+          body.style.color = "white";
+          toggleBtn.innerText = "Light";
+        } else {
+          // Switch to light mode
+          body.style.backgroundColor = "white";
+          body.style.color = "black";
+          toggleBtn.innerText = "Dark";
+        }
+      }
+
+      function updateLiveClock() {
+        const targetZone = "IST";
+        let now = new Date();
+        let options = {
+          timeZone: targetZone,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        };
+        let liveTime = new Intl.DateTimeFormat([], options).format(now);
+        document.getElementById(
+          "liveClock"
+        ).innerText = `Live Time (${targetZone}): ${liveTime}`;
+      }
+
+      setInterval(updateLiveClock, 1000);
+    </script>
+  </body>
+</html>

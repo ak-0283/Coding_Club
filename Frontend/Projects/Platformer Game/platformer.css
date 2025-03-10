@@ -1,0 +1,238 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #87CEEB;
+    font-family: Arial, sans-serif;
+}
+
+#game-container {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    margin: 5rem auto;
+    border: 3px solid #333;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #87CEEB 0%, #e0f7ff 100%);
+}
+
+#player {
+    position: absolute;
+    width: 40px;
+    height: 60px;
+    background-color: #FF5722;
+    border-radius: 5px;
+    transition: transform 0.1s;
+}
+
+.platform {
+    position: absolute;
+    height: 20px;
+    background-color: #795548;
+    border-radius: 5px;
+}
+
+.coin {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: gold;
+    border-radius: 50%;
+    animation: coinSpin 1s infinite ease-in-out;
+}
+
+@keyframes coinSpin {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#score-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-size: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 48px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1;
+}
+
+#restart-button {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+#restart-button:hover {
+    background-color: #45a049;
+}
+
+.enemy {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #9C27B0;
+    border-radius: 50%;
+    animation: enemyBounce 2s infinite ease-in-out;
+}
+
+@keyframes enemyBounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.cloud {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: cloudFloat linear infinite;
+}
+
+@keyframes cloudFloat {
+    0% {
+        transform: translateX(850px);
+    }
+
+    100% {
+        transform: translateX(-100px);
+    }
+}
+
+#instructions {
+    position: absolute;
+    bottom: 18px;
+    left: 10px;
+    color: white;
+    font-size: 14px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Back Button */
+.back-button {
+    background: #2867f0;
+    color: white;
+    border: none;
+    padding: 0.8rem 20px;
+    width: 4rem;
+    height: 2.5rem;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #0190f6;
+    transform: scale(1.05);
+}
+
+.toggle-btn {
+    position: fixed;
+    top: 0;
+    right: 30px;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Toggle theme style */
+#toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+/* Dark mode effect */
+.dark-mode #toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+.toggle-btn:hover {
+    background: #0056b3;
+}
+
+body.dark-mode {
+    background: #001b37;
+    color: #fff;
+}
+
+
+
+.dark-mode #game-container{
+    background: linear-gradient(to bottom, #02245a, #525151);
+}
+
