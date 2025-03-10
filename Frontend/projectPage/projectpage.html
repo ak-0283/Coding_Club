@@ -45,6 +45,17 @@
       width: 100% !important;
       padding: 5px 0px !important;
     }
+    .rating {
+      cursor: pointer;
+      font-size: 24px;
+      color: gray;
+  }
+  .star {
+      display: inline-block;
+  }
+  .star.active {
+      color: gold;
+  }
 
     .wrapper {
       justify-content: space-evenly !important;
@@ -247,17 +258,22 @@
     
     </div>
     <div data-aos="fade-up" class="projects-container">
-      <div data-aos="fade-up" class="project-card" data-level="beginner"
-      data-project="WeatherApp">
-          <span class="bookmark-icon" onclick="bookmarkProject('Weather App', '../WeatherApp/weather.html')">🔖</span>
-          <img src="https://tse1.mm.bing.net/th?id=OIP.NXuyZrgL1obgCPMawBsdagHaFj&pid=Api&P=0&h=180"
-              alt="Weather App" />
-          <h3>Weather App</h3>
-          <p>Get real-time weather updates using an API with JavaScript.</p>
-          <a href="../WeatherApp/weather.html" class="view-demo">View Demo</a>
-          <p class="view-counter">Views: 0</p>
-      </div>
-  
+      <div data-aos="fade-up" class="project-card" data-level="beginner" data-project="WeatherApp">
+        <span class="bookmark-icon" onclick="bookmarkProject('Weather App', '../WeatherApp/weather.html')">🔖</span>
+        <img src="https://tse1.mm.bing.net/th?id=OIP.NXuyZrgL1obgCPMawBsdagHaFj&pid=Api&P=0&h=180" alt="Weather App" />
+        <h3>Weather App</h3>
+        <p>Get real-time weather updates using an API with JavaScript.</p>
+        <a href="../WeatherApp/weather.html" class="view-demo">View Demo</a>
+        <p class="view-counter">Views: 0</p>
+        <div class="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p class="rating-text">Rating: 0</p>
+    </div>
  
    
     
@@ -1000,21 +1016,51 @@
   
       showBookmarks(); // Call this function to display bookmarks on page load
   </script>
- <script>
+<script>
   document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll(".project-card").forEach(card => {
-          let projectName = card.getAttribute("data-project"); // Get unique project name
-          let counterElement = card.querySelector(".view-counter"); // Get counter element
+          let projectName = card.getAttribute("data-project"); // Unique project name
+          let counterElement = card.querySelector(".view-counter"); // View counter
+          let stars = card.querySelectorAll(".star"); // Star elements
+          let ratingText = card.querySelector(".rating-text"); // Rating text
 
+          // Update view count
           if (projectName && counterElement) {
-              let viewCount = localStorage.getItem(projectName) || 0;
+              let viewCount = localStorage.getItem(projectName + "_views") || 0;
               viewCount++;
-              localStorage.setItem(projectName, viewCount);
+              localStorage.setItem(projectName + "_views", viewCount);
               counterElement.innerText = "Views: " + viewCount;
           }
+
+          // Load existing rating
+          let savedRating = localStorage.getItem(projectName + "_rating") || 0;
+          updateStars(stars, savedRating);
+          ratingText.innerText = "Rating: " + savedRating;
+
+          // Add click event to stars
+          stars.forEach(star => {
+              star.addEventListener("click", function () {
+                  let rating = this.getAttribute("data-value");
+                  localStorage.setItem(projectName + "_rating", rating);
+                  updateStars(stars, rating);
+                  ratingText.innerText = "Rating: " + rating;
+              });
+          });
       });
+
+      // Function to highlight stars
+      function updateStars(stars, rating) {
+          stars.forEach(star => {
+              if (star.getAttribute("data-value") <= rating) {
+                  star.classList.add("active");
+              } else {
+                  star.classList.remove("active");
+              }
+          });
+      }
   });
 </script>
+
 
   <footer class="footer">
     <div class="wrapper">
