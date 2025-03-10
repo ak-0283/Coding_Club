@@ -1,0 +1,370 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+}
+
+.chat-container {
+    width: 380px;
+    height: 600px;
+    background: white;
+    margin-top: 5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-header {
+    background: #5b7cfa;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chat-header .info {
+    flex: 1;
+}
+
+.chat-header h2 {
+    font-size: 18px;
+    margin-bottom: 2px;
+}
+
+.chat-header p {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    background: #f5f7fb;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.message-content {
+    max-width: 70%;
+}
+
+.message-bubble {
+    padding: 12px 15px;
+    border-radius: 18px;
+    margin-bottom: 5px;
+    position: relative;
+    word-wrap: break-word;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.message-time {
+    font-size: 10px;
+    color: #999;
+    margin-left: 10px;
+}
+
+.user {
+    flex-direction: row-reverse;
+}
+
+.user .avatar {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.user .message-content {
+    align-items: flex-end;
+}
+
+.user .message-bubble {
+    background: #5b7cfa;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.bot .message-bubble {
+    background: white;
+    color: #333;
+    border-bottom-left-radius: 4px;
+}
+
+.user .message-time {
+    text-align: right;
+}
+
+.typing-indicator {
+    display: flex;
+    padding: 12px 15px;
+    background: white;
+    border-radius: 18px;
+    margin-bottom: 5px;
+    width: fit-content;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.typing-indicator span {
+    height: 8px;
+    width: 8px;
+    background: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    animation: typing 1.4s infinite both;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+    margin-right: 0;
+}
+
+@keyframes typing {
+    0% {
+        opacity: 0.4;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-5px);
+    }
+    100% {
+        opacity: 0.4;
+        transform: translateY(0);
+    }
+}
+
+.input-area {
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.input-area input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: #f0f2f5;
+    padding: 12px 15px;
+    border-radius: 20px;
+    font-size: 15px;
+}
+
+.input-area button {
+    background: #5b7cfa;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.input-area button:hover {
+    background: #4a67d8;
+    transform: scale(1.05);
+}
+
+.input-area button:active {
+    transform: scale(0.95);
+}
+
+/* Custom scrollbar */
+.messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+/* Make it responsive */
+@media (max-width: 480px) {
+    .chat-container {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
+    
+    body {
+        padding: 0;
+    }
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Back Button */
+.back-button {
+    background: #2867f0;
+    color: white;
+    border: none;
+    /* padding: 0.8rem 20px; */
+    width: 4rem;
+    height: 2.5rem;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #0190f6;
+    transform: scale(1.05);
+}
+
+.toggle-btn {
+    position: fixed;
+    top: 0;
+    right: 20px;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Toggle theme style */
+#toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+/* Dark mode effect */
+.dark-mode #toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+.toggle-btn:hover {
+    background: #0056b3;
+}
+
+body.dark-mode {
+    background: #121212;
+    color: #fff;
+}
+
+/* Dark mode for header */
+.dark-mode nav {
+    background: linear-gradient(135deg, #1e1e1e, #333);
+}
+
+.dark-mode .chat-container{
+    background: #2A2A2A;
+}
+.dark-mode .chat-header,
+.dark-mode .input-area{
+    background: #1e1e1e;
+    color: #fff;
+}
+.dark-mode .messages{
+    background: #565656;
+}
+.dark-mode .chat-container h2,
+.dark-mode .timer{
+    text-shadow: none;
+}
+.dark-mode .chat-container button{
+    color: #1e1e1e;
+}
+.dark-mode .chat-container button:hover{
+    background-color: #121212;
+    color: #fff;
+}
