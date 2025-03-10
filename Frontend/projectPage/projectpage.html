@@ -45,6 +45,17 @@
       width: 100% !important;
       padding: 5px 0px !important;
     }
+    .rating {
+      cursor: pointer;
+      font-size: 24px;
+      color: gray;
+  }
+  .star {
+      display: inline-block;
+  }
+  .star.active {
+      color: gold;
+  }
 
     .wrapper {
       justify-content: space-evenly !important;
@@ -247,17 +258,22 @@
     
     </div>
     <div data-aos="fade-up" class="projects-container">
-      <div data-aos="fade-up" class="project-card" data-level="beginner"
-      data-project="WeatherApp">
-          <span class="bookmark-icon" onclick="bookmarkProject('Weather App', '../WeatherApp/weather.html')">🔖</span>
-          <img src="https://tse1.mm.bing.net/th?id=OIP.NXuyZrgL1obgCPMawBsdagHaFj&pid=Api&P=0&h=180"
-              alt="Weather App" />
-          <h3>Weather App</h3>
-          <p>Get real-time weather updates using an API with JavaScript.</p>
-          <a href="../WeatherApp/weather.html" class="view-demo">View Demo</a>
-          <p class="view-counter">Views: 0</p>
-      </div>
-  
+      <div data-aos="fade-up" class="project-card" data-level="beginner" data-project="WeatherApp">
+        <span class="bookmark-icon" onclick="bookmarkProject('Weather App', '../WeatherApp/weather.html')">🔖</span>
+        <img src="https://tse1.mm.bing.net/th?id=OIP.NXuyZrgL1obgCPMawBsdagHaFj&pid=Api&P=0&h=180" alt="Weather App" />
+        <h3>Weather App</h3>
+        <p>Get real-time weather updates using an API with JavaScript.</p>
+        <a href="../WeatherApp/weather.html" class="view-demo">View Demo</a>
+        <p class="view-counter">Views: 0</p>
+        <div class="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p class="rating-text">Rating: 0</p>
+    </div>
  
    
     
@@ -272,30 +288,15 @@
           </p>
           <a href="../stopWatch/stopwatch.html" class="view-demo">View Demo</a>
           <p class="view-counter">Views: 0</p>
+          <div class="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
         </div>
-      <div data-aos="fade-up" class="projects-container">
-
-        <div data-aos="fade-up" class="projects-container">
-          <div data-aos="fade-up" class="project-card" data-level="beginner">
-            <img src="https://tse1.mm.bing.net/th?id=OIP.NXuyZrgL1obgCPMawBsdagHaFj&pid=Api&P=0&h=180"
-              alt="Weather App" />
-            <h3>Weather App</h3>
-            <p>Get real-time weather updates using an API with JavaScript.</p>
-            <a href="../WeatherApp/weather.html" class="view-demo">View Demo</a>
-          </div>
-
-          <div data-aos="fade-up" class="project-card" data-level="beginner">
-            <img src="https://tse2.mm.bing.net/th?id=OIP.ZDHGb4WYPBoc0UHpTpqHEQHaHa&pid=Api&P=0&h=180"
-              alt="Stopwatch" />
-            <h3>Stopwatch</h3>
-            <p>
-              A simple stopwatch with start, stop, and reset functionalities.
-            </p>
-            <a href="../stopWatch/stopwatch.html" class="view-demo">View Demo</a>
-          </div>
-
-
-
+        <p class="rating-text">Rating: 0</p>
+        </div>
 
         <div data-aos="fade-up" class="project-card" data-level="intermediate" data-project="QuizApp">
           <span class="bookmark-icon" onclick="bookmarkProject('Quiz App', '../quiz/quiz.html')">🔖</span>
@@ -304,6 +305,14 @@
           <p>A dynamic quiz application with multiple-choice questions.</p>
           <a href="../quiz/quiz.html" class="view-demo">View Demo</a>
           <p class="view-counter">Views: 0</p>
+                    <div class="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p class="rating-text">Rating: 0</p>
       </div>
 
         <div data-aos="fade-up" class="project-card" data-level="beginner"
@@ -314,6 +323,14 @@
           <p>A basic calculator with arithmetic operations.</p>
           <a href="../Calculator/calculator.html" class="view-demo">View Demo</a>
           <p class="view-counter">Views: 0</p>
+             <div class="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p class="rating-text">Rating: 0</p>
         </div>
         <!-- Project 5 -->
         <div data-aos="fade-up" class="project-card" data-level="intermediate"
@@ -324,6 +341,14 @@
           <p>A simple note-taking app with local storage support.</p>
           <a href="../NotesAPP/notes.html" class="view-demo">View Demo</a>
           <p class="view-counter">Views: 0</p>
+             <div class="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p class="rating-text">Rating: 0</p>
         </div>
 
         <!-- Project 6 -->
@@ -335,6 +360,14 @@
           <p>A virtual drum kit that plays sounds when keys are pressed.</p>
           <a href="https://drumkit-by-codingclub.netlify.app/" class="view-demo">View Demo</a>
           <p class="view-counter">Views: 0</p>
+             <div class="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p class="rating-text">Rating: 0</p>
         </div>
 
         <!-- Project 7 -->
@@ -346,6 +379,14 @@
           <p>Test your typing speed with a live timer and accuracy meter.</p>
           <a href="../typingSpeed/typingSpeed.html" class="view-demo">View Demo</a>
           <p class="view-counter">Views: 0</p>
+             <div class="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p class="rating-text">Rating: 0</p>
         </div>
 
         <!-- Project 8 -->
@@ -357,6 +398,14 @@
           <p>A budget tracker to monitor income and expenses.</p>
           <a href="../ExpenseTracker/expenseTracker.html" class="view-demo">View Demo</a>
           <p class="view-counter">Views: 0</p>
+             <div class="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p class="rating-text">Rating: 0</p>
         </div>
 
         <!-- Project 9 -->
@@ -368,6 +417,14 @@
           <p>Search words and get meanings using a dictionary API.</p>
           <a href="../Dictionary/dictionary.html" class="view-demo">View Demo</a>
           <p class="view-counter">Views: 0</p>
+             <div class="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p class="rating-text">Rating: 0</p>
         </div>
 
         <!-- Project 10 -->
@@ -379,6 +436,14 @@
           <p>A personal portfolio to showcase your work and projects.</p>
           <a href="https://personalportfolio-codingclub.netlify.app/" class="view-demo">View Demo</a>
           <p class="view-counter">Views: 0</p>
+             <div class="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p class="rating-text">Rating: 0</p>
         </div>
 
         <!-- Project 11 (Currency converter app) -->
@@ -393,10 +458,18 @@
           </p>
           <a href="../currencyConverter/index.html" class="view-demo">View Demo</a>
           <p class="view-counter">Views: 0</p>
+             <div class="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p class="rating-text">Rating: 0</p>
         </div>
 
         <!-- Project 12 (Advance Password Generator) -->
-        <div data-aos="fade-up" class="project-card" data-level="medium">
+        <div data-aos="fade-up" class="project-card" data-level="medium" data-project="passwordGenerator">
           <span class="bookmark-icon" onclick="bookmarkProject('password generator','../passwordGenerator/index.html')">🔖</span>
           <img
             src="../passwordGenerator/Coding Club-Projects and 3 more pages - Subhas - Microsoft​ Edge 05-03-2025 18_20_49.png"
@@ -406,6 +479,15 @@
             It's a advanced password generaing app from where user can generate password and copy it to use
           </p>
           <a href="../passwordGenerator/index.html" class="view-demo">View Demo</a>
+             <div class="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+         <p class="view-counter">Views: 0</p>
+        <p class="rating-text">Rating: 0</p>
         </div>
 
         <!-- Project 13 (BMI Calculator) -->
@@ -1000,21 +1082,51 @@
   
       showBookmarks(); // Call this function to display bookmarks on page load
   </script>
- <script>
+<script>
   document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll(".project-card").forEach(card => {
-          let projectName = card.getAttribute("data-project"); // Get unique project name
-          let counterElement = card.querySelector(".view-counter"); // Get counter element
+          let projectName = card.getAttribute("data-project"); // Unique project name
+          let counterElement = card.querySelector(".view-counter"); // View counter
+          let stars = card.querySelectorAll(".star"); // Star elements
+          let ratingText = card.querySelector(".rating-text"); // Rating text
 
+          // Update view count
           if (projectName && counterElement) {
-              let viewCount = localStorage.getItem(projectName) || 0;
+              let viewCount = localStorage.getItem(projectName + "_views") || 0;
               viewCount++;
-              localStorage.setItem(projectName, viewCount);
+              localStorage.setItem(projectName + "_views", viewCount);
               counterElement.innerText = "Views: " + viewCount;
           }
+
+          // Load existing rating
+          let savedRating = localStorage.getItem(projectName + "_rating") || 0;
+          updateStars(stars, savedRating);
+          ratingText.innerText = "Rating: " + savedRating;
+
+          // Add click event to stars
+          stars.forEach(star => {
+              star.addEventListener("click", function () {
+                  let rating = this.getAttribute("data-value");
+                  localStorage.setItem(projectName + "_rating", rating);
+                  updateStars(stars, rating);
+                  ratingText.innerText = "Rating: " + rating;
+              });
+          });
       });
+
+      // Function to highlight stars
+      function updateStars(stars, rating) {
+          stars.forEach(star => {
+              if (star.getAttribute("data-value") <= rating) {
+                  star.classList.add("active");
+              } else {
+                  star.classList.remove("active");
+              }
+          });
+      }
   });
 </script>
+
 
   <footer class="footer">
     <div class="wrapper">
