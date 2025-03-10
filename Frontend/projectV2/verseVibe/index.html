@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verse Vibe</title>
+    <style>
+      body {
+        background: url("https://www.toptal.com/designers/subtlepatterns/uploads/agedpaper.png");
+        font-family: "Georgia", serif;
+        text-align: center;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        background: rgba(255, 245, 230, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        margin: auto;
+      }
+      select,
+      button {
+        padding: 10px;
+        margin: 10px;
+        font-size: 18px;
+        border-radius: 5px;
+        border: none;
+      }
+      .poem-box {
+        font-style: italic;
+        margin-top: 20px;
+        padding: 15px;
+        background: #fdf6e3;
+        border: 1px solid #c2a87e;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Random Poetry Generator</h1>
+      <select id="genre">
+        <option value="nature">Nature</option>
+        <option value="love">Love</option>
+        <option value="mystery">Mystery</option>
+        <option value="inspiration">Inspiration</option>
+      </select>
+      <button onclick="generatePoem()">Generate Poem</button>
+      <div id="poem" class="poem-box"></div>
+      <button onclick="copyPoem()">Copy</button>
+      <button onclick="downloadPoem()">Download</button>
+    </div>
+
+    <script>
+      const poems = {
+        nature: [
+          "The whispering winds call my name,\nThrough golden fields, they dance and tame.",
+          "A river sings its gentle tune,\nReflecting light of silver moon.",
+        ],
+        love: [
+          "Your eyes like stars in endless space,\nA gentle touch, a warm embrace.",
+          "A heart that beats in time with mine,\nOur souls entwined in love divine.",
+        ],
+        mystery: [
+          "Shadows dance on ancient walls,\nEchoes lost in silent halls.",
+          "A hidden path, a secret door,\nWhat lies beyond, forevermore?",
+        ],
+        inspiration: [
+          "Rise like the sun and chase the day,\nLet no shadow block your way.",
+          "Dreams are sparks of fire bright,\nGuiding souls into the night.",
+        ],
+      };
+
+      function generatePoem() {
+        const genre = document.getElementById("genre").value;
+        const randomIndex = Math.floor(Math.random() * poems[genre].length);
+        document.getElementById("poem").innerText = poems[genre][randomIndex];
+      }
+
+      function copyPoem() {
+        navigator.clipboard.writeText(
+          document.getElementById("poem").innerText
+        );
+        alert("Poem copied to clipboard!");
+      }
+
+      function downloadPoem() {
+        const text = document.getElementById("poem").innerText;
+        const blob = new Blob([text], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "poem.txt";
+        link.click();
+      }
+    </script>
+  </body>
+</html>
