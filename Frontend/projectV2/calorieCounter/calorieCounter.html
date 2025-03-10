@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calorie Counter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        text-align: center;
+        padding: 20px;
+      }
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: auto;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .input-group input,
+      select,
+      button {
+        margin: 5px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      ul li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #ddd;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      ul li button {
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      .dark-mode {
+        background: #333;
+        color: white;
+      }
+      .dark-mode .container {
+        background: #444;
+        color: white;
+      }
+      .dark-mode ul li {
+        background: #555;
+      }
+      progress {
+        width: 100%;
+        height: 10px;
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Calorie Counter</h1>
+        <button id="toggle-mode">🌙</button>
+      </div>
+      <input
+        type="number"
+        id="calorie-goal"
+        placeholder="Set Daily Calorie Goal"
+      />
+      <progress id="progress-bar" value="0" max="100"></progress>
+      <div class="input-group">
+        <select id="meal-category">
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Snacks">Snacks</option>
+        </select>
+        <input type="text" id="food" placeholder="Enter Food Item" />
+        <input type="number" id="calories" placeholder="Calories" />
+        <button onclick="addFood()">Add</button>
+      </div>
+      <h2>
+        Total Calories: <span id="total-calories">0</span> /
+        <span id="goal">0</span>
+      </h2>
+      <ul id="food-list"></ul>
+      <button id="reset">Reset</button>
+    </div>
+
+    <script>
+      document
+        .getElementById("toggle-mode")
+        .addEventListener("click", function () {
+          document.body.classList.toggle("dark-mode");
+          this.textContent = document.body.classList.contains("dark-mode")
+            ? "☀️"
+            : "🌙";
+        });
+
+      let totalCalories = 0;
+      let calorieGoal = 0;
+
+      document
+        .getElementById("calorie-goal")
+        .addEventListener("input", function () {
+          calorieGoal = parseInt(this.value) || 0;
+          document.getElementById("goal").textContent = calorieGoal;
+          updateProgressBar();
+        });
+
+      function addFood() {
+        let food = document.getElementById("food").value;
+        let calories = parseInt(document.getElementById("calories").value);
+        let category = document.getElementById("meal-category").value;
+        if (food && calories > 0) {
+          totalCalories += calories;
+          document.getElementById("total-calories").textContent = totalCalories;
+          let listItem = document.createElement("li");
+          listItem.innerHTML = `<strong>[${category}]</strong> ${food}: ${calories} kcal - ${new Date().toLocaleTimeString()} <button onclick="removeItem(this, ${calories})">❌</button>`;
+          document.getElementById("food-list").appendChild(listItem);
+          document.getElementById("food").value = "";
+          document.getElementById("calories").value = "";
+          updateProgressBar();
+        }
+      }
+
+      function removeItem(element, calories) {
+        totalCalories -= calories;
+        document.getElementById("total-calories").textContent = totalCalories;
+        element.parentElement.remove();
+        updateProgressBar();
+      }
+
+      function updateProgressBar() {
+        let progress =
+          calorieGoal > 0 ? (totalCalories / calorieGoal) * 100 : 0;
+        document.getElementById("progress-bar").value = Math.min(progress, 100);
+      }
+
+      document.getElementById("reset").addEventListener("click", function () {
+        totalCalories = 0;
+        calorieGoal = 0;
+        document.getElementById("total-calories").textContent = 0;
+        document.getElementById("goal").textContent = 0;
+        document.getElementById("calorie-goal").value = "";
+        document.getElementById("food-list").innerHTML = "";
+        updateProgressBar();
+      });
+    </script>
+  </body>
+</html>

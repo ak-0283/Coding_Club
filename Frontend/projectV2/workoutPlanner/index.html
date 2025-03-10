@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<<<<<<< HEAD
+    <title>Random Poetry Generator</title>
+    <style>
+      body {
+        background: url("https://www.toptal.com/designers/subtlepatterns/uploads/agedpaper.png");
+        font-family: "Georgia", serif;
+=======
+    <title>Workout Planner</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+>>>>>>> upstream/main
+        text-align: center;
+        padding: 20px;
+        transition: background 0.3s, color 0.3s;
+      }
+      .container {
+        max-width: 600px;
+<<<<<<< HEAD
+        background: rgba(255, 245, 230, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        margin: auto;
+<<<<<<< HEAD
+=======
+        transition: background 0.3s, color 0.3s;
+      }
+      select,
+      button {
+        padding: 10px;
+        margin: 10px;
+        font-size: 18px;
+        border-radius: 5px;
+        border: none;
+      }
+      .poem-box {
+        font-style: italic;
+        margin-top: 20px;
+        padding: 15px;
+        /* background: #fdf6e3; */
+        border: 1px solid #c2a87e;
+        border-radius: 5px;
+      }
+      .dark-mode {
+        background: #121212;
+        color: white;
+      }
+      .dark-mode .container {
+        background: black;
+        color: white;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background: rgba(255, 245, 230, 0.9);
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .dark-mode .header {
+        background: black;
+=======
+        margin: auto;
+>>>>>>> upstream/main
+        background: #888;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        color: white;
+      }
+      .input-section input,
+      .input-section select,
+      .input-section button {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        font-size: 16px;
+        background: white;
+        color: black;
+        border: none;
+        border-radius: 5px;
+      }
+      .workout-list ul {
+        list-style: none;
+        padding: 0;
+      }
+      .workout-list li {
+        background: #ddd;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+<<<<<<< HEAD
+        align-items: center;
+=======
+>>>>>>> upstream/main
+        color: black;
+      }
+      .button-group {
+        display: flex;
+        gap: 5px;
+      }
+      .delete-btn,
+      .complete-btn {
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+      }
+<<<<<<< HEAD
+      .complete-btn {
+        background: green;
+      }
+=======
+>>>>>>> upstream/main
+      .dark-mode {
+        background-color: #1e1e1e;
+        color: white;
+      }
+      .container.dark-mode {
+        background: #444;
+      }
+<<<<<<< HEAD
+      .progress-tracker {
+        margin-top: 20px;
+        text-align: left;
+      }
+      .progress-bar {
+        width: 100%;
+        background: #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .progress-bar div {
+        height: 20px;
+        background: green;
+        width: 0%;
+        transition: width 0.3s;
+=======
+      .input-section input,
+      .input-section select,
+      .input-section button {
+        background: white;
+        color: black;
+>>>>>>> upstream/main
+      }
+      .toggle-btn {
+        background: #444;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-top: 10px;
+        border-radius: 5px;
+<<<<<<< HEAD
+=======
+>>>>>>> upstream/main
+>>>>>>> upstream/main
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+<<<<<<< HEAD
+      <div class="header">
+        <h1>VerseVibe</h1>
+        <button onclick="toggleDarkMode()">Dark Mode</button>
+      </div>
+      <select id="genre">
+        <option value="nature">Nature</option>
+        <option value="love">Love</option>
+        <option value="mystery">Mystery</option>
+        <option value="inspiration">Inspiration</option>
+        <option value="friendship">Friendship</option>
+        <option value="adventure">Adventure</option>
+      </select>
+      <button onclick="generatePoem()">Generate Poem</button>
+      <div id="poem" class="poem-box"></div>
+      <button onclick="copyPoem()">Copy</button>
+      <button onclick="downloadPoem()">Download</button>
+    </div>
+
+    <script>
+      const poems = {
+        nature: [
+          "The whispering winds call my name,\nThrough golden fields, they dance and tame.",
+          "A river sings its gentle tune,\nReflecting light of silver moon.",
+          "Mountains stand with silent grace,\nA timeless watch in nature's embrace.",
+        ],
+        love: [
+          "Your eyes like stars in endless space,\nA gentle touch, a warm embrace.",
+          "A heart that beats in time with mine,\nOur souls entwined in love divine.",
+          "Love’s whisper echoes through the night,\nA melody both soft and bright.",
+        ],
+        mystery: [
+          "Shadows dance on ancient walls,\nEchoes lost in silent halls.",
+          "A hidden path, a secret door,\nWhat lies beyond, forevermore?",
+          "Fog veils the midnight street,\nFootsteps vanish in silent retreat.",
+        ],
+        inspiration: [
+          "Rise like the sun and chase the day,\nLet no shadow block your way.",
+          "Dreams are sparks of fire bright,\nGuiding souls into the night.",
+          "With every fall, we rise anew,\nThe world awaits what we will do.",
+        ],
+        friendship: [
+          "A friend’s embrace, a heart so true,\nIn darkest times, they pull you through.",
+          "Through laughter, tears, both thick and thin,\nA friend’s warm love will always win.",
+          "Side by side, we walk the years,\nThrough every joy and all the tears.",
+        ],
+        adventure: [
+          "Across the seas and through the skies,\nAdventure calls where mystery lies.",
+          "The road ahead is vast and wide,\nLet courage be your trusted guide.",
+          "Mountains high and valleys deep,\nA traveler’s soul will never sleep.",
+        ],
+      };
+
+      function generatePoem() {
+        const genre = document.getElementById("genre").value;
+        const randomIndex = Math.floor(Math.random() * poems[genre].length);
+        document.getElementById("poem").innerText = poems[genre][randomIndex];
+      }
+
+      function copyPoem() {
+        navigator.clipboard.writeText(
+          document.getElementById("poem").innerText
+        );
+        alert("Poem copied to clipboard!");
+      }
+
+      function downloadPoem() {
+        const text = document.getElementById("poem").innerText;
+        const blob = new Blob([text], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "poem.txt";
+        link.click();
+      }
+
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+=======
+      <h1>Workout Planner</h1>
+<<<<<<< HEAD
+      <button class="toggle-btn" onclick="toggleDarkMode()">
+        Switch to Dark Mode
+      </button>
+=======
+      <button class="toggle-btn" onclick="toggleDarkMode()">Dark Mode</button>
+>>>>>>> upstream/main
+      <div class="input-section">
+        <input type="text" id="workout-name" placeholder="Workout Name" />
+        <input
+          type="number"
+          id="workout-duration"
+          placeholder="Duration (mins)"
+        />
+        <select id="workout-type">
+          <option value="Cardio">Cardio</option>
+          <option value="Strength">Strength</option>
+          <option value="Flexibility">Flexibility</option>
+        </select>
+        <button onclick="addWorkout()">Add Workout</button>
+      </div>
+      <div class="workout-list">
+        <h2>Your Workouts</h2>
+        <ul id="workouts"></ul>
+      </div>
+      <div class="progress-tracker">
+        <h2>Progress Tracker</h2>
+        <div class="progress-bar"><div id="progress"></div></div>
+        <p id="progress-text">0% completed</p>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        loadWorkouts();
+        checkDarkMode();
+<<<<<<< HEAD
+        updateProgress();
+=======
+>>>>>>> upstream/main
+      });
+
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        document.querySelector(".container").classList.toggle("dark-mode");
+        let button = document.querySelector(".toggle-btn");
+        if (document.body.classList.contains("dark-mode")) {
+          localStorage.setItem("darkMode", "enabled");
+          button.textContent = "Switch to Light Mode";
+        } else {
+          localStorage.setItem("darkMode", "disabled");
+          button.textContent = "Switch to Dark Mode";
+        }
+<<<<<<< HEAD
+
+        let workout = { name, duration, type, completed: false };
+        let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
+        workouts.push(workout);
+        localStorage.setItem("workouts", JSON.stringify(workouts));
+
+        displayWorkouts();
+        updateProgress();
+      }
+
+      function displayWorkouts() {
+        let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
+        let workoutList = document.getElementById("workouts");
+        workoutList.innerHTML = "";
+
+        workouts.forEach((workout, index) => {
+          let li = document.createElement("li");
+          li.innerHTML = `${workout.name} - ${workout.duration} mins (${workout.type})`;
+
+          let buttonGroup = document.createElement("div");
+          buttonGroup.classList.add("button-group");
+
+          let completeBtn = document.createElement("button");
+          completeBtn.classList.add("complete-btn");
+          completeBtn.innerText = "✔";
+          completeBtn.onclick = () => completeWorkout(index);
+
+          let deleteBtn = document.createElement("button");
+          deleteBtn.classList.add("delete-btn");
+          deleteBtn.innerText = "X";
+          deleteBtn.onclick = () => deleteWorkout(index);
+
+          buttonGroup.appendChild(deleteBtn);
+          buttonGroup.appendChild(completeBtn);
+          li.appendChild(buttonGroup);
+
+          workoutList.appendChild(li);
+        });
+      }
+
+      function completeWorkout(index) {
+        let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
+        workouts[index].completed = true;
+        localStorage.setItem("workouts", JSON.stringify(workouts));
+        updateProgress();
+        displayWorkouts();
+      }
+
+      function deleteWorkout(index) {
+        let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
+        workouts.splice(index, 1);
+        localStorage.setItem("workouts", JSON.stringify(workouts));
+        displayWorkouts();
+        updateProgress();
+      }
+
+      function updateProgress() {
+        let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
+        let totalWorkouts = workouts.length;
+        let completedWorkouts = workouts.filter((w) => w.completed).length;
+        let progress =
+          totalWorkouts > 0 ? (completedWorkouts / totalWorkouts) * 100 : 0;
+        document.getElementById("progress").style.width = progress + "%";
+        document.getElementById("progress-text").innerText =
+          Math.round(progress) + "% completed";
+=======
+      }
+
+      function checkDarkMode() {
+        let darkMode = localStorage.getItem("darkMode");
+        let button = document.querySelector(".toggle-btn");
+        if (darkMode === "enabled") {
+          document.body.classList.add("dark-mode");
+          document.querySelector(".container").classList.add("dark-mode");
+          button.textContent = "Switch to Light Mode";
+        } else {
+          document.body.classList.remove("dark-mode");
+          document.querySelector(".container").classList.remove("dark-mode");
+          button.textContent = "Switch to Dark Mode";
+        }
+>>>>>>> upstream/main
+>>>>>>> upstream/main
+      }
+    </script>
+  </body>
+</html>
