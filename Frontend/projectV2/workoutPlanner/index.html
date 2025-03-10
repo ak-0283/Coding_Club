@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout Planner</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        padding: 20px;
+        transition: background 0.3s, color 0.3s;
+      }
+      .container {
+        max-width: 600px;
+        margin: auto;
+        background: #888;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        color: white;
+      }
+      .input-section input,
+      .input-section select,
+      .input-section button {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        font-size: 16px;
+        background: white;
+        color: black;
+        border: none;
+        border-radius: 5px;
+      }
+      .workout-list ul {
+        list-style: none;
+        padding: 0;
+      }
+      .workout-list li {
+        background: #ddd;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: black;
+      }
+      .button-group {
+        display: flex;
+        gap: 5px;
+      }
+      .delete-btn,
+      .complete-btn {
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+      }
+      .complete-btn {
+        background: green;
+      }
+      .dark-mode {
+        background-color: #1e1e1e;
+        color: white;
+      }
+      .container.dark-mode {
+        background: #444;
+      }
+      .progress-tracker {
+        margin-top: 20px;
+        text-align: left;
+      }
+      .progress-bar {
+        width: 100%;
+        background: #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .progress-bar div {
+        height: 20px;
+        background: green;
+        width: 0%;
+        transition: width 0.3s;
+      }
+      .toggle-btn {
+        background: #444;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-top: 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Workout Planner</h1>
+      <button class="toggle-btn" onclick="toggleDarkMode()">
+        Switch to Dark Mode
+      </button>
+      <div class="input-section">
+        <input type="text" id="workout-name" placeholder="Workout Name" />
+        <input
+          type="number"
+          id="workout-duration"
+          placeholder="Duration (mins)"
+        />
+        <select id="workout-type">
+          <option value="Cardio">Cardio</option>
+          <option value="Strength">Strength</option>
+          <option value="Flexibility">Flexibility</option>
+        </select>
+        <button onclick="addWorkout()">Add Workout</button>
+      </div>
+      <div class="workout-list">
+        <h2>Your Workouts</h2>
+        <ul id="workouts"></ul>
+      </div>
+      <div class="progress-tracker">
+        <h2>Progress Tracker</h2>
+        <div class="progress-bar"><div id="progress"></div></div>
+        <p id="progress-text">0% completed</p>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        loadWorkouts();
+        checkDarkMode();
+        updateProgress();
+      });
+
+      function addWorkout() {
+        let name = document.getElementById("workout-name").value;
+        let duration = document.getElementById("workout-duration").value;
+        let type = document.getElementById("workout-type").value;
+
+        if (name === "" || duration === "") {
+          alert("Please enter all details");
+          return;
+        }
+
+        let workout = { name, duration, type, completed: false };
+        let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
+        workouts.push(workout);
+        localStorage.setItem("workouts", JSON.stringify(workouts));
+
+        displayWorkouts();
+        updateProgress();
+      }
+
+      function displayWorkouts() {
+        let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
+        let workoutList = document.getElementById("workouts");
+        workoutList.innerHTML = "";
+
+        workouts.forEach((workout, index) => {
+          let li = document.createElement("li");
+          li.innerHTML = `${workout.name} - ${workout.duration} mins (${workout.type})`;
+
+          let buttonGroup = document.createElement("div");
+          buttonGroup.classList.add("button-group");
+
+          let completeBtn = document.createElement("button");
+          completeBtn.classList.add("complete-btn");
+          completeBtn.innerText = "✔";
+          completeBtn.onclick = () => completeWorkout(index);
+
+          let deleteBtn = document.createElement("button");
+          deleteBtn.classList.add("delete-btn");
+          deleteBtn.innerText = "X";
+          deleteBtn.onclick = () => deleteWorkout(index);
+
+          buttonGroup.appendChild(deleteBtn);
+          buttonGroup.appendChild(completeBtn);
+          li.appendChild(buttonGroup);
+
+          workoutList.appendChild(li);
+        });
+      }
+
+      function completeWorkout(index) {
+        let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
+        workouts[index].completed = true;
+        localStorage.setItem("workouts", JSON.stringify(workouts));
+        updateProgress();
+        displayWorkouts();
+      }
+
+      function deleteWorkout(index) {
+        let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
+        workouts.splice(index, 1);
+        localStorage.setItem("workouts", JSON.stringify(workouts));
+        displayWorkouts();
+        updateProgress();
+      }
+
+      function updateProgress() {
+        let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
+        let totalWorkouts = workouts.length;
+        let completedWorkouts = workouts.filter((w) => w.completed).length;
+        let progress =
+          totalWorkouts > 0 ? (completedWorkouts / totalWorkouts) * 100 : 0;
+        document.getElementById("progress").style.width = progress + "%";
+        document.getElementById("progress-text").innerText =
+          Math.round(progress) + "% completed";
+      }
+    </script>
+  </body>
+</html>
