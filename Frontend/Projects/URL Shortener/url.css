@@ -1,0 +1,190 @@
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+    background-color: #e0c3fc;
+}
+
+::-webkit-scrollbar:hover {
+    background-color: #e0c3fc;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #3a86ff, #8338ec);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to top, #3a86ff, #8338ec);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0e6ff;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 5rem;
+    box-shadow: 0px 0px 10px rgba(128, 0, 128, 0.2);
+    display: inline-block;
+    max-width: 500px;
+    width: 90%;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #d9c2f0;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.container button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background: #8a2be2;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.container button:hover {
+    background: #6a1cb9;
+}
+
+.short-url {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #4b0082;
+}
+
+h2 {
+    color: #4b0082;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #8a2be2;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Back Button */
+.back-button {
+    background: #2867f0;
+    color: white;
+    border: none;
+    padding: 0.8rem 20px;
+    width: 4rem;
+    height: 2.5rem;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #0190f6;
+    transform: scale(1.05);
+}
+
+.toggle-btn {
+    position: fixed;
+    top: 0;
+    right: 30px;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Toggle theme style */
+#toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+/* Dark mode effect */
+.dark-mode #toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+.toggle-btn:hover {
+    background: #0056b3;
+}
+
+body.dark-mode {
+    background: #121212;
+    color: #fff;
+}
+
+/* Dark mode for header */
+.dark-mode nav {
+    background: linear-gradient(135deg, #1e1e1e, #333);
+}
+
+.dark-mode .container {
+    background: #2A2A2A;
+}
+
+.dark-mode .container h2 {
+    color: #fff;
+}
+
+
+.dark-mode .container button:hover {
+    background-color: #121212;
+    color: #fff;
+}
+
+.dark-mode .header {
+    background: linear-gradient(to right, #626b72, #ababab);
+
+}

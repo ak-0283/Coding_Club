@@ -1,4 +1,23 @@
 /* General Reset */
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 10px;
+  background-color: #099fea68;
+}
+
+::-webkit-scrollbar:hover {
+  background-color: #57bff3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #003b6c, #0569dd);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #0569dd, #003b6c);
+}
+
 * {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -10,10 +29,6 @@
 body {
   background: linear-gradient(to right, #8eeaa5, #e17f5e);
   font-family: Arial, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; /* Full height of viewport */
 }
 
 /* Navbar */
@@ -36,6 +51,7 @@ body {
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 6px;
+  margin-top: 0;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -47,6 +63,11 @@ body {
 
 /* Centering the Login Form */
 .login-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 6rem auto;
   width: 100%;
   max-width: 400px;
   padding: 30px;
@@ -204,4 +225,189 @@ body.dark-mode {
 
 .toggle-btn:hover {
   background: #0056b3;
+}
+
+/* Footer Styling */
+
+.footer {
+  font-family: Arial, sans-serif;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  text-align: center;
+  width: 100%;
+  padding: 5px 0px;
+}
+.dark-mode .footer {
+  background: #333;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .footer {
+    padding: 5px 30px;
+  }
+
+  .newsletter button {
+    width: 50%;
+  }
+
+  .newsletter {
+    display: block;
+    margin: 0px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.newsletter {
+  margin: 20px;
+}
+
+.quick-contact {
+  text-align: center;
+}
+
+.quick-contact h3 {
+  text-align: center;
+}
+
+.quick-contact ul {
+  text-align: center;
+}
+
+.quick-contact p {
+  text-align: center;
+}
+
+.social-icon {
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form input {
+  display: block;
+  margin: 10px;
+  padding: 14px;
+  width: 80%;
+  max-width: 600px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  background: #f9f9f9;
+}
+
+button {
+  padding: 14px 30px;
+  background: linear-gradient(135deg, #03a9f7, #77c6f1);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.newsletter button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.2rem;
+  color: white;
+  background: linear-gradient(135deg, #333, #444);
+}
+
+@media (max-width: 100px) {
+  .newsletter input,
+  .newsletter button {
+    width: 300px;
+    /* Keep fixed width */
+  }
+}
+
+.sec-nav {
+  padding: 3px;
+  color: white;
+}
+
+.sec-nav a {
+  color: white;
+  text-decoration: none;
+}
+
+.sec-nav a:hover {
+  text-decoration: underline;
+}
+
+.quick-contact {
+  text-align: left;
+  margin: 20px;
+  color: white;
+  /* list-style: none; */
+}
+
+.quick-contact ul {
+  list-style-type: none;
+}
+
+.social-sharing {
+  margin-right: 40px;
+}
+
+.social-sharing a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  display: flex;
+}
+
+.social-sharing a:hover {
+  text-decoration: underline;
+}
+
+.social-icon {
+  padding: 5px 5px;
+  color: white;
+}
+
+.privacy {
+  margin: 10px 0;
+  color: white;
+}
+
+.privacy a {
+  text-decoration: none;
+  color: white;
+}
+
+.privacy a:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  margin-top: 10px;
+}
+
+/* Responsive for Small Screens */
+@media (max-width: 600px) {
+  .social-icons .icon {
+    font-size: 1.2rem;
+    margin: 0 8px;
+  }
 }

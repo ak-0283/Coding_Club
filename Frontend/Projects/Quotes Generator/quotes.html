@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspirational Quote Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="quotes.css">
+</head>
+<body>
+    <nav class="navbar">
+        <button class="back-button" onclick="history.back()">
+            <i class="fa-solid fa-arrow-left fa-xl"></i>
+        </button>
+        <button id="toggleTheme" class="toggle-btn">🌙</button>
+    </nav>
+    <div class="quote-container">
+        <div class="header">
+            <h1>Daily Inspiration</h1>
+            <p>Discover wisdom that resonates with you</p>
+        </div>
+        
+        <div class="quote-content">
+            <p id="quote" class="quote-text">"Click the button below to get inspired with a random quote."</p>
+            <p id="author" class="author"></p>
+            <span id="quote-count" class="quote-count">0 of 0</span>
+        </div>
+        
+        <div class="categories" id="categories">
+            <span class="category-tag active" data-category="all">All</span>
+            <span class="category-tag" data-category="motivation">Motivation</span>
+            <span class="category-tag" data-category="success">Success</span>
+            <span class="category-tag" data-category="life">Life</span>
+            <span class="category-tag" data-category="wisdom">Wisdom</span>
+        </div>
+        
+        <div class="action-bar">
+            <div class="control-buttons">
+                <button id="prev-btn" class="icon-btn" title="Previous quote">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="next-btn" class="icon-btn" title="Next quote">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <button id="new-quote-btn" class="btn">
+                <i class="fas fa-random"></i>
+                New Quote
+            </button>
+            <div class="share-buttons">
+                <button id="copy-btn" class="icon-btn" title="Copy to clipboard">
+                    <i class="fas fa-copy"></i>
+                </button>
+                <button id="tweet-btn" class="icon-btn" title="Share on Twitter">
+                    <i class="fab fa-twitter"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="quotes.js"></script>
+</body>
+</html>

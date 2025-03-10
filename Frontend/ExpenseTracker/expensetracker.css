@@ -6,6 +6,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
   height: 100vh;
 }
 .container {
@@ -84,7 +85,7 @@ button:hover {
 }
 
 .navbar {
-  width: 98%;
+  width: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -115,7 +116,7 @@ button:hover {
 .toggle-btn {
   position: fixed;
   top: 0;
-  right: 20px;
+  right: 30px;
   color: white;
   border: none;
   border-radius: 50%;

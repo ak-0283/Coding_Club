@@ -39,9 +39,15 @@ function removeExpense(index) {
 
 window.onload = renderExpenses;
 
-// Theme Toggle
-if (toggleTheme) {
-  toggleTheme.addEventListener("click", function () {
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleTheme = document.getElementById("toggleTheme");
+
+  if (!toggleTheme) {
+    console.error("Toggle button not found!");
+    return;
+  }
+
+    toggleTheme.addEventListener("click", function () {
     document.body.classList.toggle("dark-mode");
 
     // Save theme preference
@@ -50,10 +56,9 @@ if (toggleTheme) {
     localStorage.setItem("theme", isDarkMode ? "dark" : "light");
   });
 
-
   // Load theme preference on page load
   if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-mode");
     toggleTheme.textContent = "☀️";
   }
-}
+});

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 Game</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #83b6e0e0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .game-title {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #f59e0b, #ef4444, #8b5cf6);
+      background-size: 600% 600%;
+      animation: gradientTitle 6s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes gradientTitle {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .restart-btn {
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    }
+
+    .undo-btn {
+      background: linear-gradient(to right, #10b981, #059669);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .score-container {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .score-box {
+      background: #fff;
+      padding: 5px 15px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .score-value {
+      font-weight: bold;
+    }
+
+    .game-container {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      background-color: #bbada0;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 10px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .tile {
+      background-color: #cdc1b4;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .tile-appear {
+      animation: appear 0.3s ease;
+    }
+
+    .tile-merge {
+      animation: merge 0.4s ease;
+    }
+
+    @keyframes appear {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+
+      60% {
+        transform: scale(1.1);
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes merge {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.2);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .tile[data-value="0"] {
+      background-color: #cdc1b4;
+    }
+
+    .tile[data-value="2"] {
+      background: linear-gradient(135deg, #eee4da, #ede0c8);
+      color: #776e65;
+    }
+
+    .tile[data-value="4"] {
+      background: linear-gradient(135deg, #ede0c8, #f2b179);
+      color: #776e65;
+    }
+
+    .tile[data-value="8"] {
+      background: linear-gradient(135deg, #f2b179, #f59563);
+    }
+
+    .tile[data-value="16"] {
+      background: linear-gradient(135deg, #f59563, #f67c5f);
+    }
+
+    .tile[data-value="32"] {
+      background: linear-gradient(135deg, #f67c5f, #f65e3b);
+    }
+
+    .tile[data-value="64"] {
+      background: linear-gradient(135deg, #f65e3b, #edcf72);
+    }
+
+    .tile[data-value="128"] {
+      background: linear-gradient(135deg, #edcf72, #edcc61);
+      font-size: 22px;
+    }
+
+    .tile[data-value="256"] {
+      background: linear-gradient(135deg, #edcc61, #edc850);
+      font-size: 22px;
+      box-shadow: 0 0 10px rgba(243, 215, 116, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .tile[data-value="512"] {
+      background: linear-gradient(135deg, #edc850, #edc53f);
+      font-size: 22px;
+      box-shadow: 0 0 10px rgba(243, 215, 116, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .tile[data-value="1024"] {
+      background: linear-gradient(135deg, #edc53f, #3c3a32);
+      font-size: 18px;
+      box-shadow: 0 0 10px rgba(243, 215, 116, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .tile[data-value="2048"] {
+      background: linear-gradient(135deg, #3c3a32, #1c1a18);
+      font-size: 18px;
+      box-shadow: 0 0 10px rgba(243, 215, 116, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .instructions {
+      margin-top: 20px;
+      max-width: 320px;
+      text-align: center;
+      line-height: 1.5;
+      color: #776e65;
+    }
+
+    /* Game over overlay */
+    .game-over {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(238, 228, 218, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s;
+    }
+
+    .game-over.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .game-over h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+      color: #776e65;
+    }
+
+    .game-over p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #776e65;
+    }
+
+    /* Media queries for responsiveness */
+    @media (max-width: 480px) {
+      .game-container {
+        width: 280px;
+        height: 280px;
+        padding: 8px;
+      }
+
+      .game-board {
+        gap: 8px;
+      }
+
+      .tile {
+        font-size: 20px;
+      }
+
+      .game-title {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="game-title">2048</h1>
+
+  <div class="controls">
+    <button class="restart-btn" onclick="restartGame()">Restart</button>
+    <button class="undo-btn" onclick="undoMove()">Undo</button>
+  </div>
+
+  <div class="score-container">
+    <div class="score-box">
+      Score: <span id="score" class="score-value">0</span>
+    </div>
+    <div class="score-box">
+      Best: <span id="best-score" class="score-value">0</span>
+    </div>
+  </div>
+
+  <div class="game-container">
+    <div class="game-board" id="game-board"></div>
+    <div class="game-over" id="game-over">
+      <h2>Game Over!</h2>
+      <p>Score: <span id="final-score">0</span></p>
+      <button class="restart-btn" onclick="restartGame()">Try Again</button>
+    </div>
+  </div>
+
+  <p class="instructions">
+    Use the arrow keys to slide the tiles. When two tiles with the same number touch, they merge into one! Try to reach
+    2048!
+  </p>
+
+  <script>
+    // Game variables
+    const boardSize = 4;
+    let board = [];
+    let prevBoard = [];
+    let score = 0;
+    let bestScore = 0; // Initialize without localStorage
+    let newTiles = [];
+    let mergedTiles = [];
+    const gameBoard = document.getElementById("game-board");
+    const scoreElement = document.getElementById("score");
+    const bestScoreElement = document.getElementById("best-score");
+    const gameOverElement = document.getElementById("game-over");
+    const finalScoreElement = document.getElementById("final-score");
+
+    // Safe localStorage wrapper
+    const safeStorage = {
+      getItem: function (key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (e) {
+          console.log("localStorage not available");
+          return null;
+        }
+      },
+      setItem: function (key, value) {
+        try {
+          localStorage.setItem(key, value);
+        } catch (e) {
+          console.log("localStorage not available");
+        }
+      }
+    };
+
+    // Initialize the game
+    function initGame() {
+      // Try to get best score from localStorage, but handle errors
+      try {
+        const storedBestScore = safeStorage.getItem("bestScore");
+        if (storedBestScore) {
+          bestScore = parseInt(storedBestScore);
+        }
+      } catch (e) {
+        console.log("Error accessing localStorage");
+      }
+
+      bestScoreElement.textContent = bestScore;
+
+      // Create empty board
+      board = Array.from({ length: boardSize }, () => Array(boardSize).fill(0));
+
+      // Create DOM elements for tiles
+      gameBoard.innerHTML = '';
+      for (let r = 0; r < boardSize; r++) {
+        for (let c = 0; c < boardSize; c++) {
+          const tile = document.createElement("div");
+          tile.className = "tile";
+          tile.id = `tile-${r}-${c}`;
+          tile.dataset.value = 0;
+          gameBoard.appendChild(tile);
+        }
+      }
+
+      // Hide game over overlay
+      gameOverElement.classList.remove("show");
+
+      // Reset score
+      score = 0;
+      scoreElement.textContent = score;
+
+      // Start game with two random tiles
+      generateTile();
+      generateTile();
+      updateBoard();
+    }
+
+    // Update the visual board based on the game state
+    function updateBoard() {
+      for (let r = 0; r < boardSize; r++) {
+        for (let c = 0; c < boardSize; c++) {
+          const tileElement = document.getElementById(`tile-${r}-${c}`);
+          const value = board[r][c];
+
+          // Update tile value
+          tileElement.dataset.value = value;
+          tileElement.textContent = value > 0 ? value : '';
+
+          // Clear previous animation classes
+          tileElement.classList.remove("tile-appear", "tile-merge");
+
+          // Add animation if it's a new or merged tile
+          if (newTiles.some(([nr, nc]) => nr === r && nc === c)) {
+            tileElement.classList.add("tile-appear");
+          }
+
+          if (mergedTiles.some(([nr, nc]) => nr === r && nc === c)) {
+            tileElement.classList.add("tile-merge");
+          }
+        }
+      }
+
+      // Update score
+      scoreElement.textContent = score;
+
+      // Update best score if needed
+      if (score > bestScore) {
+        bestScore = score;
+        bestScoreElement.textContent = bestScore;
+
+        // Try to save to localStorage but handle errors
+        try {
+          safeStorage.setItem("bestScore", bestScore);
+        } catch (e) {
+          console.log("Error saving to localStorage");
+        }
+      }
+
+      // Reset animation tracking arrays
+      newTiles = [];
+      mergedTiles = [];
+    }
+
+    // Generate a new tile (2 or 4) at a random empty position
+    function generateTile() {
+      const emptyTiles = [];
+
+      for (let r = 0; r < boardSize; r++) {
+        for (let c = 0; c < boardSize; c++) {
+          if (board[r][c] === 0) {
+            emptyTiles.push([r, c]);
+          }
+        }
+      }
+
+      if (emptyTiles.length > 0) {
+        const [r, c] = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+        board[r][c] = Math.random() < 0.9 ? 2 : 4;
+        newTiles.push([r, c]);
+      }
+    }
+
+    // Move tiles in the specified direction
+    function move(direction) {
+      // Save the previous state for undo
+      prevBoard = JSON.parse(JSON.stringify(board));
+
+      // Reset merged tiles tracking
+      mergedTiles = [];
+
+      let moved = false;
+
+      if (direction === "left") {
+        moved = moveLeft();
+      } else if (direction === "right") {
+        moved = moveRight();
+      } else if (direction === "up") {
+        moved = moveUp();
+      } else if (direction === "down") {
+        moved = moveDown();
+      }
+
+      if (moved) {
+        generateTile();
+        updateBoard();
+        checkGameOver();
+      }
+    }
+
+    // Move tiles left
+    function moveLeft() {
+      let moved = false;
+
+      for (let r = 0; r < boardSize; r++) {
+        const originalRow = [...board[r]];
+        const newRow = slideAndMerge(originalRow, r, true);
+
+        board[r] = newRow;
+
+        if (!arraysEqual(originalRow, newRow)) {
+          moved = true;
+        }
+      }
+
+      return moved;
+    }
+
+    // Move tiles right
+    function moveRight() {
+      let moved = false;
+
+      for (let r = 0; r < boardSize; r++) {
+        const originalRow = [...board[r]];
+        const reversed = [...originalRow].reverse();
+        const newRow = slideAndMerge(reversed, r, true);
+
+        board[r] = newRow.reverse();
+
+        if (!arraysEqual(originalRow, board[r])) {
+          moved = true;
+        }
+      }
+
+      return moved;
+    }
+
+    // Move tiles up
+    function moveUp() {
+      let moved = false;
+
+      for (let c = 0; c < boardSize; c++) {
+        const originalCol = [];
+        for (let r = 0; r < boardSize; r++) {
+          originalCol.push(board[r][c]);
+        }
+
+        const newCol = slideAndMerge(originalCol, c, false);
+
+        for (let r = 0; r < boardSize; r++) {
+          board[r][c] = newCol[r];
+        }
+
+        if (!arraysEqual(originalCol, newCol)) {
+          moved = true;
+        }
+      }
+
+      return moved;
+    }
+
+    // Move tiles down
+    function moveDown() {
+      let moved = false;
+
+      for (let c = 0; c < boardSize; c++) {
+        const originalCol = [];
+        for (let r = 0; r < boardSize; r++) {
+          originalCol.push(board[r][c]);
+        }
+
+        const reversed = [...originalCol].reverse();
+        const newCol = slideAndMerge(reversed, c, false);
+
+        const finalCol = newCol.reverse();
+        for (let r = 0; r < boardSize; r++) {
+          board[r][c] = finalCol[r];
+        }
+
+        if (!arraysEqual(originalCol, finalCol)) {
+          moved = true;
+        }
+      }
+
+      return moved;
+    }
+
+    // Slide and merge a line of tiles
+    function slideAndMerge(line, index, isHorizontal) {
+      // Remove zeros
+      const nonZeros = line.filter(val => val !== 0);
+      const result = Array(boardSize).fill(0);
+
+      let resultIndex = 0;
+      for (let i = 0; i < nonZeros.length; i++) {
+        if (i < nonZeros.length - 1 && nonZeros[i] === nonZeros[i + 1]) {
+          // Merge tiles
+          result[resultIndex] = nonZeros[i] * 2;
+          score += result[resultIndex];
+
+          // Track merged tiles position
+          if (isHorizontal) {
+            mergedTiles.push([index, resultIndex]);
+          } else {
+            mergedTiles.push([resultIndex, index]);
+          }
+
+          i++; // Skip the next tile since it's merged
+        } else {
+          // Just move the tile
+          result[resultIndex] = nonZeros[i];
+        }
+        resultIndex++;
+      }
+
+      return result;
+    }
+
+    // Check if game is over (no empty tiles and no possible merges)
+    function checkGameOver() {
+      // Check for empty tiles
+      for (let r = 0; r < boardSize; r++) {
+        for (let c = 0; c < boardSize; c++) {
+          if (board[r][c] === 0) {
+            return false;
+          }
+        }
+      }
+
+      // Check for possible horizontal merges
+      for (let r = 0; r < boardSize; r++) {
+        for (let c = 0; c < boardSize - 1; c++) {
+          if (board[r][c] === board[r][c + 1]) {
+            return false;
+          }
+        }
+      }
+
+      // Check for possible vertical merges
+      for (let c = 0; c < boardSize; c++) {
+        for (let r = 0; r < boardSize - 1; r++) {
+          if (board[r][c] === board[r + 1][c]) {
+            return false;
+          }
+        }
+      }
+
+      // If we got here, game is over
+      finalScoreElement.textContent = score;
+      setTimeout(() => {
+        gameOverElement.classList.add("show");
+      }, 500);
+
+      return true;
+    }
+
+    // Restart the game
+    function restartGame() {
+      initGame();
+    }
+
+    // Undo the last move
+    function undoMove() {
+      if (prevBoard.length > 0) {
+        board = JSON.parse(JSON.stringify(prevBoard));
+        updateBoard();
+      }
+    }
+
+    // Helper function to compare arrays
+    function arraysEqual(a, b) {
+      return JSON.stringify(a) === JSON.stringify(b);
+    }
+
+    // Event listeners for keyboard controls
+    document.addEventListener("keydown", (event) => {
+      if (gameOverElement.classList.contains("show")) return;
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        move("left");
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        move("right");
+      } else if (event.key === "ArrowUp") {
+        event.preventDefault();
+        move("up");
+      } else if (event.key === "ArrowDown") {
+        event.preventDefault();
+        move("down");
+      }
+    });
+
+    // Touch controls for mobile
+    let touchStartX, touchStartY;
+
+    document.addEventListener("touchstart", (event) => {
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+      event.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener("touchend", (event) => {
+      if (!touchStartX || !touchStartY) return;
+
+      const touchEndX = event.changedTouches[0].clientX;
+      const touchEndY = event.changedTouches[0].clientY;
+
+      const deltaX = touchEndX - touchStartX;
+      const deltaY = touchEndY - touchStartY;
+
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Horizontal swipe
+        if (deltaX > 20) {
+          move("right");
+        } else if (deltaX < -20) {
+          move("left");
+        }
+      } else {
+        // Vertical swipe
+        if (deltaY > 20) {
+          move("down");
+        } else if (deltaY < -20) {
+          move("up");
+        }
+      }
+
+      touchStartX = touchStartY = null;
+      event.preventDefault();
+    }, { passive: false });
+
+    // Initialize the game
+    initGame();
+  </script>
+</body>
+
+</html>

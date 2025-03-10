@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird</title>
+    <link rel="stylesheet" href="flappy.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <button class="back-button" onclick="history.back()">
+            <i class="fa-solid fa-arrow-left fa-xl"></i>
+        </button>
+        <button id="toggleTheme" class="toggle-btn">🌙</button>
+    </nav>
+    <div class="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="startScreen" class="start-screen">
+            <h1>Flappy Bird</h1>
+            <p>Press <span class="key">Space</span>, <span class="key">↑</span>, <span class="key">W</span> or click to flap</p>
+            <button class="start-button" id="startButton">Start Game</button>
+        </div>
+        <div class="score-display" id="scoreDisplay">Score: 0</div>
+        <div class="controls-info" id="controlsInfo">
+            Controls: <span class="key">Space</span> <span class="key">↑</span> <span class="key">W</span> or Click
+        </div>
+    </div>
+    <script src="flappy.js"></script>
+    
+    
+</body>
+</html>
