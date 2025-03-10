@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loan EMI Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f4f4f4;
+      }
+      .container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 350px;
+      }
+      .input-group {
+        margin-bottom: 15px;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      .result {
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Loan EMI Calculator</h2>
+      <div class="input-group">
+        <label for="loanAmount">Loan Amount (₹)</label>
+        <input type="number" id="loanAmount" placeholder="Enter loan amount" />
+      </div>
+      <div class="input-group">
+        <label for="interestRate">Interest Rate (%)</label>
+        <input
+          type="number"
+          id="interestRate"
+          placeholder="Enter interest rate"
+        />
+      </div>
+      <div class="input-group">
+        <label for="loanTenure">Loan Tenure (months)</label>
+        <input type="number" id="loanTenure" placeholder="Enter loan tenure" />
+      </div>
+      <button onclick="calculateEMI()">Calculate EMI</button>
+      <div class="result" id="emiResult"></div>
+    </div>
+
+    <script>
+      function calculateEMI() {
+        let P = document.getElementById("loanAmount").value;
+        let r = document.getElementById("interestRate").value / 12 / 100;
+        let n = document.getElementById("loanTenure").value;
+
+        if (P <= 0 || r <= 0 || n <= 0) {
+          document.getElementById("emiResult").innerHTML =
+            "Please enter valid values.";
+          return;
+        }
+
+        let EMI = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        let totalPayment = EMI * n;
+        let totalInterest = totalPayment - P;
+
+        document.getElementById(
+          "emiResult"
+        ).innerHTML = `Monthly EMI: ₹${EMI.toFixed(2)} <br>
+                 Total Interest: ₹${totalInterest.toFixed(2)} <br>
+                 Total Payment: ₹${totalPayment.toFixed(2)}`;
+      }
+    </script>
+  </body>
+</html>
