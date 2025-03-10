@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Platformer Game</title>
+    <link rel="stylesheet" href="platformer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <button class="back-button" onclick="history.back()">
+            <i class="fa-solid fa-arrow-left fa-xl"></i>
+        </button>
+        <button id="toggleTheme" class="toggle-btn">🌙</button>
+    </nav>
+    <div id="game-container">
+        <div id="player"></div>
+        <div id="score-container">Score: <span id="score">0</span></div>
+        <div id="game-over">Game Over</div>
+        <button id="restart-button">Restart</button>
+        <div id="instructions">Use A/D or ←/→ to move, W or ↑ to jump</div>
+    </div>
+
+    <script src="platformer.js"></script>
+</body>
+</html>

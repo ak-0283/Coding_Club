@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Shooter</title>
+    <link rel="stylesheet" href="space.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+    <div id="game-container">
+        <div id="player"></div>
+        <div id="score-container">Score: <span id="score">0</span></div>
+        <div id="health-container">
+            <div class="health-bar">
+                <div id="health-fill"></div>
+            </div>
+        </div>
+        
+        <div id="start-screen">
+            <nav class="navbar">
+                <button class="back-button" onclick="history.back()">
+                    <i class="fa-solid fa-arrow-left fa-xl"></i>
+                </button>
+                <button id="toggleTheme" class="toggle-btn">🌙</button>
+            </nav>
+            
+            <div id="title">SPACE SHOOTER</div>
+            <button id="start-button">START GAME</button>
+            <div id="instructions">
+                Use the LEFT and RIGHT arrow keys or A/D keys to move.<br>
+                SPACEBAR to shoot.<br>
+                Destroy enemies to earn points. Collect power-ups for special abilities.<br>
+                Don't let enemies get past you or crash into them!
+            </div>
+        </div>
+        
+        <div id="game-over">
+            <h1>GAME OVER</h1>
+            <p>Your score: <span id="final-score">0</span></p>
+            <button id="restart-button">PLAY AGAIN</button>
+        </div>
+    </div>
+
+    <script src="space.js"></script>
+</body>
+</html>

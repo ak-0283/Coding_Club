@@ -14,12 +14,7 @@
 }
 
 /* Project Card Container */
-*/ .projects-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
+ 
 
 .projects-container {
   display: flex;
@@ -109,8 +104,8 @@
 .search-container {
   position: relative;
   width: 100%;
-  max-width: 80%; /* Ensure it fills the available width */
-  margin: 20px auto;
+  /* max-width: 80%; */
+  margin: 20px auto !important;
   padding: 0 10px; /* Add padding to prevent overflow */
 }
 

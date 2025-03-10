@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="age.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <button class="back-button" onclick="history.back()">
+            <i class="fa-solid fa-arrow-left fa-xl"></i>
+        </button>
+        <button id="toggleTheme" class="toggle-btn">🌙</button>
+    </nav>
+    <div class="calculator">
+        <div class="header">
+            <h1>Age Calculator</h1>
+            <p>Find out your exact age down to the days</p>
+        </div>
+
+        <div class="input-section">
+            <div class="input-group">
+                <label for="dob">Enter your date of birth</label>
+                <input type="date" id="dob" max="">
+            </div>
+            <button id="calculate-btn">Calculate Age</button>
+        </div>
+
+        <div class="result-section">
+            <div class="result-card" id="result-card">
+                <p id="result-message">Your age will appear here</p>
+                <div class="age-display" id="age-years">0</div>
+                <div class="details">
+                    <div class="detail-item">
+                        <div class="detail-value" id="months">0</div>
+                        <div class="detail-label">Months</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-value" id="days">0</div>
+                        <div class="detail-label">Days</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="age.js"></script>
+
+</html>

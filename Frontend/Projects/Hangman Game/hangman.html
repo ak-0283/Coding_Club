@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman | Word Guessing Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="hangman.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <button class="back-button" onclick="history.back()">
+            <i class="fa-solid fa-arrow-left fa-xl"></i>
+        </button>
+        <button id="toggleTheme" class="toggle-btn">🌙</button>
+    </nav>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>Hangman Challenge</h1>
+            <p>Guess the hidden word before it's too late!</p>
+            <div class="category-badge" id="category-badge">Programming</div>
+        </div>
+
+        <div class="game-stats">
+            <div class="stat">
+                <div>Attempts Left</div>
+                <div class="stat-value" id="attempts-left">6</div>
+            </div>
+            <div class="stat">
+                <div>Games Won</div>
+                <div class="stat-value" id="games-won">0</div>
+            </div>
+            <div class="stat">
+                <div>Games Lost</div>
+                <div class="stat-value" id="games-lost">0</div>
+            </div>
+        </div>
+
+        <div class="game-content">
+            <div class="hangman-display">
+                <div class="hangman-part gallows-base"></div>
+                <div class="hangman-part gallows-pole"></div>
+                <div class="hangman-part gallows-support"></div>
+                <div class="hangman-part gallows-top"></div>
+                <div class="hangman-part rope"></div>
+                <div class="hangman-part head"></div>
+                <div class="hangman-part body"></div>
+                <div class="hangman-part arm-left"></div>
+                <div class="hangman-part arm-right"></div>
+                <div class="hangman-part leg-left"></div>
+                <div class="hangman-part leg-right"></div>
+            </div>
+
+            <div class="hint" id="hint"></div>
+
+            <div class="word-display" id="word-display"></div>
+
+            <div class="message" id="message">Guess a letter to start the game</div>
+
+            <div class="keyboard" id="keyboard"></div>
+
+            <div class="game-controls">
+                <button class="btn btn-primary" id="new-game-btn">
+                    <i class="fas fa-sync-alt"></i> New Game
+                </button>
+                <button class="btn btn-secondary" id="hint-btn">
+                    <i class="fas fa-lightbulb"></i> Get Hint
+                </button>
+            </div>
+        </div>
+
+        <div class="game-footer">
+            Challenge yourself with new words in each game!
+        </div>
+    </div>
+    <script src="hangman.js"></script>
+
+</body>
+
+</html>

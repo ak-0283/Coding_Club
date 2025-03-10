@@ -1,0 +1,314 @@
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+    background-color: #e0c3fc;
+}
+
+::-webkit-scrollbar:hover {
+    background-color: #e0c3fc;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to top, var(--primary), var(--secondary));
+}
+
+:root {
+    --primary: #4361ee;
+    --secondary: #7209b7;
+    --accent: #f72585;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: var(--dark);
+}
+
+.calculator {
+    width: 100%;
+    max-width: 450px;
+    margin-top: 6rem;
+    background-color: var(--light);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px var(--shadow);
+    overflow: hidden;
+}
+
+.header {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    padding: 25px 20px;
+    text-align: center;
+    color: white;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.input-section {
+    padding: 25px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--dark);
+}
+
+input[type="date"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+input[type="date"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    outline: none;
+}
+
+.calculator button {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.calculator button:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.calculator button:active {
+    transform: translateY(0);
+}
+
+.result-section {
+    padding: 0 25px 25px;
+}
+
+.result-card {
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px var(--shadow);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.result-card.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.age-display {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 10px 0;
+}
+
+.details {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.detail-item {
+    flex: 1;
+}
+
+.detail-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+.detail-label {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+@media (max-width: 480px) {
+    .calculator {
+        border-radius: 12px;
+    }
+
+    .header {
+        padding: 20px 15px;
+    }
+
+    .input-section,
+    .result-section {
+        padding: 20px;
+    }
+
+    .age-display {
+        font-size: 28px;
+    }
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Back Button */
+.back-button {
+    background: #2867f0;
+    color: white;
+    border: none;
+    padding: 0.8rem 20px;
+    width: 4rem;
+    height: 2.5rem;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #0190f6;
+    transform: scale(1.05);
+}
+
+.toggle-btn {
+    position: fixed;
+    top: 0;
+    right: 20px;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Toggle theme style */
+#toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation (subtle scaling effect) */
+#toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+/* Dark mode effect */
+.dark-mode #toggleTheme {
+    background: transparent;
+    box-shadow: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click animation in dark mode */
+.dark-mode #toggleTheme:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+.toggle-btn:hover {
+    background: #0056b3;
+}
+
+body.dark-mode {
+    background: #121212;
+    color: #fff;
+}
+
+/* Dark mode for header */
+.dark-mode nav {
+    background: linear-gradient(135deg, #1e1e1e, #333);
+}
+
+.dark-mode .calculator{
+    background: #2A2A2A;
+}
+.dark-mode .calculator h2,
+.dark-mode .timer{
+    text-shadow: none;
+}
+.dark-mode .calculator button{
+    color: #1e1e1e;
+}
+.dark-mode .calculator button:hover{
+    background-color: #121212;
+    color: #fff;
+}
+.dark-mode .header{
+        background: linear-gradient(to right, #626b72, #ababab);
+   
+}
+
+.dark-mode .result-card {
+    background: linear-gradient(to right, #4c5358, #878686);
+    color: #fff;
+}
+.dark-mode .details .detail-item div{
+    color: #fff;
+}
+.dark-mode p{
+    color: #fff !important;
+}
