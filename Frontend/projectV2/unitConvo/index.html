@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unit Converter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 300px;
+      }
+      select,
+      input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+      }
+      .result {
+        font-size: 1.2em;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Unit Converter</h2>
+      <input
+        type="number"
+        id="inputValue"
+        placeholder="Enter value"
+        oninput="convert()"
+      />
+      <select id="unitType" onchange="convert()">
+        <option value="km-miles">Kilometers to Miles</option>
+        <option value="miles-km">Miles to Kilometers</option>
+        <option value="kg-lbs">Kilograms to Pounds</option>
+        <option value="lbs-kg">Pounds to Kilograms</option>
+      </select>
+      <div class="result" id="result">Result: 0</div>
+    </div>
+    <script>
+      function convert() {
+        let input = parseFloat(document.getElementById("inputValue").value);
+        let unitType = document.getElementById("unitType").value;
+        let result = 0;
+
+        if (isNaN(input)) {
+          document.getElementById("result").innerText = "Enter a valid number";
+          return;
+        }
+
+        switch (unitType) {
+          case "km-miles":
+            result = input * 0.621371;
+            break;
+          case "miles-km":
+            result = input * 1.60934;
+            break;
+          case "kg-lbs":
+            result = input * 2.20462;
+            break;
+          case "lbs-kg":
+            result = input * 0.453592;
+            break;
+        }
+        document.getElementById("result").innerText = `Result: ${result.toFixed(
+          4
+        )}`;
+      }
+    </script>
+  </body>
+</html>

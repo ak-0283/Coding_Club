@@ -36,8 +36,8 @@
 }
 
 .project-card img {
-  width: 100%;
-  height: auto;
+  width: 16rem;
+  height: 16rem;
   border-radius: 10px;
 }
 
@@ -65,6 +65,9 @@
 
 .project-card .view-demo:hover {
   background: #0288d1;
+}
+.projects-section{
+  max-width: 85% !important;
 }
 
 /* Responsive Design */

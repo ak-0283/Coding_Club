@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #1e1e2e;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        transition: background 0.3s, color 0.3s;
+      }
+      .game-container {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+      }
+      .score-board {
+        display: flex;
+        justify-content: space-around;
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      .choices {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px 0;
+      }
+      .choice {
+        font-size: 40px;
+        background: none;
+        border: 2px solid white;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .choice:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      #result-text {
+        font-size: 22px;
+        margin: 15px 0;
+      }
+      #reset,
+      #theme-toggle {
+        background: red;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: 0.3s;
+        margin-top: 10px;
+      }
+      #reset:hover {
+        background: darkred;
+      }
+      #theme-toggle {
+        background: #008cba;
+      }
+      #theme-toggle:hover {
+        background: #005f7a;
+      }
+
+      /* Light Mode */
+      .light-mode {
+        background-color: #ffffff;
+        color: #000000;
+      }
+      .light-mode .game-container {
+        background: rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+      .light-mode .choice {
+        border: 2px solid black;
+      }
+      .light-mode .choice:hover {
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .light-mode #reset {
+        background: red;
+      }
+      .light-mode #reset:hover {
+        background: darkred;
+      }
+      .light-mode #theme-toggle {
+        background: #005f7a;
+      }
+      .light-mode #theme-toggle:hover {
+        background: #008cba;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="theme-toggle" style="margin-bottom: 67px">Dark Mode</button>
+    <div class="game-container">
+      <h1>Rock Paper Scissors</h1>
+      <div class="score-board">
+        <span>Player: <span id="player-score">0</span></span>
+        <span>AI: <span id="ai-score">0</span></span>
+      </div>
+      <div class="choices">
+        <button class="choice" data-choice="rock">✊</button>
+        <button class="choice" data-choice="paper">✋</button>
+        <button class="choice" data-choice="scissors">✌️</button>
+      </div>
+      <div class="result">
+        <p id="result-text">Choose your move!</p>
+        <p>AI Chose: <span id="ai-choice">?</span></p>
+      </div>
+      <button id="reset">Reset Game</button>
+    </div>
+    <script>
+      const choices = document.querySelectorAll(".choice");
+      const resultText = document.getElementById("result-text");
+      const aiChoiceText = document.getElementById("ai-choice");
+      const playerScoreText = document.getElementById("player-score");
+      const aiScoreText = document.getElementById("ai-score");
+      const resetBtn = document.getElementById("reset");
+      const themeToggleBtn = document.getElementById("theme-toggle");
+
+      let playerScore = 0;
+      let aiScore = 0;
+
+      const getAIChoice = () => {
+        const choices = ["rock", "paper", "scissors"];
+        return choices[Math.floor(Math.random() * choices.length)];
+      };
+
+      const determineWinner = (player, ai) => {
+        if (player === ai) return "It's a tie!";
+        if (
+          (player === "rock" && ai === "scissors") ||
+          (player === "paper" && ai === "rock") ||
+          (player === "scissors" && ai === "paper")
+        ) {
+          playerScore++;
+          return "You win!";
+        } else {
+          aiScore++;
+          return "AI wins!";
+        }
+      };
+
+      choices.forEach((choice) => {
+        choice.addEventListener("click", () => {
+          const playerChoice = choice.getAttribute("data-choice");
+          const aiChoice = getAIChoice();
+
+          aiChoiceText.textContent = aiChoice;
+          resultText.textContent = determineWinner(playerChoice, aiChoice);
+
+          playerScoreText.textContent = playerScore;
+          aiScoreText.textContent = aiScore;
+        });
+      });
+
+      resetBtn.addEventListener("click", () => {
+        playerScore = 0;
+        aiScore = 0;
+        playerScoreText.textContent = playerScore;
+        aiScoreText.textContent = aiScore;
+        aiChoiceText.textContent = "?";
+        resultText.textContent = "Choose your move!";
+      });
+
+      // Dark Mode Toggle
+      themeToggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("light-mode");
+
+        // Save theme preference
+        if (document.body.classList.contains("light-mode")) {
+          localStorage.setItem("theme", "light");
+          themeToggleBtn.textContent = "Toggle Dark Mode";
+        } else {
+          localStorage.setItem("theme", "dark");
+          themeToggleBtn.textContent = "Toggle Light Mode";
+        }
+      });
+
+      // Load saved theme preference
+      window.addEventListener("load", () => {
+        if (localStorage.getItem("theme") === "light") {
+          document.body.classList.add("light-mode");
+          themeToggleBtn.textContent = "Toggle Dark Mode";
+        }
+      });
+    </script>
+  </body>
+</html>

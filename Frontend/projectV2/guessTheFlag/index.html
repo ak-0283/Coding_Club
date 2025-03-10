@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Guess the Flag</title>
+    <style>
+      /* Global Styles */
+      body {
+        background: linear-gradient(135deg, #74abe2, #5563de);
+        font-family: Arial, sans-serif;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      /* Game Container */
+      .game-container {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px 30px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        max-width: 400px;
+        margin-bottom: 20px;
+      }
+
+      /* Header */
+      h1 {
+        margin-bottom: 20px;
+        font-size: 2.5em;
+        letter-spacing: 1px;
+      }
+
+      /* Flag Styles */
+      .flag-container {
+        margin-bottom: 20px;
+      }
+
+      .flag-container img {
+        width: 250px;
+        height: 150px;
+        object-fit: cover;
+        border: 5px solid #fff;
+        border-radius: 5px;
+      }
+
+      /* Options */
+      .options-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .option {
+        background: #fff;
+        color: #333;
+        padding: 10px 15px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+      }
+
+      .option:hover {
+        background: #f1f1f1;
+        transform: scale(1.05);
+      }
+
+      /* Messages and Buttons */
+      #message {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      button {
+        background: #5563de;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background 0.3s;
+        margin: 5px;
+      }
+
+      button:hover {
+        background: #4351b5;
+      }
+
+      /* Leaderboard Container */
+      .leaderboard-container {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 15px 25px;
+        border-radius: 10px;
+        text-align: center;
+        max-width: 300px;
+        width: 100%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .leaderboard-container h2 {
+        margin-top: 0;
+      }
+
+      .leaderboard-container ul {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0 0 0;
+      }
+
+      .leaderboard-container li {
+        background: #fff;
+        color: #333;
+        margin: 5px 0;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game-container">
+      <h1>Guess the Flag</h1>
+      <div class="flag-container">
+        <img id="flag" src="" alt="Flag" />
+      </div>
+      <div class="options-container" id="options"></div>
+      <p id="message"></p>
+      <p>Score: <span id="score">0</span></p>
+      <p>Time left: <span id="timer">10</span> sec</p>
+      <button onclick="startGame()">Start Game</button>
+      <button onclick="endGame()">End Game</button>
+    </div>
+
+    <!-- Leaderboard Container -->
+    <div class="leaderboard-container">
+      <h2>Leaderboard</h2>
+      <ul id="leaderboardList"></ul>
+    </div>
+
+    <script>
+      // Array of flag objects
+      const flags = [
+        { name: "France", image: "https://flagcdn.com/fr.svg" },
+        { name: "Germany", image: "https://flagcdn.com/de.svg" },
+        { name: "Italy", image: "https://flagcdn.com/it.svg" },
+        { name: "Spain", image: "https://flagcdn.com/es.svg" },
+        { name: "United Kingdom", image: "https://flagcdn.com/gb.svg" },
+        { name: "United States", image: "https://flagcdn.com/us.svg" },
+      ];
+
+      let score = 0;
+      let timer = 10;
+      let intervalId;
+      let currentFlag;
+      let gameActive = false;
+
+      // DOM Elements
+      const flagImage = document.getElementById("flag");
+      const optionsContainer = document.getElementById("options");
+      const messageEl = document.getElementById("message");
+      const scoreEl = document.getElementById("score");
+      const timerEl = document.getElementById("timer");
+      const leaderboardList = document.getElementById("leaderboardList");
+
+      // Start the game
+      function startGame() {
+        score = 0;
+        scoreEl.textContent = score;
+        messageEl.textContent = "";
+        gameActive = true;
+        nextQuestion();
+      }
+
+      // End the game, update leaderboard, and display final score
+      function endGame() {
+        gameActive = false;
+        clearInterval(intervalId);
+        messageEl.textContent = `Game Over! Your final score is ${score}.`;
+        updateLeaderboard(score);
+        displayLeaderboard();
+      }
+
+      // Setup next question if game is active
+      function nextQuestion() {
+        if (!gameActive) return;
+        clearInterval(intervalId);
+        timer = 10;
+        timerEl.textContent = timer;
+
+        // Choose a random flag for the current question
+        currentFlag = flags[Math.floor(Math.random() * flags.length)];
+        flagImage.src = currentFlag.image;
+        flagImage.alt = currentFlag.name + " Flag";
+
+        // Generate answer options: one correct and three random
+        const options = [currentFlag.name];
+        while (options.length < 4) {
+          const randomFlag =
+            flags[Math.floor(Math.random() * flags.length)].name;
+          if (!options.includes(randomFlag)) {
+            options.push(randomFlag);
+          }
+        }
+        // Shuffle the options array
+        options.sort(() => Math.random() - 0.5);
+
+        // Display the options
+        optionsContainer.innerHTML = "";
+        options.forEach((option) => {
+          const btn = document.createElement("div");
+          btn.classList.add("option");
+          btn.textContent = option;
+          btn.onclick = () => selectOption(option);
+          optionsContainer.appendChild(btn);
+        });
+
+        // Start the countdown timer
+        startTimer();
+      }
+
+      // Countdown timer for each question
+      function startTimer() {
+        intervalId = setInterval(() => {
+          timer--;
+          timerEl.textContent = timer;
+          if (timer <= 0) {
+            clearInterval(intervalId);
+            messageEl.textContent = `Time's up! The correct answer was ${currentFlag.name}.`;
+            setTimeout(nextQuestion, 2000);
+          }
+        }, 1000);
+      }
+
+      // Handle option selection
+      function selectOption(selected) {
+        clearInterval(intervalId);
+        if (selected === currentFlag.name) {
+          score++;
+          scoreEl.textContent = score;
+          messageEl.textContent = "Correct! 🎉";
+        } else {
+          messageEl.textContent = `Wrong! The correct answer was ${currentFlag.name}.`;
+        }
+        setTimeout(nextQuestion, 2000);
+      }
+
+      // Optional: Hint feature – reveals the first letter of the flag's name
+      function showHint() {
+        messageEl.textContent = `Hint: It starts with "${currentFlag.name.charAt(
+          0
+        )}"`;
+      }
+
+      // Create and add a Hint button dynamically
+      const hintBtn = document.createElement("button");
+      hintBtn.textContent = "Show Hint";
+      hintBtn.onclick = showHint;
+      document.querySelector(".game-container").appendChild(hintBtn);
+
+      // Update leaderboard stored in local storage
+      function updateLeaderboard(newScore) {
+        let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+        leaderboard.push(newScore);
+        // Sort scores in descending order and keep top 5
+        leaderboard.sort((a, b) => b - a);
+        leaderboard = leaderboard.slice(0, 5);
+        localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+      }
+
+      // Display the leaderboard on the page
+      function displayLeaderboard() {
+        let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+        leaderboardList.innerHTML = "";
+        leaderboard.forEach((score, index) => {
+          const li = document.createElement("li");
+          li.textContent = `${index + 1}. ${score}`;
+          leaderboardList.appendChild(li);
+        });
+      }
+
+      // Display leaderboard on page load
+      window.onload = displayLeaderboard;
+    </script>
+  </body>
+</html>
