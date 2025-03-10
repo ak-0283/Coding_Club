@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #1e1e2e;
+        color: white;
+      }
+      .container {
+        margin-top: 20px;
+      }
+      .hangman-figure svg {
+        stroke: white;
+        stroke-width: 4;
+        fill: none;
+      }
+      .part {
+        display: none;
+      }
+      .keyboard button {
+        margin: 5px;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .word-display {
+        font-size: 24px;
+        margin: 20px;
+      }
+      button#restart {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        background-color: #ff5722;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Hangman Game</h1>
+      <p class="category">Category: <span id="category"></span></p>
+      <p class="hint">Hint: <span id="hint"></span></p>
+      <div class="hangman-figure">
+        <svg height="250" width="200">
+          <line x1="20" y1="230" x2="180" y2="230" />
+          <line x1="50" y1="230" x2="50" y2="30" />
+          <line x1="50" y1="30" x2="130" y2="30" />
+          <line x1="130" y1="30" x2="130" y2="60" />
+          <circle cx="130" cy="80" r="20" class="part head" />
+          <line x1="130" y1="100" x2="130" y2="160" class="part body" />
+          <line x1="130" y1="120" x2="100" y2="140" class="part left-arm" />
+          <line x1="130" y1="120" x2="160" y2="140" class="part right-arm" />
+          <line x1="130" y1="160" x2="100" y2="200" class="part left-leg" />
+          <line x1="130" y1="160" x2="160" y2="200" class="part right-leg" />
+        </svg>
+      </div>
+      <p class="word-display" id="word-display"></p>
+      <div class="keyboard" id="keyboard"></div>
+      <p class="score">Score: <span id="score">0</span></p>
+      <button id="restart">Restart</button>
+    </div>
+    <script>
+      const words = [
+        {
+          word: "javascript",
+          hint: "Programming Language",
+          category: "Technology",
+        },
+        { word: "elephant", hint: "Largest land animal", category: "Animals" },
+        { word: "guitar", hint: "A musical instrument", category: "Music" },
+      ];
+      let selectedWordObj = words[Math.floor(Math.random() * words.length)];
+      let word = selectedWordObj.word;
+      let hint = selectedWordObj.hint;
+      let category = selectedWordObj.category;
+      let guessedLetters = [];
+      let wrongGuesses = 0;
+      const maxWrongGuesses = 6;
+
+      document.getElementById("category").textContent = category;
+      document.getElementById("hint").textContent = hint;
+      const wordDisplay = document.getElementById("word-display");
+      const keyboard = document.getElementById("keyboard");
+      const scoreDisplay = document.getElementById("score");
+      let score = 0;
+
+      function displayWord() {
+        wordDisplay.textContent = word
+          .split("")
+          .map((letter) => (guessedLetters.includes(letter) ? letter : "_"))
+          .join(" ");
+      }
+
+      function updateHangman() {
+        document.querySelectorAll(".part").forEach((part, index) => {
+          part.style.display = index < wrongGuesses ? "block" : "none";
+        });
+        if (wrongGuesses >= maxWrongGuesses) {
+          endGame(false);
+        }
+      }
+
+      function createKeyboard() {
+        const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+        alphabet.forEach((letter) => {
+          let button = document.createElement("button");
+          button.textContent = letter;
+          button.addEventListener("click", () => handleGuess(letter, button));
+          keyboard.appendChild(button);
+        });
+      }
+
+      function handleGuess(letter, button) {
+        if (word.includes(letter)) {
+          guessedLetters.push(letter);
+          displayWord();
+          if (!wordDisplay.textContent.includes("_")) {
+            endGame(true);
+          }
+        } else {
+          wrongGuesses++;
+          updateHangman();
+        }
+        button.disabled = true;
+      }
+
+      function endGame(win) {
+        if (win) {
+          alert("You Win!");
+          score += 10;
+        } else {
+          alert("Game Over! The word was " + word);
+        }
+        scoreDisplay.textContent = score;
+        document
+          .querySelectorAll(".keyboard button")
+          .forEach((button) => (button.disabled = true));
+      }
+
+      document
+        .getElementById("restart")
+        .addEventListener("click", () => location.reload());
+      displayWord();
+      createKeyboard();
+    </script>
+  </body>
+</html>

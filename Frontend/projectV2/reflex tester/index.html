@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fast Reflex Tester</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to right, #141e30, #243b55);
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      .container {
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+      .button {
+        padding: 15px 30px;
+        background: #ffcc00;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .button:hover {
+        background: #ff9900;
+      }
+      .green {
+        background: green !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Fast Reflex Tester</h1>
+      <p>Click as fast as possible when the color changes!</p>
+      <button id="startButton" class="button">Start</button>
+      <p id="status"></p>
+      <p id="result"></p>
+    </div>
+
+    <script>
+      let startTime, reactionTime, timeout;
+      const startButton = document.getElementById("startButton");
+      const statusText = document.getElementById("status");
+      const resultText = document.getElementById("result");
+      let isGreen = false;
+
+      startButton.addEventListener("click", () => {
+        if (isGreen) {
+          reactionTime = new Date().getTime() - startTime;
+          resultText.textContent = `Your Reaction Time: ${reactionTime} ms`;
+          startButton.textContent = "Start";
+          startButton.classList.remove("green");
+          isGreen = false;
+          return;
+        }
+
+        statusText.textContent = "Wait for Green...";
+        startButton.classList.remove("green");
+        startButton.disabled = true;
+        resultText.textContent = "";
+
+        const delay = Math.floor(Math.random() * 3000) + 2000;
+        timeout = setTimeout(() => {
+          startButton.classList.add("green");
+          statusText.textContent = "CLICK NOW!";
+          startTime = new Date().getTime();
+          startButton.disabled = false;
+          isGreen = true;
+        }, delay);
+      });
+    </script>
+  </body>
+</html>
