@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password strength</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <button class="back-button" onclick="history.back()">
+            <i id="back-btn" class="fa-solid fa-arrow-left fa-xl"></i>
+        </button>
+        <button id="toggleTheme" class="toggle-btn">🌙</button>
+    </nav>
+    <div>
+        <form action="">
+            Password Strength Checker <input type="text" placeholder="as34fs!4">
+            <button id="submit-btn">Check</button>
+            <span id="showResult"></span>
+        </form>
+    </div>
+</body>
+ <script>
+    const submitBtn = document.getElementById('submit-btn');
+    submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const password = document.querySelector('input').value;
+        if(password === "") {
+            document.getElementById('showResult').innerText = "Please enter a password";
+            return;
+        }
+        const strength = checkPasswordStrength(password);
+        if(strength === "Strong"){
+            document.getElementById('showResult').style.color = "green";
+        }else if(strength === "Medium"){
+            document.getElementById('showResult').style.color = "rgb(247, 75, 2)";
+        }else{
+            document.getElementById('showResult').style.color = "red";
+        }
+        document.getElementById('showResult').innerText = `Password strength: ${strength}`;
+    });
+
+    function checkPasswordStrength(password) {
+        const strength = {
+            length: password.length >= 8,
+            hasNumber: /\d/.test(password),
+            hasSpecialChar: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password),
+            hasUpperCase: /[A-Z]/.test(password),
+            hasLowerCase: /[a-z]/.test(password)
+        };
+
+        let score = 0;
+        for (let key in strength) {
+            if (strength[key]) {
+                score++;
+            }
+        }
+
+        if (score === 5) {
+            return 'Strong';
+        } else if (score >= 3) {
+            return 'Medium';
+        } else {
+            return 'Weak';
+        }
+    }
+ </script>
+ <script>
+    if (toggleTheme) {
+toggleTheme.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+
+    // Save theme preference
+    const isDarkMode = document.body.classList.contains("dark-mode");
+    toggleTheme.textContent = isDarkMode ? "☀️" : "🌙";
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+});
+
+// Load theme preference on page load
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+    toggleTheme.textContent = "☀️";
+}
+}
+</script>
+</html>
