@@ -67,7 +67,7 @@ The Coding Club Website is designed to serve as an online hub for students inter
 ```
 
 
-![Directory Structure]()
+![Directory Structure](diagram (1).png)
 
 <h2>Project Admin</h2>
 
