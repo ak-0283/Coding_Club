@@ -65,6 +65,10 @@ The Coding Club Website is designed to serve as an online hub for students inter
 ├── script.js        # JavaScript for interactivity
 ├── README.md        # Project documentation
 ```
+
+
+![Directory Structure](diagram (1).png)
+
 <h2>Project Admin</h2>
 
 <table>
